@@ -9,4 +9,8 @@ public class WebRestController {
     public String hello() {
         return "HelloWorld";
     }
+    @GetMapping("/hello")
+    public String hello123() {
+        return "HelloWorlddsadsadsdads";
+    }
 }
