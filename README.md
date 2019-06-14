@@ -8,4 +8,4 @@
 3. 배포: Docker
 
 ##DB ERD설계
-![ex_screenshot] (./img/shoppingMall_DB.png)  
+![ex_screenshot](./img/shoppingMall_DB.png)  
