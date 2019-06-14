@@ -7,5 +7,7 @@
 2.DB: mariaDB<br>
 3.배포: Docker<br>
 
-##DB ERD설계<br>
+## DB ERD설계<br>
+link: URL : http://aquerytool.com:80/aquerymain/index/?rurl=eff3c5ad-c895-47c2-a302-a178c9319472&
+**Password : qzu74a
 ![ex_screenshot](./img/shoppingMall_DB.png)  
