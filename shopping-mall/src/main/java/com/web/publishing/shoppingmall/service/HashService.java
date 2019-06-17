@@ -20,7 +20,7 @@ public class HashService {
             e.printStackTrace();
             SHA = null;
         }
-        System.out.println(SHA);
+//        System.out.println(SHA);
         return SHA;
     }
 }

@@ -14,4 +14,8 @@ public class MainController {
     public String joinPage(){
         return "join";
     }
+    @RequestMapping(value = "/loginPage")
+    public String loinPage(){
+        return "login";
+    }
 }
