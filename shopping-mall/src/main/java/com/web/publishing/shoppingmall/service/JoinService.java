@@ -2,25 +2,25 @@ package com.web.publishing.shoppingmall.service;
 
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
+@Service
 public class JoinService {
-    public void joinAdmin(HttpServletRequest request, AdminRepository adminRepository) {
-        String adminId = request.getParameter("adminId");
-        String adminPassword  = request.getParameter("adminPassword");
-        String name  = request.getParameter("name");
-        String tellNumber  = request.getParameter("tellNumber");
-        String bank  = request.getParameter("bank");
+    @Autowired
+    private AdminRepository adminRepository;
 
-        Admin admin = Admin.builder()
-                .adminId(adminId)
-                .adminPassword(adminPassword)
-                .name(name)
-                .tellNumber(tellNumber)
-                .bank(bank).build();
-        adminRepository.save(admin);
+    public String joinAdmin(Map<String, String> adminInfo) {
+            Admin admin = Admin.builder()
+                    .adminId(adminInfo.get("adminId"))
+                    .adminPassword(adminInfo.get("adminPassword"))
+                    .name(adminInfo.get("name"))
+                    .tellNumber(adminInfo.get("tellNumber"))
+                    .bank(adminInfo.get("bank")).build();
+            adminRepository.save(admin);
+            return "index";
     }
-
 }
 
