@@ -1,10 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="content-type" charset="UTF-8">
+    <title>회원 가입</title>
 </head>
 <body>
-
+<form action="http://localhost:8080/joinRequest" method="post">
+    아이디: <input type="text" name="adminId">
+    비밀번호: <input type="password" name ="adminPassword">
+    이름: <input type="text" name="name">
+    연락처: <input type="text" name ="tellNumber">
+    계좌번호: <input type="text" name="bank">
+            <input type="submit" value="가입하기">
+</form>
 </body>
 </html>
