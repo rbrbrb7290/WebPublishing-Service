@@ -13,28 +13,19 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AdminRepositoryTest {
-    @Autowired
-    AdminRepository adminRepository;
-
+public class UserRepositoryTest {
     @Autowired
     UserRepository userRepository;
-    @Test
-    public void name() throws Exception {
-        assertThat("hello", is("hello"));
-    }
 
     @Test
     public void save() throws Exception {
-       Admin admin = Admin.builder()
-               .adminId("ohg429")
-               .adminPassword("1234")
-               .name("오현규3123213")
-               .tellNumber("01032595995")
-               .bank("138129370137190").build();
-       adminRepository.save(admin);
+        User user = User.builder()
+                .userId("rbrbrb7290")
+                .userPassword("1111")
+                .name("현규오")
+                .tellNumber("010-5555-5555")
+                .address("").build();
+        userRepository.save(user);
     }
-
-
 
 }
