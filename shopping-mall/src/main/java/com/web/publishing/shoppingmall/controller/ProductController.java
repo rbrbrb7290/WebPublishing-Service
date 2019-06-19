@@ -21,10 +21,9 @@ public class ProductController {
 
     @RequestMapping("/product")
     public String product(@RequestParam(value = "pageNum", defaultValue = "1")String pageNum) {
-        List<Product> productList = productListService.productList(returnPageNum(pageNum));
+        String page = productListService.productList(returnPageNum(pageNum));
 
-
-        return "product";
+        return page;
     }
 
 }
