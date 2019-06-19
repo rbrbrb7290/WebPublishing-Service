@@ -20,5 +20,5 @@ public class Product {
     private String pdAmount;
     private String pdImageUrl;
     private String pdDate;
-    private String pd_content;
+    private String pdContent;
 }

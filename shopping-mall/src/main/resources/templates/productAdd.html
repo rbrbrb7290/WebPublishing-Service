@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bootstrap Example</title>
+    <title>Web Service</title>
     <meta http-equiv="content-type" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -78,31 +78,18 @@
             <p><a href="#">Link</a></p>
         </div>
         <div class="col-sm-8 text-left">
-            <h4>상품</h4>
-            <a href="/productAdd">상품 등록</a>
-            <table>
-                <tr>
-                    <th>&nbsp;번호&nbsp;&nbsp;</th>
-                    <th>&nbsp;상품이름&nbsp;</th>
-                    <th>&nbsp;가격&nbsp;</th>
-                    <th>내용&nbsp;</th>
-                    <th>&nbsp;&nbsp;등록날짜&nbsp;</th>
-                </tr>
-            <!-- 상풍게시글이 등록될 태그-->
-                <th:block th:if="${session.productList!=null}">
-                    <th:block th:each="product:${session.productList}">
-                        <tr>
-                            <td><span th:text="${product.getId()}"></span></td>
-                            <td><span th:text="${product.getPdName()}"></span></td>
-                            <td><span th:text="${product.getPdPrice()}"></span></td>
-                            <td><span th:text="${product.getPdContent()}"></span></td>
-                            <td><span th:text="${product.getPdDate()}"></span></td>
-                            <td></td>
-                        </tr>
-                    </th:block>
-                </th:block>
-
-            </table>
+            <h4>상품등록</h4>
+            <br>
+            <form action="/productAddRequest" method="post">
+                <input type="text"  placeholder="상품이름" name="pdName">
+                <br>
+                <input type="text"  placeholder="가격" name="pdPrice">
+<!--                <input type="text"  placeholder="날짜" name="pdDate" value="date">-->
+                <textarea placeholder="내용" name="pdContent" id="" cols="20" rows="8"></textarea>
+                <input placeholder="날짜" type="date" id="now_date" name="pdDate">
+                <br><br>
+                <input type="submit"  value="상품등록">
+            </form>
         </div>
         <div class="col-sm-2 sidenav">
             <div class="well">
@@ -118,6 +105,9 @@
 <footer class="container-fluid text-center">
     <p>Footer Text</p>
 </footer>
+<script>
+    document.getElementById('now_date').valueAsDate = new Date();
+</script>
 
 </body>
 </html>

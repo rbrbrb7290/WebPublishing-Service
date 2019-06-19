@@ -9,7 +9,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
-public class MainController {
+public class HomeController {
     private final HttpSession httpSession;
 
     @RequestMapping(value = "/")
@@ -32,5 +32,11 @@ public class MainController {
         httpSession.invalidate();
         return "index";
     }
+
+    @GetMapping("/productAdd")
+    public String productAdd(){
+        return "productAdd";
+    }
+
 
 }
