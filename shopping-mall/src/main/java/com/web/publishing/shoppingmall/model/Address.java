@@ -1,8 +1,10 @@
 package com.web.publishing.shoppingmall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity
 @Builder
@@ -10,15 +12,15 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="user_db")
-public class User {
+@Table(name="address_db")
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Integer id;
-    private String userId;
-    private String userPassword;
-    private String name;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="userId")
+    private User userId;
     private String tellNumber;
     private String address;
+
 }

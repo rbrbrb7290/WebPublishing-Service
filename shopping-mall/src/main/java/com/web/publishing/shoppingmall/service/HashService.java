@@ -1,11 +1,14 @@
 package com.web.publishing.shoppingmall.service;
 
+import org.springframework.stereotype.Service;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+@Service
 public class HashService {
 
-    public static String sha256(String password) {
+    public  String sha256(String password) {
         String SHA = "";
         try {
             MessageDigest sh = MessageDigest.getInstance("SHA-256");

@@ -19,6 +19,8 @@ public class AdminRepositoryTest {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    AddressRepository addressRepository;
     @Test
     public void name() throws Exception {
         assertThat("hello", is("hello"));
@@ -29,7 +31,7 @@ public class AdminRepositoryTest {
        Admin admin = Admin.builder()
                .adminId("ohg429")
                .adminPassword("1234")
-               .name("오현규3123213")
+               .name("외래키테스트")
                .tellNumber("01032595995")
                .bank("138129370137190").build();
        adminRepository.save(admin);

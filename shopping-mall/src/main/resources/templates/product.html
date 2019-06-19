@@ -57,8 +57,8 @@
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
                 <li><a href="/product">상품관리</a></li>
-<!--                <li><a href="#">Projects</a></li>-->
-<!--                <li><a href="#">Contact</a></li>-->
+                <!--                <li><a href="#">Projects</a></li>-->
+                <!--                <li><a href="#">Contact</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li th:if="${session.loginAdmin!=null}"><a href="/adminPage"><span class="glyphicon glyphicon-log-in"></span> 관리자 메뉴</a></li>
@@ -78,12 +78,26 @@
             <p><a href="#">Link</a></p>
         </div>
         <div class="col-sm-8 text-left">
-            <h1>관리자 로그인</h1>
-            <form action="/loginRequest" method="post">
-                아이디: <input type="text" name="adminId"><br>
-                비밀번호: <input type="password" name ="adminPassword"><br>
-                <input type="submit" value="로그인"><br>
-            </form>
+            <h4>상품</h4>
+            <table>
+                <tr>
+                    <th>상품 이름</th>
+                    <th>가격</th>
+                    <th>등록날짜</th>
+                </tr>
+            <!-- 상풍게시글이 등록될 태그-->
+                <th:block th:if="${session.productList!=null}">
+                    <th:block th:each="product:${session.productList}">
+                        <tr>
+                            <td><span th:text="${product.getPdName()}"></span></td>
+                            <td><span th:text="${product.getPdPrice()}"></span></td>
+                            <td><span th:text="${product.getPdDate()}"></span></td>
+                            <td></td>
+                        </tr>
+                    </th:block>
+                </th:block>
+
+            </table>
         </div>
         <div class="col-sm-2 sidenav">
             <div class="well">

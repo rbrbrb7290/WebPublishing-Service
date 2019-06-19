@@ -2,6 +2,7 @@ package com.web.publishing.shoppingmall.service;
 
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class JoinService {
-    @Autowired
-    private AdminRepository adminRepository;
+    private final AdminRepository adminRepository;
+    private final HashService hashService;
 
     public String joinAdmin(String adminId, String adminPassword, String name, String tellNumber, String bank ) {
 
@@ -21,7 +23,7 @@ public class JoinService {
         }else {
             Admin admin = Admin.builder()
                     .adminId(adminId)
-                    .adminPassword(HashService.sha256(adminPassword))
+                    .adminPassword(hashService.sha256(adminPassword))
                     .name(name)
                     .tellNumber(tellNumber)
                     .bank(bank).build();
@@ -29,6 +31,7 @@ public class JoinService {
             return "index";
         }
     }
+
     //    public String joinAdmin(Map<String, String> adminInfo) {
 //        if(adminId.equals("") || adminPassword.equals("") || name.equals("") || tellNumber.equals("") || bank.equals("")) {
 //            signAlert(response);

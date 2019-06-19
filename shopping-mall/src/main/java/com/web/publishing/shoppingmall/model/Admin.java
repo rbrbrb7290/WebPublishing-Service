@@ -14,11 +14,11 @@ import javax.persistence.*;
 public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    String adminId;
-    String adminPassword;
-    String name;
-    String tellNumber;
-    String bank;
+    private Integer id;
+    private String adminId;
+    private String adminPassword;
+    private String name;
+    private String tellNumber;
+    private String bank;
 
 }
