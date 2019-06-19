@@ -5,9 +5,11 @@ import com.web.publishing.shoppingmall.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -16,20 +18,20 @@ public class JoinService {
     private final AdminRepository adminRepository;
     private final HashService hashService;
 
-    public String joinAdmin(String adminId, String adminPassword, String name, String tellNumber, String bank ) {
-
-        if(adminId.equals("") || adminPassword.equals("") || name.equals("") || tellNumber.equals("") || bank.equals("")){
-            return "join";
-        }else {
-            Admin admin = Admin.builder()
-                    .adminId(adminId)
-                    .adminPassword(hashService.sha256(adminPassword))
-                    .name(name)
-                    .tellNumber(tellNumber)
-                    .bank(bank).build();
-            adminRepository.save(admin);
-            return "index";
-        }
+    public Admin joinAdmin(Admin admin ) {
+//            Admin admin = Admin.builder()
+////                    .adminId(adminInfo.get("adminId"))
+////                    .adminPassword(hashService.sha256(adminInfo.get("adminPassword")))
+////                    .name(adminInfo.get("name"))
+////                    .tellNumber(adminInfo.get("tellNumber"))
+////                    .bank(adminInfo.get("bank")).build();
+            return adminRepository.save(admin);
+//            List<Admin> adminList = adminRepository.findAll();
+////            System.out.println("adminList:"+adminList);
+////            System.out.println("repo:"+adminRepository.findAll());
+////
+////            return adminList;
+}
     }
 
     //    public String joinAdmin(Map<String, String> adminInfo) {
@@ -48,5 +50,5 @@ public class JoinService {
 //        return "index";
 
 
-}
+
 

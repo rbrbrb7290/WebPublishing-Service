@@ -61,10 +61,10 @@
 <!--                <li><a href="#">Contact</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.loginAdmin!=null}"><a href="http://shop.soledot.com/home/bo/index.sd"><span class="glyphicon glyphicon-log-in"></span> 관리자 메뉴</a></li>
-                <li th:if="${session.loginAdmin==null}"><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span> 관리자 회원 가입</a></li>
-                <li th:if="${session.loginAdmin==null}"><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span>관리자 로그인</a></li>
-                <li th:if="${session.loginAdmin!=null}"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+<!--                <li><a href="/api/admin"><span class="glyphicon glyphicon-log-in"></span> 관리자 메뉴</a></li>-->
+                <li><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span>관리자 회원 가입</a></li>
+                <li><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span> 관리자 로그인</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
             </ul>
         </div>
     </div>
@@ -79,14 +79,14 @@
         </div>
         <div class="col-sm-8 text-left">
             <h1>관리자 회원가입</h1>
-            <form action="/joinRequest" method="post">
-                아이디: <input type="text" name="adminId"><br>
-                비밀번호: <input type="password" name ="adminPassword"><br>
-                이름: <input type="text" name="name"><br>
-                연락처: <input type="text" name ="tellNumber"><br>
-                계좌번호: <input type="text" name="bank"><br>
-                <input type="submit" value="가입하기"><br>
-            </form>
+<!--            <form action="/joinRequest" method="post">-->
+                아이디: <input type="text" name="adminId" id="id"><br>
+                비밀번호: <input type="password" name ="adminPassword" id="password"><br>
+                이름: <input type="text" name="name" id="name"><br>
+                연락처: <input type="text" name ="tellNumber" id="tellNumber"><br>
+                계좌번호: <input type="text" name="bank" id="bank"><br>
+            <button class="signup-button">가입하기</button><br>
+<!--            </form>-->
         </div>
         <div class="col-sm-2 sidenav">
             <div class="well">
@@ -102,6 +102,40 @@
 <footer class="container-fluid text-center">
     <p>Footer Text</p>
 </footer>
+<script>
+    document.querySelector('.signup-button').addEventListener('click', e => signup());
 
+    async function signup() {
+        let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
+        try {
+            let res = await fetch(`/api/admin` , {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Charset': 'UTF-8'
+                },
+                body: JSON.stringify({
+                    adminId: document.getElementById('id').value,
+                    adminPassword: document.getElementById('password').value,
+                    name: document.getElementById('name').value,
+                    tellNumber: document.getElementById('tellNumber').value,
+                    bank: document.getElementById('bank').value
+                })
+            });
+            if(res.ok) document.location.href="/";
+            // console.log(data);
+            // data.map(item => {
+            //     let block = `
+            //         <h1>${item.adminId}</h1>
+            //         <p>${item.adminPassword}</p>
+            //           <p>${item.name}</p>
+            //         <hr>
+            //     `
+            //     x.innerHTML += block;
+            // });
+        } catch (e) {
+        }
+    }
+</script>
 </body>
 </html>

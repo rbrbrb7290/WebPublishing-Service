@@ -2,15 +2,11 @@ package com.web.publishing.shoppingmall.controller;
 
 import com.web.publishing.shoppingmall.repository.AdminRepository;
 import com.web.publishing.shoppingmall.service.HashService;
-import com.web.publishing.shoppingmall.service.JoinService;
 import com.web.publishing.shoppingmall.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +18,6 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 public class UsersController {
-    private final JoinService joinService;
     private final LoginService loginService;
     private final HttpSession httpSession;
 
@@ -31,26 +26,20 @@ public class UsersController {
 //        this.joinService = joinService;
 //        this.loginService = loginService;
 //    }
-    @PostMapping("/joinRequest")
+    @RequestMapping("/joinRequest")
     public String joinRequest(@RequestParam Map<String , String> admin) {
-        String adminId = admin.get("adminId");
-        String adminPassword = admin.get("adminPassword");
-        String name = admin.get("name");
-        String tellNumber = admin.get("tellNumber");
-        String bank = admin.get("bank");
+        System.out.println("join"+admin);
 
-        String page = joinService.joinAdmin(adminId, adminPassword, name, tellNumber, bank);
-        System.out.println(page);
-        return page;
+        return "index";
     }
 
-    @PostMapping(value = "/loginRequest")
+    @PostMapping("/loginRequest")
     public String loginRequest(@RequestParam Map<String , String> admin){
-        String adminId = admin.get("adminId");
-        String adminPassword = admin.get("adminPassword");
-        String page = loginService.login(adminId , adminPassword);
+//        String adminId = admin.get("adminId");
+//        String adminPassword = admin.get("adminPassword");
+//        String page = loginService.login(adminId , adminPassword);
 
-        return page;
+        return "index";
     }
 
 }

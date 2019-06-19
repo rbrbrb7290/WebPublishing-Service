@@ -26,9 +26,9 @@ public class ProductListService {
 
     public List<Product> productList(int pageNum){
 
-        PageMaker pageMaker = pageMakerService.generatePageMaker(pageNum, 10, productRepository);
+        PageMaker pageMaker = pageMakerService.generatePageMaker(pageNum, 6, productRepository);
         //페이지 사이즈 지정
-        PageRequest pageRequest = new PageRequest(pageNum-1, 10, Sort.Direction.DESC, "id");
+        PageRequest pageRequest = new PageRequest(pageNum-1, 6, Sort.Direction.DESC, "id");
         //상품정보 10개 가져옴
         Page<Product> productPage = productRepository.findAll(pageRequest);
 //        //데이터가 없을 경우의 문제
@@ -37,6 +37,7 @@ public class ProductListService {
 //            return "product";
 //        }
         List<Product> productList = productPage.getContent();
+
 //        httpSession.setAttribute("productList", productList);
 //        httpSession.setAttribute("pageMaker", pageMaker);
         return productList;
