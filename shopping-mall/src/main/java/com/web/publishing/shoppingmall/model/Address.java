@@ -17,9 +17,9 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="userId")
-    private User userId;
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
     private String tellNumber;
     private String address;
 

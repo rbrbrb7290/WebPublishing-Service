@@ -1,5 +1,6 @@
 package com.web.publishing.shoppingmall.repository;
 
+import com.web.publishing.shoppingmall.model.Address;
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;
 import org.junit.Test;
@@ -16,16 +17,28 @@ import static org.junit.Assert.*;
 public class UserRepositoryTest {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    AddressRepository addressRepository;
 
     @Test
     public void save() throws Exception {
-        User user = User.builder()
-                .userId("rbrbrb7290")
-                .userPassword("1111")
-                .name("현규오")
-                .tellNumber("010-5555-5555")
-                .address("").build();
-        userRepository.save(user);
+        User user = userRepository.findById(4).orElse(User.builder().build());
+        System.out.println(user.getAddress());
+        Address address = Address.builder()
+                .user(user)
+                .tellNumber("01032595995")
+                .address("138129370137190").build();
+        addressRepository.save(address);
     }
+//    @Test
+//    public void save() throws Exception {
+//        User user = User.builder()
+//                .userId("rbrbrb7290")
+//                .userPassword("1111")
+//                .name("현규오")
+//                .tellNumber("010-5555-5555")
+//                .address("").build();
+//        userRepository.save(user);
+//    }
 
 }

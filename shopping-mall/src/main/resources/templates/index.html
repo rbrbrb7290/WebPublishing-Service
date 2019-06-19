@@ -61,7 +61,7 @@
 <!--                <li><a href="#">Contact</a></li>-->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.loginAdmin!=null}"><a href="/adminPage"><span class="glyphicon glyphicon-log-in"></span> 관리자 메뉴</a></li>
+                <li th:if="${session.loginAdmin!=null}"><a href="http://shop.soledot.com/home/bo/index.sd"><span class="glyphicon glyphicon-log-in"></span> 관리자 메뉴</a></li>
                 <li th:if="${session.loginAdmin==null}"><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span> 회원 가입</a></li>
                 <li th:if="${session.loginAdmin==null}"><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span> 로그인</a></li>
                 <li th:if="${session.loginAdmin!=null}"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
@@ -94,10 +94,27 @@
         </div>
     </div>
 </div>
-
 <footer class="container-fluid text-center">
     <p>Footer Text</p>
 </footer>
-
+<script>
+    async function getData(page) {
+        let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
+        try {
+            let res = await fetch(`/api/board?page=${page}`);
+            let data = await res.json();
+            data.map(item => {
+                let block = `
+                    <h1>${item.pdName}</h1>
+                    <p>${item.pdContent}</p>
+                    <hr>
+                `
+                x.innerHTML += block;
+            });
+        } catch (e) {
+        }
+    }
+    getData(1);
+</script>
 </body>
 </html>

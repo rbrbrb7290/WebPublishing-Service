@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 public class HomeController {
     private final HttpSession httpSession;
-
+    /**
+     * 로그인 영역
+     */
     @RequestMapping(value = "/")
     public String index() {
         return "index";
@@ -23,16 +25,17 @@ public class HomeController {
     }
 
     @RequestMapping(value = "/loginPage")
-    public String loinPage(){
+    public String loginPage(){
         return "login";
     }
-
     @GetMapping("/logout")
     public String logout(){
         httpSession.invalidate();
         return "index";
     }
-
+    /**
+     * 상품관리
+     */
     @GetMapping("/productAdd")
     public String productAdd(){
         return "productAdd";

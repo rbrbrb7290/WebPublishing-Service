@@ -1,5 +1,6 @@
 package com.web.publishing.shoppingmall.repository;
 
+import com.web.publishing.shoppingmall.model.Address;
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;
 import org.junit.Test;
@@ -28,8 +29,8 @@ public class AdminRepositoryTest {
 
     @Test
     public void save() throws Exception {
-       Admin admin = Admin.builder()
-               .adminId("ohg429")
+      Admin admin = Admin.builder()
+               .adminId("rbrbrb7290")
                .adminPassword("1234")
                .name("외래키테스트")
                .tellNumber("01032595995")
