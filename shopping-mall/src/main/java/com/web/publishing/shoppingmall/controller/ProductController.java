@@ -13,17 +13,17 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
-
-    private final HttpSession httpSession;
     private final ProductListService productListService;
+
+    private int returnPageNum(String stringToInt){
+        return Integer.parseInt(stringToInt);
+    }
 
     @RequestMapping("/product")
     public String product(@RequestParam(value = "pageNum", defaultValue = "1")String pageNum) {
-        List<Product> productList = productListService.productList(pageNum);
-        if(productList == null) {
-            return "product";
-        }
-        httpSession.setAttribute("productList", productList);
+        List<Product> productList = productListService.productList(returnPageNum(pageNum));
+
+
         return "product";
     }
 
