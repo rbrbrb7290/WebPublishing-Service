@@ -1,14 +1,20 @@
 package com.web.publishing.shoppingmall.service;
 
 import com.web.publishing.shoppingmall.model.Admin;
+import com.web.publishing.shoppingmall.model.Product;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
+import com.web.publishing.shoppingmall.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -17,22 +23,26 @@ import java.util.Map;
 public class JoinService {
     private final AdminRepository adminRepository;
     private final HashService hashService;
+    private final PageMakerService pageMakerService;
 
-    public Admin joinAdmin(Admin admin ) {
-//            Admin admin = Admin.builder()
-////                    .adminId(adminInfo.get("adminId"))
-////                    .adminPassword(hashService.sha256(adminInfo.get("adminPassword")))
-////                    .name(adminInfo.get("name"))
-////                    .tellNumber(adminInfo.get("tellNumber"))
-////                    .bank(adminInfo.get("bank")).build();
-            return adminRepository.save(admin);
+    public Admin joinAdmin(Admin admin) {
+        admin = Admin.builder()
+                .adminId(admin.getAdminId())
+                .adminPassword(hashService.sha256(admin.getAdminPassword()))
+                .name(admin.getName())
+                .tellNumber(admin.getTellNumber())
+                .bank(admin.getBank()).build();
+        System.out.println("amdigafds" + admin.getAdminId());
+        System.out.println("amdigafdsfds2313ffarag" + admin.getAdminPassword());
+        return adminRepository.save(admin);
 //            List<Admin> adminList = adminRepository.findAll();
 ////            System.out.println("adminList:"+adminList);
 ////            System.out.println("repo:"+adminRepository.findAll());
 ////
 ////            return adminList;
-}
+
     }
+}
 
     //    public String joinAdmin(Map<String, String> adminInfo) {
 //        if(adminId.equals("") || adminPassword.equals("") || name.equals("") || tellNumber.equals("") || bank.equals("")) {

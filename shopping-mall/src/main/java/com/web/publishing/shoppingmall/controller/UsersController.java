@@ -39,7 +39,7 @@ public class UsersController {
 //        String adminPassword = admin.get("adminPassword");
 //        String page = loginService.login(adminId , adminPassword);
 
-        return "index";
+        return "login";
     }
 
 }
