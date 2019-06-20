@@ -1,6 +1,7 @@
 package com.web.publishing.shoppingmall.controller;
 
 import com.web.publishing.shoppingmall.model.Admin;
+import com.web.publishing.shoppingmall.model.User;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
 import com.web.publishing.shoppingmall.service.HashService;
 import com.web.publishing.shoppingmall.service.LoginService;
@@ -40,9 +41,10 @@ public class UsersController {
 //        String adminId = admin.get("adminId");
 //        String adminPassword = admin.get("adminPassword");
 //        String page = loginService.login(adminId , adminPassword);
-        List<Admin> admin = loginService.login(adminId , adminPassword);
+        List<Admin> admin = loginService.loginAdmin(adminId , adminPassword);
+        List<User> user = loginService.loginUser(adminId , adminPassword);
 //        session.getAttribute("loginAdmin");
-        if (admin == null){
+        if (admin == null || user == null){
             return "login";
         }
         return "index";

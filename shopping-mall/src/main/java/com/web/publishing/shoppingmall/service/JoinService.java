@@ -2,8 +2,10 @@ package com.web.publishing.shoppingmall.service;
 
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.Product;
+import com.web.publishing.shoppingmall.model.User;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
 import com.web.publishing.shoppingmall.repository.ProductRepository;
+import com.web.publishing.shoppingmall.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class JoinService {
     private final AdminRepository adminRepository;
+    private final UserRepository userRepository;
     private final HashService hashService;
     private final PageMakerService pageMakerService;
 
@@ -32,15 +35,20 @@ public class JoinService {
                     .name(admin.getName())
                     .tellNumber(admin.getTellNumber())
                     .bank(admin.getBank()).build();
-        System.out.println("amdigafds"+ admin.getAdminId());
-        System.out.println("amdigafdsfds2313ffarag"+ admin.getAdminPassword());
+//            System.out.println("amdigafds"+ admin.getAdminId());
+//            System.out.println("amdigafdsfds2313ffarag"+ admin.getAdminPassword());
             return adminRepository.save(admin);
-//            List<Admin> adminList = adminRepository.findAll();
-////            System.out.println("adminList:"+adminList);
-////            System.out.println("repo:"+adminRepository.findAll());
-////
-////            return adminList;
+    }
 
+    public User joinUser(User user){
+        user = User.builder()
+                .userId(user.getUserId())
+                .userPassword(user.getUserPassword())
+                .name(user.getName())
+                .tellNumber(user.getTellNumber())
+                .build();
+
+        return userRepository.save(user);
     }
 }
 
