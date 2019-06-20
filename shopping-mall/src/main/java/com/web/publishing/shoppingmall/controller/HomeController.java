@@ -16,7 +16,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/")
     public String index() {
-        return "index";
+        return "login";
     }
 
     @RequestMapping(value = "/joinPage")
@@ -31,7 +31,7 @@ public class HomeController {
     @GetMapping("/logout")
     public String logout(){
         httpSession.invalidate();
-        return "index";
+        return "login";
     }
     /**
      * 상품관리

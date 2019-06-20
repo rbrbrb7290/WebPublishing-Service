@@ -79,13 +79,14 @@
         </div>
         <div class="col-sm-8 text-left">
             <h1>관리자 회원가입</h1>
-<!--            <form action="/joinRequest" method="post">-->
+<!--            <form action="/joinRequest" method="post" id="signUp">-->
                 아이디: <input type="text" name="adminId" id="id"><br>
                 비밀번호: <input type="password" name ="adminPassword" id="password"><br>
                 이름: <input type="text" name="name" id="name"><br>
                 연락처: <input type="text" name ="tellNumber" id="tellNumber"><br>
                 계좌번호: <input type="text" name="bank" id="bank"><br>
             <button class="signup-button">가입하기</button><br>
+<!--                <intput type="submit"></intput>-->
 <!--            </form>-->
         </div>
         <div class="col-sm-2 sidenav">
@@ -107,6 +108,7 @@
 
     async function signup() {
         let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
+        console.log("fdafsafsafdf1!!!!");
         try {
             let res = await fetch(`/api/admin` , {
                 method:'POST',

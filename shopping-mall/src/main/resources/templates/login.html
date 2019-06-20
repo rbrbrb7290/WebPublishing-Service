@@ -79,9 +79,10 @@
         </div>
         <div class="col-sm-8 text-left">
             <h1>관리자 로그인</h1>
-            <form action="/loginRequest" method="post">
+            <form action="/api/admin/login" method="post">
                 아이디: <input type="text" name="adminId"><br>
                 비밀번호: <input type="password" name ="adminPassword"><br>
+<!--            <button class="signup-button">가입하기</button><br>-->
                 <input type="submit" value="로그인"><br>
             </form>
         </div>
@@ -100,11 +101,11 @@
     <p>Footer Text</p>
 </footer>
 <script>
-    // async function getData(adminId, ) {
+    // async function getData(adminId ,adminPassword) {
     //     let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
     //     try {
-    //         let res = await fetch(`/api/admin?id=${adminId}` , {
-    //             method:'GET'
+    //         let res = await fetch(`/api/admin/login` , {
+    //             method:'POST'
     //         });
     //         let data = await res.json();
     //         data.map(item => {
@@ -123,3 +124,4 @@
 </script>
 </body>
 </html>
+

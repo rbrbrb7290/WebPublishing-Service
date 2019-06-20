@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@RestController
 @RequiredArgsConstructor
 public class LoginService {
     private final AdminRepository adminRepository;
@@ -35,7 +34,7 @@ public class LoginService {
                 return "login";
             }else {
                 httpSession.setAttribute("loginAdmin", admin);
-                return "index";
+                return admin.toString();
             }
         }
     }

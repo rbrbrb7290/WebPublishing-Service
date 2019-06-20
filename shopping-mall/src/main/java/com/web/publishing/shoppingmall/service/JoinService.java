@@ -25,16 +25,16 @@ public class JoinService {
     private final HashService hashService;
     private final PageMakerService pageMakerService;
 
-    public Admin joinAdmin(Admin admin) {
-        admin = Admin.builder()
-                .adminId(admin.getAdminId())
-                .adminPassword(hashService.sha256(admin.getAdminPassword()))
-                .name(admin.getName())
-                .tellNumber(admin.getTellNumber())
-                .bank(admin.getBank()).build();
-        System.out.println("amdigafds" + admin.getAdminId());
-        System.out.println("amdigafdsfds2313ffarag" + admin.getAdminPassword());
-        return adminRepository.save(admin);
+    public Admin joinAdmin(Admin admin ) {
+            admin = Admin.builder()
+                    .adminId(admin.getAdminId())
+                    .adminPassword(hashService.sha256(admin.getAdminPassword()))
+                    .name(admin.getName())
+                    .tellNumber(admin.getTellNumber())
+                    .bank(admin.getBank()).build();
+        System.out.println("amdigafds"+ admin.getAdminId());
+        System.out.println("amdigafdsfds2313ffarag"+ admin.getAdminPassword());
+            return adminRepository.save(admin);
 //            List<Admin> adminList = adminRepository.findAll();
 ////            System.out.println("adminList:"+adminList);
 ////            System.out.println("repo:"+adminRepository.findAll());
