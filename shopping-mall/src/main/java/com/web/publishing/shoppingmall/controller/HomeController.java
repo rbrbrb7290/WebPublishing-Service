@@ -33,9 +33,15 @@ public class HomeController {
         httpSession.invalidate();
         return "login";
     }
+
     /**
-     * 상품관리
+     * 관리 페이지
      */
+    @RequestMapping("/dashboard")
+    public String dashBoard(){
+        return "dashboard";
+    }
+
     @GetMapping("/productAdd")
     public String productAdd(){
         return "productAdd";

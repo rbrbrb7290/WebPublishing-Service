@@ -42,12 +42,12 @@ public class UsersController {
 //        String adminPassword = admin.get("adminPassword");
 //        String page = loginService.login(adminId , adminPassword);
         List<Admin> admin = loginService.loginAdmin(adminId , adminPassword);
-        List<User> user = loginService.loginUser(adminId , adminPassword);
+//        List<User> user = loginService.loginUser(adminId , adminPassword);
 //        session.getAttribute("loginAdmin");
-        if (admin == null || user == null){
+        if (admin == null){
             return "login";
         }
-        return "index";
+        return "dashboard";
     }
 
 }

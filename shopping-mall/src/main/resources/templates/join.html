@@ -71,8 +71,7 @@
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                </div>-->
-                <button class="btn btn-primary btn-block" id="joinAdmin">사용자로 가입</button>
-                <button class="btn btn-primary btn-block" id="joinUser">관리자로 가입</button>
+                <button class="btn btn-primary btn-block" id="joinAdmin">가입하기</button>
             </form>
             <div class="text-center">
                 <a class="d-block small mt-3" href="/">Login Page</a>
@@ -81,28 +80,27 @@
     </div>
 </div>
 <script>
-    document.getElementById('joinAdmin').addEventListener('click', e => signup(admin));
-    document.getElementById('joinUser').addEventListener('click', e => signup(user));
-    async function signup(who) {
+    document.getElementById('joinAdmin').addEventListener('click', e => signup());
+    async function signup() {
         // let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
         console.log("가입하기 gogo");
         try {
-            let res = await fetch(`/api/${who}` , {
+            let res = await fetch(`/api/admin` , {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Charset': 'UTF-8'
                 },
                 body: JSON.stringify({
-                    adminId: document.getElementById(`${who}Id`).value,
-                    adminPassword: document.getElementById(`${who}Password`).value,
+                    adminId: document.getElementById('adminId').value,
+                    adminPassword: document.getElementById('adminPassword').value,
                     confirmPassword: document.getElementById('confirmPassword').value,
                     name: document.getElementById('name').value,
                     tellNumber: document.getElementById('tellNumber').value,
                     // bank: document.getElementById('bank').value
                 })
             });
-            if(res.ok) document.location.href="/";
+            if(res.ok) document.location.href="/login";
             alert("가입이 완료되었습니다!");
             // if(data.adminPassword === data.confirmPassword){
             //     if(res.ok) document.location.href="/";
@@ -112,6 +110,16 @@
             //     document.location.href="/join";
             // }
 
+            // console.log(data);
+            // data.map(item => {
+            //     let block = `
+            //         <h1>${item.adminId}</h1>
+            //         <p>${item.adminPassword}</p>
+            //           <p>${item.name}</p>
+            //         <hr>
+            //     `
+            //     x.innerHTML += block;
+            // });
         } catch (e) {
         }
     }
