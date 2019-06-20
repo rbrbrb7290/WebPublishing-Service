@@ -25,7 +25,6 @@ public class ProductListService {
     private final PageMakerService pageMakerService;
 
     public List<Product> productList(int pageNum){
-
         PageMaker pageMaker = pageMakerService.generatePageMaker(pageNum, 6, productRepository);
         //페이지 사이즈 지정
         PageRequest pageRequest = new PageRequest(pageNum-1, 6, Sort.Direction.DESC, "id");

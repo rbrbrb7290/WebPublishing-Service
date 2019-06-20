@@ -41,9 +41,9 @@ public class AdminAPIController {
     }
 
     @PostMapping("/login")
-    public List<Admin> adminLogin(@RequestParam String adminId, String adminPassword){
-        System.out.println("id" + adminId);
-        System.out.println("password"+adminPassword);
+    public List<Admin> adminLogin(@RequestParam String adminId, @RequestParam String adminPassword){
+//        System.out.println("id" + adminId);
+//        System.out.println("password"+adminPassword);
 
         return loginService.login(adminId, adminPassword);
     }

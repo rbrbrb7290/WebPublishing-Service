@@ -1,114 +1,89 @@
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Bootstrap Example</title>
-    <meta http-equiv="content-type" charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-    <style>
-        /* Remove the navbar's default margin-bottom and rounded borders */
-        .navbar {
-            margin-bottom: 0;
-            border-radius: 0;
-        }
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {height: 450px}
+<title>현규의 웹 서비스 세상 *^^*</title>
+<!-- Custom styles for this template-->
+<link th:href="@{/css/sb-admin.css}" rel="stylesheet" type="text/css"/>
 
-        /* Set gray background color and 100% height */
-        .sidenav {
-            padding-top: 20px;
-            background-color: #f1f1f1;
-            height: 100%;
-        }
-
-        /* Set black background color, white text and some padding */
-        footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
-        }
-
-        /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 767px) {
-            .sidenav {
-                height: auto;
-                padding: 15px;
-            }
-            .row.content {height:auto;}
-        }
-    </style>
 </head>
-<body>
-
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Logo</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/product">상품관리</a></li>
-<!--                <li><a href="#">Projects</a></li>-->
-<!--                <li><a href="#">Contact</a></li>-->
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-<!--                <li><a href="/api/admin"><span class="glyphicon glyphicon-log-in"></span> 관리자 메뉴</a></li>-->
-                <li><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span>관리자 회원 가입</a></li>
-                <li><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span> 관리자 로그인</a></li>
-<!--                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>-->
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-        </div>
-        <div class="col-sm-8 text-left">
-            <h1>관리자 회원가입</h1>
-<!--            <form action="/joinRequest" method="post" id="signUp">-->
-                아이디: <input type="text" name="adminId" id="id"><br>
-                비밀번호: <input type="password" name ="adminPassword" id="password"><br>
-                이름: <input type="text" name="name" id="name"><br>
-                연락처: <input type="text" name ="tellNumber" id="tellNumber"><br>
-                계좌번호: <input type="text" name="bank" id="bank"><br>
-            <button class="signup-button">가입하기</button><br>
-<!--                <intput type="submit"></intput>-->
-<!--            </form>-->
-        </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>ADS</p>
-            </div>
-            <div class="well">
-                <p>ADS</p>
+<body class="bg-dark">
+<div class="container">
+    <div class="card card-register mx-auto mt-5">
+        <div class="card-header">Register an Account</div>
+        <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="adminId" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                                <label for="adminId">아이디</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="text" id="name" class="form-control" placeholder="Last name" required="required">
+                                <label for="name">이름</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-row">
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="password" id="adminPassword" class="form-control" placeholder="Password" required="required">
+                                <label for="adminPassword">비밀번호</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-label-group">
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
+                                <label for="confirmPassword">비밀번호 확인</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="text" id="tellNumber" class="form-control" placeholder="연락처" required="required">
+                        <label for="name">연락처</label>
+                    </div>
+                </div>
+<!--                <div class="form-group">-->
+<!--                    <div class="form-row">-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-label-group">-->
+<!--                                <input type="text" id="bank" class="form-control" placeholder="Password" required="required">-->
+<!--                                <label for="bank">은행</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="col-md-6">-->
+<!--                            <div class="form-label-group">-->
+<!--                                <input type="password" id="bankNum" class="form-control" placeholder="Confirm password" required="required">-->
+<!--                                <label for="bankNum">계좌번호</label>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <button class="btn btn-primary btn-block" id="joinBtn">가입하기</button>
+            </form>
+            <div class="text-center">
+                <a class="d-block small mt-3" href="/">Login Page</a>
             </div>
         </div>
     </div>
 </div>
-
-<footer class="container-fluid text-center">
-    <p>Footer Text</p>
-</footer>
 <script>
-    document.querySelector('.signup-button').addEventListener('click', e => signup());
-
+    document.getElementById('joinBtn').addEventListener('click', e => signup());
     async function signup() {
-        let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
-        console.log("fdafsafsafdf1!!!!");
+        // let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
+        console.log("가입하기 gogo");
         try {
             let res = await fetch(`/api/admin` , {
                 method:'POST',
@@ -117,14 +92,24 @@
                     'Charset': 'UTF-8'
                 },
                 body: JSON.stringify({
-                    adminId: document.getElementById('id').value,
-                    adminPassword: document.getElementById('password').value,
+                    adminId: document.getElementById('adminId').value,
+                    adminPassword: document.getElementById('adminPassword').value,
+                    confirmPassword: document.getElementById('confirmPassword').value,
                     name: document.getElementById('name').value,
                     tellNumber: document.getElementById('tellNumber').value,
-                    bank: document.getElementById('bank').value
+                    // bank: document.getElementById('bank').value
                 })
             });
             if(res.ok) document.location.href="/";
+            alert("가입이 완료되었습니다!");
+            // if(data.adminPassword === data.confirmPassword){
+            //     if(res.ok) document.location.href="/";
+            //     alert("가입이 완료되었습니다!");
+            // }else {
+            //     alert("비밀번호를 확인해주세요");
+            //     document.location.href="/join";
+            // }
+
             // console.log(data);
             // data.map(item => {
             //     let block = `

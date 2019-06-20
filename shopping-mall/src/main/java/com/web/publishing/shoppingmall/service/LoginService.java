@@ -17,9 +17,9 @@ import java.util.Optional;
 public class LoginService {
     private final AdminRepository adminRepository;
     private final HashService hashService;
-    private final HttpSession httpSession;
+    private HttpSession session;
 
-    public List<Admin> login(String id, String password) {
+    public List<Admin> login(String id, String password ) {
         if (id.equals("") || password.equals("")) {
             return null;
         } else {
@@ -34,8 +34,10 @@ public class LoginService {
                 return null;
             }else {
                 //로그인 정보 일치 시 해당 id에 정보들을 불러와 리스트에 담고 return (프로필 구현을 위함)
-                httpSession.setAttribute("loginAdmin", admin);
+
+//                System.out.println(session.getAttribute("loginAdmin"));
                 List<Admin> adminInfo = adminRepository.findAdminByAdminId(id);
+//                session.setAttribute("loginAdmin", id);
 
                 return adminInfo;
             }
