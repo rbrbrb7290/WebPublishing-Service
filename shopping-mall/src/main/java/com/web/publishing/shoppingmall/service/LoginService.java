@@ -38,7 +38,6 @@ public class LoginService {
             }else {
                 //로그인 정보 일치 시 해당 id에 정보들을 불러와 리스트에 담고 return (프로필 구현을 위함)
 //                System.out.println(session.getAttribute("loginAdmin"));
-//                session.setAttribute("loginAdmin", id);
                 List<Admin> adminInfo = adminRepository.findAdminByAdminId(id);
 
                 return adminInfo;

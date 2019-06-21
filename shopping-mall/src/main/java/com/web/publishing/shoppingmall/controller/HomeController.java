@@ -15,7 +15,7 @@ public class HomeController {
      * 로그인 영역
      */
     @RequestMapping(value = "/")
-    public String index() {
+    public String login() {
         return "login";
     }
 
@@ -34,9 +34,9 @@ public class HomeController {
         return "login";
     }
 
-    @RequestMapping("/home")
+    @RequestMapping("/index")
     public String home(){
-        return "home";
+        return "index";
     }
 
     /**

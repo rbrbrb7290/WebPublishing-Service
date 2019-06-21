@@ -1,48 +1,40 @@
 <!DOCTYPE html>
-<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <title>Bootstrap Example</title>
-    <meta http-equiv="content-type" charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
-        /* Remove the navbar's default margin-bottom and rounded borders */
+        /* Remove the navbar's default rounded borders and increase the bottom margin */
         .navbar {
-            margin-bottom: 0;
+            margin-bottom: 50px;
             border-radius: 0;
         }
 
-        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {height: 450px}
-
-        /* Set gray background color and 100% height */
-        .sidenav {
-            padding-top: 20px;
-            background-color: #f1f1f1;
-            height: 100%;
+        /* Remove the jumbotron's default bottom margin */
+        .jumbotron {
+            margin-bottom: 0;
         }
 
-        /* Set black background color, white text and some padding */
+        /* Add a gray background color and some padding to the footer */
         footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
-        }
-
-        /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 767px) {
-            .sidenav {
-                height: auto;
-                padding: 15px;
-            }
-            .row.content {height:auto;}
+            background-color: #f2f2f2;
+            padding: 25px;
         }
     </style>
 </head>
 <body>
-<h1>${loginAdmin}</h1>
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <h1>Online Store</h1>
+        <p>Mission, Vission & Values</p>
+    </div>
+</div>
+
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -55,71 +47,86 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/product">상품관리</a></li>
-<!--                <li><a href="#">Projects</a></li>-->
-<!--                <li><a href="#">Contact</a></li>-->
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Deals</a></li>
+                <li><a href="#">Stores</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-<!--                <li><a href="/api/admin"><span class="glyphicon glyphicon-log-in"></span> 관리자 메뉴</a></li>-->
-                <li><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span>관리자 회원 가입</a></li>
-<!--                <li><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span> 관리자 로그인</a></li>-->
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+                <li><a href="/joinPage"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+                <li><a href="/loginPage"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-        </div>
-        <div class="col-sm-8 text-left">
-            <h1>Welcome</h1>
-            <p>안녕하세욥</p>
-            <hr>
-            <h3>Test</h3>
-            <p>Lorem ipsum...</p>
-        </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>ADS</p>
+<div class="container">
+    <div class="row">
+
+    </div>
+</div><br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
             </div>
-            <div class="well">
-                <p>ADS</p>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">BLACK FRIDAY DEAL</div>
+                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
+                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
             </div>
         </div>
     </div>
-</div>
+</div><br><br>
+
 <footer class="container-fluid text-center">
-    <p>Footer Text</p>
+    <p>Online Store Copyright</p>
+    <form class="form-inline">Get deals:
+        <input type="email" class="form-control" size="50" placeholder="Email Address">
+        <button type="button" class="btn btn-danger">Sign Up</button>
+    </form>
 </footer>
 <script>
-    async function getData(adminId) {
-        let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
+    let page = 1;
+    async function getData(page) {
+        let x = document.querySelector("body > div.container > div");
         try {
-            let res = await fetch(`/api/admin/${adminId}`, {
+            let res = await fetch(`/api/product?page=${page}`, {
                 method: 'GET'
             });
             let data = await res.json();
             data.map(item => {
                 let block = `
-                    <h1>${item.adminId}</h1>
-                    <p>${item.adminPassword}</p>
-                    <p></p>
-                    <hr>
+                <div class="col-sm-4">
+                    <div class="panel-heading">${item.pdName}</div>
+                     <div class="panel-body"><img src="http://asclo.com/web/product/small/201905/7589935e26cec616a42f4367f9d4af03.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
+                      <div class="panel-footer">${item.pdPrice}</div>
+                        <div class="panel-footer">${item.pdContent}</div>
+                        <div class="panel-footer">${item.pdContent}</div>
+                    </div>
                 `
                 x.innerHTML += block;
             });
         } catch (e) {
         }
     }
-    // getData(sessionStorage.getItem("loginAdmin"));
+    getData(page);
+    //TODO 페이징처리하기
 </script>
 </body>
 </html>
-
-

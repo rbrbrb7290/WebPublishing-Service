@@ -17,25 +17,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//TODO @Controller   -> Rest형태로 바꾸기
+//TODO @Controller  > Rest형태로 바꾸기
 @Controller
 @RequiredArgsConstructor
 public class UsersController {
     private final LoginService loginService;
     private final HttpSession session;
 
-    @PostMapping("/loginRequest")
-    public String loginRequest(@RequestParam String adminId , @RequestParam String adminPassword){
-//        String adminId = admin.get("adminId");
-//        String adminPassword = admin.get("adminPassword");
-//        String page = loginService.login(adminId , adminPassword);
+    @PostMapping("/loginAdmin")
+    public String loginAdmin(@RequestParam String adminId , @RequestParam String adminPassword){
         List<Admin> admin = loginService.loginAdmin(adminId , adminPassword);
 //        List<User> user = loginService.loginUser(adminId , adminPassword);
-//        session.getAttribute("loginAdmin");
         if (admin == null){
             return "login";
         }
+        session.setAttribute("loginAdmin", admin);
         return "dashboard";
+    }
+    @PostMapping("/loginUser")
+    public String loginUser(@RequestParam String adminId , @RequestParam String adminPassword){
+        List<User> user = loginService.loginUser(adminId , adminPassword);
+        if (user == null){
+            return "login";
+        }
+        session.setAttribute("loginUser", user);
+        return "index";
     }
 
 }

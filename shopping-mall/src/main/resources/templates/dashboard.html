@@ -31,7 +31,6 @@
             </div>
         </div>
     </form>
-
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow mx-1">
@@ -113,6 +112,11 @@
             <a class="nav-link" href="#">
                 <i class="fas fa-fw fa-table"></i>
                 <span>테마설정</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">
+                <i class="fas fa-fw fa-table"></i>
+                <span>로그아웃</span></a>
         </li>
     </ul>
 
@@ -218,12 +222,12 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                             <tr>
+                                <th>번호</th>
                                 <th>상품</th>
                                 <th>이름</th>
                                 <th>가격</th>
                                 <th>설명</th>
                                 <th>게시날짜</th>
-                                <th>비고</th>
                             </tr>
                             </thead>
                             <tfoot>
@@ -291,8 +295,9 @@
             let data = await res.json();
             data.map(item => {
                 let block = `
-                <tr>
+              <tr>
                     <td>${item.id}</td>
+                    <td>${item.pdImage}</td>
                     <td>${item.pdName}</td>
                     <td>${item.pdPrice}</td>
                     <td>${item.pdContent}</td>
