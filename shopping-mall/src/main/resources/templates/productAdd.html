@@ -80,7 +80,7 @@
         <div class="col-sm-8 text-left">
             <h4>상품등록</h4>
             <br>
-            <form enctype="multipart/form-data" method="post">
+            <form action="/productAddRequest" enctype="multipart/form-data" method="post">
                 <input type="text"  placeholder="상품이름" name="pdName" id="pdName">
                 <br>
                 <input type="text"  placeholder="가격" name="pdPrice" id="pdPrice">
@@ -123,7 +123,7 @@
         let pdImage = document.getElementById('pdImage').value;
 
         try {
-            let res = await fetch(`/productAddRequest` , {
+            let res = await fetch(`/api/product` , {
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -135,7 +135,7 @@
                     pdAmount,
                     pdContent,
                     pdDate,
-                    pdImage
+                    pdImage,
                 })
             });
             if(res.ok) document.location.href="/product";

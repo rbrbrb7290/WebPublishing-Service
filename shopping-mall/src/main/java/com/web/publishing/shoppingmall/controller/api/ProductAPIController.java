@@ -22,7 +22,11 @@ public class ProductAPIController {
 
         return productListService.productList(page);
     }
-
+    @RequestMapping("/api/product/{id}/delete")
+    public String delete(@PathVariable int id) {
+        productRepository.deleteById(id);
+        return "redirect:/product";
+    }
 
     @RequestMapping(value = "/upload" , method = RequestMethod.POST)
     public List<MultipartFile> upload(MultipartFile[] files) {

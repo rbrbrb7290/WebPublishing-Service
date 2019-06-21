@@ -4,6 +4,7 @@ import com.web.publishing.shoppingmall.model.Product;
 import com.web.publishing.shoppingmall.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -13,7 +14,7 @@ public class ProductAddService {
 
     private final ProductRepository productRepository;
 
-    public void add(Map<String ,String> productInfo){
+    public void add(Map<String, String> productInfo, MultipartFile[] file){
         Product product = new Product();
         product.setPdName(productInfo.get("pdName"));
         product.setPdPrice(productInfo.get("pdPrice"));

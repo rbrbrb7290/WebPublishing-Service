@@ -6,10 +6,14 @@ import com.web.publishing.shoppingmall.service.product.ProductAddService;
 import com.web.publishing.shoppingmall.service.product.ProductListService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.naming.Binding;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -36,16 +40,13 @@ public class ProductController {
         productRepository.deleteById(id);
         return "redirect:/product";
     }
-    @RequestMapping("/api/product/{id}/edit")
-    public String edit(@PathVariable int id) {
-        productRepository.save
-        return "redirect:/product";
-    }
 
     @PostMapping("/productAddRequest")
-    public String productAddRequest(@RequestParam Map<String , String > product , @RequestPart(required=false) MultipartFile[] file){
+    public String productAddRequest(@RequestParam Map<String , String > product , @RequestPart("file") MultipartFile[] file){
+        System.out.println(product.get("pdName"));
+        System.out.println(product.get("pdImage"));
 
-        productAddService.add(product);
+        productAddService.add(product,file);
 
        return "redirect:/product";
     }

@@ -34,6 +34,11 @@ public class HomeController {
         return "login";
     }
 
+    @RequestMapping("/home")
+    public String home(){
+        return "home";
+    }
+
     /**
      * 관리 페이지
      */
