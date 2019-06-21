@@ -40,13 +40,14 @@ public class AdminAPIController {
         return adminList;
     }
 
-    @PostMapping("/login")
-    public List<Admin> adminLogin(@RequestParam String adminId, @RequestParam String adminPassword){
-//        System.out.println("id" + adminId);
-//        System.out.println("password"+adminPassword);
-
-        return loginService.loginAdmin(adminId, adminPassword);
-    }
+//    @PostMapping("/login")
+//    public List<Admin> adminLogin(@RequestParam String adminId, @RequestParam String adminPassword){
+////        System.out.println("id" + adminId);
+////        System.out.println("password"+adminPassword);
+//
+//
+//        return loginService.loginAdmin(adminId, adminPassword);
+//    }
 
 
 }

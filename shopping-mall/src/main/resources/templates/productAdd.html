@@ -80,15 +80,20 @@
         <div class="col-sm-8 text-left">
             <h4>상품등록</h4>
             <br>
-            <form action="/productAddRequest" method="post">
-                <input type="text"  placeholder="상품이름" name="pdName">
+            <form enctype="multipart/form-data" method="post">
+                <input type="text"  placeholder="상품이름" name="pdName" id="pdName">
                 <br>
-                <input type="text"  placeholder="가격" name="pdPrice">
-<!--                <input type="text"  placeholder="날짜" name="pdDate" value="date">-->
-                <textarea placeholder="내용" name="pdContent" id="" cols="20" rows="8"></textarea>
-                <input placeholder="날짜" type="date" id="now_date" name="pdDate">
+                <input type="text"  placeholder="가격" name="pdPrice" id="pdPrice">
                 <br><br>
-                <input type="submit"  value="상품등록">
+                <input type="text"  placeholder="재고" name="pdAmount" id="pdAmount">
+                <br><br>
+                <textarea placeholder="내용" name="pdContent" id="" cols="10" rows="5"></textarea>
+                <br>
+                <input placeholder="날짜" type="date"  name="pdDate" id="pdDate">
+                <br>
+                <input type="file" placeholder="이미지" name="pdImage" id="pdImage" >
+                <br><br>
+                <input type="submit" id = "addBtn" value="상품등록">
             </form>
         </div>
         <div class="col-sm-2 sidenav">
@@ -106,7 +111,38 @@
     <p>Footer Text</p>
 </footer>
 <script>
-    document.getElementById('now_date').valueAsDate = new Date();
+    document.getElementById('pdDate').valueAsDate = new Date();
+    document.getElementById('addBtn').addEventListener('click', e => addProduct());
+
+    async function addProduct() {
+        let pdName = document.getElementById('pdName').value;
+        let pdPrice =  document.getElementById('pdPrice').value;
+        let pdAmount =  document.getElementById('pdAmount').value;
+        let pdContent =  document.getElementById('pdContent').value;
+        let pdDate = document.getElementById('pdDate').value;
+        let pdImage = document.getElementById('pdImage').value;
+
+        try {
+            let res = await fetch(`/productAddRequest` , {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Charset': 'UTF-8'
+                },
+                body: JSON.stringify({
+                    pdName,
+                    pdPrice,
+                    pdAmount,
+                    pdContent,
+                    pdDate,
+                    pdImage
+                })
+            });
+            if(res.ok) document.location.href="/product";
+
+        } catch (e) {
+        }
+    }
 </script>
 
 </body>

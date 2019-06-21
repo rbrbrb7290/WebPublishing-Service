@@ -40,13 +40,13 @@ public class UserAPIController {
         return userList;
     }
 
-    @PostMapping("/login")
-    public List<User> userLogin(@RequestParam String userId, @RequestParam String userPassword){
-//        System.out.println("id" + adminId);
-//        System.out.println("password"+adminPassword);
-
-        return loginService.loginUser(userId, userPassword);
-    }
+//    @PostMapping("/login")
+//    public List<User> userLogin(@RequestParam String userId, @RequestParam String userPassword){
+////        System.out.println("id" + adminId);
+////        System.out.println("password"+adminPassword);
+//
+//        return loginService.loginUser(userId, userPassword);
+//    }
 
 
 }

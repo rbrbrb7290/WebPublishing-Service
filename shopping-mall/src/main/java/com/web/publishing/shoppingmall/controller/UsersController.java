@@ -24,18 +24,6 @@ public class UsersController {
     private final LoginService loginService;
     private final HttpSession session;
 
-//    @Autowired
-//    public UsersController(JoinService joinService, LoginService loginService) {
-//        this.joinService = joinService;
-//        this.loginService = loginService;
-//    }
-//    @RequestMapping("/joinRequest")
-//    public String joinRequest(@RequestParam Map<String , String> admin) {
-//        System.out.println("join"+admin);
-//
-//        return "index";
-//    }
-
     @PostMapping("/loginRequest")
     public String loginRequest(@RequestParam String adminId , @RequestParam String adminPassword){
 //        String adminId = admin.get("adminId");

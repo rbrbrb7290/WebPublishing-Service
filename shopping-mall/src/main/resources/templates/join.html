@@ -16,7 +16,7 @@
     <div class="card card-register mx-auto mt-5">
         <div class="card-header">Register an Account</div>
         <div class="card-body">
-            <form>
+<!--            <form>-->
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
@@ -72,7 +72,7 @@
 <!--                    </div>-->
 <!--                </div>-->
                 <button class="btn btn-primary btn-block" id="joinAdmin">가입하기</button>
-            </form>
+<!--            </form>-->
             <div class="text-center">
                 <a class="d-block small mt-3" href="/">Login Page</a>
             </div>
@@ -84,6 +84,11 @@
     async function signup() {
         // let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
         console.log("가입하기 gogo");
+        let adminId = document.getElementById('adminId').value;
+        let adminPassword =  document.getElementById('adminPassword').value;
+        let confirmPassword =  document.getElementById('confirmPassword').value;
+        let name =  document.getElementById('name').value;
+        let tellNumber = document.getElementById('tellNumber').value;
         try {
             let res = await fetch(`/api/admin` , {
                 method:'POST',
@@ -92,34 +97,24 @@
                     'Charset': 'UTF-8'
                 },
                 body: JSON.stringify({
-                    adminId: document.getElementById('adminId').value,
-                    adminPassword: document.getElementById('adminPassword').value,
-                    confirmPassword: document.getElementById('confirmPassword').value,
-                    name: document.getElementById('name').value,
-                    tellNumber: document.getElementById('tellNumber').value,
+                    adminId,
+                    adminPassword,
+                    confirmPassword,
+                    name,
+                    tellNumber,
                     // bank: document.getElementById('bank').value
                 })
             });
-            if(res.ok) document.location.href="/login";
-            alert("가입이 완료되었습니다!");
-            // if(data.adminPassword === data.confirmPassword){
-            //     if(res.ok) document.location.href="/";
-            //     alert("가입이 완료되었습니다!");
-            // }else {
-            //     alert("비밀번호를 확인해주세요");
-            //     document.location.href="/join";
-            // }
-
-            // console.log(data);
-            // data.map(item => {
-            //     let block = `
-            //         <h1>${item.adminId}</h1>
-            //         <p>${item.adminPassword}</p>
-            //           <p>${item.name}</p>
-            //         <hr>
-            //     `
-            //     x.innerHTML += block;
-            // });
+            if(adminId === "" || adminPassword === "" || confirmPassword === "" || name === "" || tellNumber ===""){
+                alert("양식을 전부 입력 해주세요!")
+            }else {
+                if(adminPassword != confirmPassword){
+                    alert("비밀번호를 확인 해주세요.")
+                }else{
+                    if(res.ok) document.location.href="/";
+                    alert("가입이 완료되었습니다!");
+                }
+            }
         } catch (e) {
         }
     }
