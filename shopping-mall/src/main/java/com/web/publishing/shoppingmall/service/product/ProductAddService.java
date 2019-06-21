@@ -14,14 +14,7 @@ public class ProductAddService {
 
     private final ProductRepository productRepository;
 
-    public void add(Map<String, String> productInfo, MultipartFile[] file){
-        Product product = new Product();
-        product.setPdName(productInfo.get("pdName"));
-        product.setPdPrice(productInfo.get("pdPrice"));
-        product.setPdAmount(productInfo.get("pdAmount"));
-        product.setPdDate(productInfo.get("pdDate"));
-        product.setPdContent(productInfo.get("pdContent"));
-
+    public void add(Product product){
         productRepository.save(product);
 
     }

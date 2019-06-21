@@ -22,7 +22,6 @@ public class AdminAPIController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Admin getAdmin(@RequestBody Admin admin){
-
         return joinService.joinAdmin(admin);
 
     }

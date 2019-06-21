@@ -202,7 +202,7 @@
     </div>
 </div>
 <script>
-    let page = 1;
+    let page =0;
     document.getElementById('nextBtn').addEventListener('click', e => getData(page++));
     async function getData(page) {
         let x = document.querySelector('#dataTable > tbody');
@@ -220,12 +220,12 @@
                     <td>${item.pdPrice}</td>
                     <td>${item.pdContent}</td>
                     <td>${item.pdDate}</td>
-                       <td class="pull-right">
-                          <a href="/api/product/${item.id}/delete" onclick="if(!confirm('상품을 삭제하시겠습니까?')){return false;}">
-                             <button type="button" class="btn btn-danger">Delete</button>
-                          </a>
-                        </td>
-                    </tr>
+               <td class="pull-right">
+                  <a href="/api/product/${item.id}/delete" onclick="if(!confirm('상품을 삭제하시겠습니까?')){return false;}">
+                     <button type="button" class="btn btn-danger">Delete</button>
+                  </a>
+                </td>
+            </tr>
                 `
                 x.innerHTML += block;
             });

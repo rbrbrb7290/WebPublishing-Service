@@ -14,7 +14,6 @@ public class ImageApiController {
 
     @RequestMapping(value = "/upload" , method = RequestMethod.POST)
     public List<MultipartFile> upload(MultipartFile[] files) {
-
         // PROCESS...
         return null;
     }

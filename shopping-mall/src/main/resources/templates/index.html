@@ -68,30 +68,7 @@
     </div>
 </div><br>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="panel panel-primary">
-                <div class="panel-heading">BLACK FRIDAY DEAL</div>
-                <div class="panel-body"><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>
-                <div class="panel-footer">Buy 50 mobiles and get a gift card</div>
-            </div>
-        </div>
-    </div>
+
 </div><br><br>
 
 <footer class="container-fluid text-center">
@@ -102,7 +79,7 @@
     </form>
 </footer>
 <script>
-    let page = 1;
+    let page = 0;
     async function getData(page) {
         let x = document.querySelector("body > div.container > div");
         try {
@@ -114,11 +91,11 @@
                 let block = `
                 <div class="col-sm-4">
                     <div class="panel-heading">${item.pdName}</div>
-                     <div class="panel-body"><img src="http://asclo.com/web/product/small/201905/7589935e26cec616a42f4367f9d4af03.jpg" class="img-responsive" style="width:100%" alt="Image"></div>
-                      <div class="panel-footer">${item.pdPrice}</div>
-                        <div class="panel-footer">${item.pdContent}</div>
-                        <div class="panel-footer">${item.pdContent}</div>
-                    </div>
+                    <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
+                    <div class="panel-footer">${item.pdContent}</div>
+                        <p>${item.pdPrice}</p>
+                        <p>${item.pdDate}</p>
+                </div>
                 `
                 x.innerHTML += block;
             });

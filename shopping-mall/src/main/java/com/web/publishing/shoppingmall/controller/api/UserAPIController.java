@@ -23,10 +23,9 @@ public class UserAPIController {
     private final UserRepository userRepository;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public User getAdmin(@RequestBody User user){
+     public User getAdmin(@RequestBody User user){
 
-        return joinService.joinUser(user);
-
+     return joinService.joinUser(user);
     }
     @GetMapping("")
     public List<User> UserList(){

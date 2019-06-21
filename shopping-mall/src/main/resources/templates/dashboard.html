@@ -237,7 +237,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <button id="nextBtn"> ▼</button>
+                    <button id="nextBtn"> ▼ </button>
                 </div>
                 <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
             </div>
@@ -284,7 +284,7 @@
     </div>
 </div>
 <script>
-    let page = 1;
+    let page = 0;
     document.getElementById('nextBtn').addEventListener('click', e => getData(page++));
     async function getData(page) {
         let x = document.querySelector('#dataTable > tbody');
