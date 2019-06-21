@@ -28,10 +28,11 @@ public class ProductAPIController {
         return "redirect:/product";
     }
 
-    @RequestMapping(value = "/upload" , method = RequestMethod.POST)
-    public List<MultipartFile> upload(MultipartFile[] files) {
+    @RequestMapping("api/product/{id}/update")
+    public String update(@PathVariable int id){
+        Product product = productRepository.findById(id);
 
-        // PROCESS...
-        return null;
+        return "product"+productRepository.save(product);
     }
+
 }

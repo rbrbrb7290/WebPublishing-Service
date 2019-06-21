@@ -55,22 +55,6 @@
                     <label for="name">연락처</label>
                 </div>
             </div>
-            <!--                <div class="form-group">-->
-            <!--                    <div class="form-row">-->
-            <!--                        <div class="col-md-6">-->
-            <!--                            <div class="form-label-group">-->
-            <!--                                <input type="text" id="bank" class="form-control" placeholder="Password" required="required">-->
-            <!--                                <label for="bank">은행</label>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                        <div class="col-md-6">-->
-            <!--                            <div class="form-label-group">-->
-            <!--                                <input type="password" id="bankNum" class="form-control" placeholder="Confirm password" required="required">-->
-            <!--                                <label for="bankNum">계좌번호</label>-->
-            <!--                            </div>-->
-            <!--                        </div>-->
-            <!--                    </div>-->
-            <!--                </div>-->
             <button class="btn btn-primary btn-block" id="joinAdmin">가입하기</button>
 <!--            <button class="btn btn-primary btn-block" id="joinUser">사용자로 가입</button>-->
             <!--            </form>-->
@@ -81,14 +65,15 @@
     </div>
 </div>
 <script>
+    //TODO 한 폼에서 따로 가입 로직 구현되게 해보기
     document.getElementById('joinAdmin').addEventListener('click', e => signup(admin));
     document.getElementById('joinUser').addEventListener('click', e => signup(user));
     let who;
     async function signup(who) {
         // let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
         console.log("가입하기 gogo");
-        let Id = document.getElementById(`${who}Id`).value;
-        let Password =  document.getElementById(`${who}Password`).value;
+        let id = document.getElementById(`${who}Id`).value;
+        let password =  document.getElementById(`${who}Password`).value;
         let confirmPassword =  document.getElementById('confirmPassword').value;
         let name =  document.getElementById('name').value;
         let tellNumber = document.getElementById('tellNumber').value;
@@ -100,8 +85,8 @@
                     'Charset': 'UTF-8'
                 },
                 body: JSON.stringify({
-                    adminId,
-                    adminPassword,
+                    Id,
+                    Password,
                     confirmPassword,
                     name,
                     tellNumber,
