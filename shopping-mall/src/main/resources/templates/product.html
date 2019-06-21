@@ -203,7 +203,7 @@
 </div>
 <script>
     let page =0;
-    document.getElementById('nextBtn').addEventListener('click', e => getData(page++));
+    document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
     async function getData(page) {
         let x = document.querySelector('#dataTable > tbody');
         try {
@@ -215,7 +215,7 @@
                 let block = `
                 <tr>
                     <td>${item.id}</td>
-                    <td>${item.pdImage}</td>
+                    <td><img src="${item.pdImageUrl}" class="img-responsive" style="width:80px" alt="Image"></td>
                     <td>${item.pdName}</td>
                     <td>${item.pdPrice}</td>
                     <td>${item.pdContent}</td>

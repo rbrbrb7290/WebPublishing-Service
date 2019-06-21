@@ -64,8 +64,9 @@
 
 <div class="container">
     <div class="row">
-
+        <!--  상품정보 GET하는 공간-->
     </div>
+    <button id="nextBtn"> ▼</button>
 </div><br>
 
 
@@ -80,6 +81,7 @@
 </footer>
 <script>
     let page = 0;
+    document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
     async function getData(page) {
         let x = document.querySelector("body > div.container > div");
         try {
@@ -93,8 +95,8 @@
                     <div class="panel-heading">${item.pdName}</div>
                     <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
                     <div class="panel-footer">${item.pdContent}</div>
-                        <p>${item.pdPrice}</p>
-                        <p>${item.pdDate}</p>
+                        <p>&nbsp; &nbsp;${item.pdPrice}</p>
+                        <p>&nbsp; &nbsp;${item.pdDate}</p>
                 </div>
                 `
                 x.innerHTML += block;
