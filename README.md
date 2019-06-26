@@ -13,18 +13,14 @@ link: URL : http://aquerytool.com:80/aquerymain/index/?rurl=eff3c5ad-c895-47c2-a
 Password : qzu74a
 </pre>
 ## DB 생성(MariaDB)
-![ex_screenshot](./img/shopping_mall@localhost.png){: width="200" height="200"}  
-
+<img src="./img/shopping_mall@localhost.png" width="700" height="600" />
 
 ## 구현 화면(개발 중입니다.)
 
 ### 1.가입 
-![ex_screenshot](./img/Account.PNG){: width="200" height="200"}  
-
+<img src="./img/Account.PNG" width="500" height="400" />
 
 ### 2.관리자 화면
-![ex_screenshot](./img/dashboard.PNG){: width="200" height="200"}  
-
-### 3.쇼핑몰 사용자 View
-![ex_screenshot](./img/home.PNG){: width="200" height="200"}    
-
+<img src="./img/dashboard.PNG" width="600" height="400" />
+### 3.쇼핑몰 사용자 View 
+<img src="./img/home.PNG" width="600" height="400" />
