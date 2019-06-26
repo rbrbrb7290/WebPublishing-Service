@@ -19,12 +19,12 @@ Password : qzu74a
 ## 구현 화면(개발 중입니다.)
 
 ### 1.가입 
-![ex_screenshot](./img/account.png)
+![ex_screenshot](./img/Account.PNG)
 
 
 ### 2.관리자 화면
-![ex_screenshot](./img/dashboard.png)  
+![ex_screenshot](./img/dashboard.PNG)  
 
 ### 3.쇼핑몰 사용자 View
-![ex_screenshot](./img/home.png)  
+![ex_screenshot](./img/home.PNG)  
 
