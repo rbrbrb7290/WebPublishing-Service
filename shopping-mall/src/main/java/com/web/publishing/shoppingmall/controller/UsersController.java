@@ -28,7 +28,8 @@ public class UsersController {
     public String loginAdmin(@RequestParam String adminId , @RequestParam String adminPassword){
         List<Admin> admin = loginService.loginAdmin(adminId , adminPassword);
 //        List<User> user = loginService.loginUser(adminId , adminPassword);
-        if (admin == null){
+        //입력한 로그인 정보가 서버에 없으면,
+        if (admin.isEmpty()){
             return "login";
         }
         session.setAttribute("loginAdmin", admin);
@@ -37,7 +38,7 @@ public class UsersController {
     @PostMapping("/loginUser")
     public String loginUser(@RequestParam String adminId , @RequestParam String adminPassword){
         List<User> user = loginService.loginUser(adminId , adminPassword);
-        if (user == null){
+        if (user.isEmpty()){
             return "login";
         }
         session.setAttribute("loginUser", user);
