@@ -82,16 +82,15 @@
 <script>
     let page = 0;
     document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
-    async function getData(page) {
+    async function getData(id) {
         let x = document.querySelector("body > div.container > div");
         try {
-            let res = await fetch(`/api/product?page=${page}`, {
+            let res = await fetch(`/api/product/${id}`, {
                 method: 'GET'
             });
             let data = await res.json();
             data.map(item => {
                 let block = `
-                <a href ="/api/product/"+"${item.id}">
                 <div class="col-sm-4">
                     <div class="panel-heading">${item.pdName}</div>
                     <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
@@ -99,16 +98,13 @@
                         <p>&nbsp; &nbsp;${item.pdPrice}</p>
                         <p>&nbsp; &nbsp;${item.pdDate}</p>
                 </div>
-                </a>
                 `
                 x.innerHTML += block;
             });
         } catch (e) {
         }
     }
-
     getData(page);
-
     //TODO 페이징처리하기
 </script>
 </body>

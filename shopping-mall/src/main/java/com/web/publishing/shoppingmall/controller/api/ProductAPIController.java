@@ -17,22 +17,37 @@ public class ProductAPIController {
     private final ProductListService productListService;
     private final ProductRepository productRepository;
 
+    ///api/product?page={page}
     @GetMapping
     public List<Product> getProduct(@RequestParam int page) {
-
         return productListService.productList(page);
     }
-    @RequestMapping("/api/product/{id}/delete")
-    public String delete(@PathVariable int id) {
-        productRepository.deleteById(id);
-        return "redirect:/product";
+
+    @GetMapping("/")
+    public List<Product> getpdList(){
+        List<Product> pdList = productRepository.findAll();
+        System.out.println("api:" + pdList);
+        return pdList;
     }
 
-    @RequestMapping("api/product/{id}/update")
-    public String update(@PathVariable int id){
-        Product product = productRepository.findById(id);
-
-        return "product"+productRepository.save(product);
+    @GetMapping("/{id}")
+    public List<Product> getpdInfo(@PathVariable int id){
+        List<Product> pdInfo = productRepository.findById(id);
+        return pdInfo;
     }
+
+//    @RequestMapping("/api/product/{id}/delete")
+//    public String delete(@PathVariable int id) {
+//        productRepository.deleteById(id);
+//        System.out.println("REST!!!");
+//        return "redirect:/product";
+//    }
+
+//    @RequestMapping("api/product/{id}/update")
+//    public String update(@PathVariable int id){
+//        Product product = productRepository.findById(id);
+//
+//        return "product"+productRepository.save(product);
+//    }
 
 }
