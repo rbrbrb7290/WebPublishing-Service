@@ -23,9 +23,8 @@ public class LoginService {
     private HttpSession session;
 //클라이언트에게 입력받아온 로그인 정보가 DB에 존재하는지 판단해줘야함
     public List<Admin> loginAdmin(String id, String password ) {
-        Optional<Admin> admin = Optional.empty();
-
-
+        //값이 null인지 아닌지 모를때,
+        Optional<Admin> admin =  Optional.ofNullable(null);
         if (id.equals("") || password.equals("")) {
             //null이면 다시 로그인
             return null;
@@ -38,22 +37,23 @@ public class LoginService {
             //List null체크는 isEmpty , size()이다  null아님
             /** admin.isPresent()를 통한 null 체크는 Anti Pattern임! **/
 
-            String result = String.valueOf(admin.orElse(null));
-            if(result != null){
+//            String result = String.valueOf(admin.orElse(null));
+            Admin re = admin.orElse(null);
+            if(re != null){
                 //로그인 정보 일치 시 해당 id에 정보들을 불러와 리스트에 담고 return (프로필 구현을 위함)
 //                System.out.println(session.getAttribute("loginAdmin"));
                 List<Admin> adminInfo = adminRepository.findAdminByAdminId(id);
+                System.out.println("### null 이 아닙니다 : ###" + re);
                 return adminInfo;
-            }else {
-                System.out.println("$$$$$"+ result);
-                return null;
             }
+            System.out.println("##  null 임 ## " + re);
+            return null;
             //TODO Optional 한 줄 로직 GOGO
         }
     }
 
     public List<User> loginUser(String id, String password) {
-        Optional<User> user = Optional.empty();
+        Optional<User> user =  Optional.ofNullable(null);
         if (id.equals("") || password.equals("")) {
             return null;
         } else {

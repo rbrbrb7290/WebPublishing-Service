@@ -28,8 +28,10 @@ public class UsersController {
     public String loginAdmin(@RequestParam String adminId , @RequestParam String adminPassword){
         List<Admin> admin = loginService.loginAdmin(adminId , adminPassword);
 //        List<User> user = loginService.loginUser(adminId , adminPassword);
+        System.out.println("## Paging check !! ##" + admin);
         //입력한 로그인 정보가 서버에 없으면,
-        if (admin.isEmpty()){
+        if (admin == null){
+            //TODO 정보없음 알림 띄우기
             return "login";
         }
         session.setAttribute("loginAdmin", admin);
