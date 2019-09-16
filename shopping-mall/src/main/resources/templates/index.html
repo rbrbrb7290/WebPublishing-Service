@@ -91,7 +91,7 @@
             let data = await res.json();
             data.map(item => {
                 let block = `
-                <a href ="/api/product/${item.id}">
+                <a href ="/api/product/info/${item.id}">
                 <div class="col-sm-4">
                     <div class="panel-heading">${item.pdName}</div>
                     <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>

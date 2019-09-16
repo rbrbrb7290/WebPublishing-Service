@@ -35,6 +35,13 @@ public class ProductAPIController {
         List<Product> pdInfo = productRepository.findById(id);
         return pdInfo;
     }
+//
+//    @GetMapping("/id")
+//    public List<Product> pdInfo(@RequestParam int id){
+//        List<Product> pdInfo = productRepository.findById(id);
+//        return pdInfo;
+//    }
+
 
 //    @RequestMapping("/api/product/{id}/delete")
 //    public String delete(@PathVariable int id) {

@@ -81,11 +81,14 @@
 </footer>
 <script>
     let page = 0;
-    document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
-    async function getData(id) {
+    var url = document.location.href;
+    var param = url.split("/")[6]
+    console.log("URL: "+ url.split("/"));
+    console.log("URL: "+ param);
+    async function getData() {
         let x = document.querySelector("body > div.container > div");
         try {
-            let res = await fetch(`/api/product/${id}`, {
+            let res = await fetch(`/api/product/${param}`, {
                 method: 'GET'
             });
             let data = await res.json();
@@ -104,7 +107,7 @@
         } catch (e) {
         }
     }
-    getData(page);
+    getData();
     //TODO 페이징처리하기
 </script>
 </body>

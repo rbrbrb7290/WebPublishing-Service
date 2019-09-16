@@ -39,6 +39,12 @@ public class ProductController {
 //        return page;
         return "product";
     }
+    @RequestMapping("/api/product/info/{id}")
+    public String product_info(@PathVariable int id) {
+//        List<Product> pdInfo = productRepository.findById(id);
+        return "product_info";
+    }
+
     @RequestMapping("/api/product/{id}/delete")
     public String delete(@PathVariable int id) {
         productRepository.deleteById(id);
