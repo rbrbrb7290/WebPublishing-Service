@@ -10,12 +10,16 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
-    private final HttpSession httpSession;
+    private final HttpSession session;
     /**
      * 로그인 영역
      */
     @RequestMapping(value = "/")
-    public String login() {
+    public String login()
+    {
+        if(session.getAttribute("loginAdmin") != null){
+            return "dashboard";
+        }
         return "login";
     }
 
@@ -26,12 +30,14 @@ public class HomeController {
 
     @RequestMapping(value = "/loginPage")
     public String loginPage(){
-        return "login";
+        return "redirect:/";
     }
+
     @GetMapping("/logout")
     public String logout(){
-        httpSession.invalidate();
-        return "login";
+        //session 무효화후 login page로
+        session.invalidate();
+        return "redirect:/";
     }
 
     @RequestMapping("/index")
@@ -42,11 +48,6 @@ public class HomeController {
     /**
      * 관리 페이지
      */
-    @RequestMapping("/dashboard")
-    public String dashBoard(){
-        return "dashboard";
-    }
-
     @GetMapping("/productAdd")
     public String productAdd(){
         return "productAdd";

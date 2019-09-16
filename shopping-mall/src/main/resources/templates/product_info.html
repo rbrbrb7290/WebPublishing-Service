@@ -82,11 +82,12 @@
 <script>
     let page = 0;
     var url = document.location.href;
-    var param = url.split("/")[6]
+    let param = url.split("/")[6]
     console.log("URL: "+ url.split("/"));
     console.log("URL: "+ param);
     async function getData() {
         let x = document.querySelector("body > div.container > div");
+        console.log(param);
         try {
             let res = await fetch(`/api/product/${param}`, {
                 method: 'GET'
@@ -95,8 +96,11 @@
             data.map(item => {
                 let block = `
                 <div class="col-sm-4">
-                    <div class="panel-heading">${item.pdName}</div>
-                    <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
+                  <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
+                </div>
+
+                <div class="col-sm-4>
+                  <div class="panel-heading">${item.pdName}</div>
                     <div class="panel-footer">${item.pdContent}</div>
                         <p>&nbsp; &nbsp;${item.pdPrice}</p>
                         <p>&nbsp; &nbsp;${item.pdDate}</p>
@@ -107,7 +111,7 @@
         } catch (e) {
         }
     }
-    getData();
+    getData(param);
     //TODO 페이징처리하기
 </script>
 </body>

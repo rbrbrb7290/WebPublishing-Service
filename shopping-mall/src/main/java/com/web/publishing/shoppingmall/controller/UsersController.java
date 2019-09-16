@@ -30,21 +30,31 @@ public class UsersController {
 //        List<User> user = loginService.loginUser(adminId , adminPassword);
         System.out.println("## Paging check !! ##" + admin);
         //입력한 로그인 정보가 서버에 없으면,
-        if (admin == null){
-            //TODO 정보없음 알림 띄우기
-            return "login";
+        if (admin == null){//TODO 정보없음 알림 띄우기
+                return "redirect:/";
         }
-        session.setAttribute("loginAdmin", admin);
-        return "dashboard";
+            session.setAttribute("loginAdmin", admin);
+            System.out.println("Session " + session.getAttribute("loginAdmin"));
+            return "redirect:dashboard";
     }
+
     @PostMapping("/loginUser")
     public String loginUser(@RequestParam String adminId , @RequestParam String adminPassword){
         List<User> user = loginService.loginUser(adminId , adminPassword);
         if (user.isEmpty()){
             return "login";
         }
-        session.setAttribute("loginUser", user);
-        return "index";
+            session.setAttribute("loginUser", user);
+            return "index";
+    }
+
+    @RequestMapping("/dashboard")
+    public String dashBoard(){
+        if(session.getAttribute("loginAdmin") != null){
+            System.out.println(session.getAttribute("loginAdmin"));
+            return "dashboard";
+        }
+        return "redirect:/";
     }
 
 }

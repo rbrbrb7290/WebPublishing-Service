@@ -203,7 +203,7 @@
 <script>
     let page =0;
     document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
-    async function getData(page) {
+    async function getData() {
         let x = document.querySelector('#dataTable > tbody');
         try {
             let res = await fetch(`/api/product?page=${page}`, {
@@ -231,7 +231,7 @@
         } catch (e) {
         }
     }
-    getData(page);
+    getData();
     //TODO 페이징처리하기
 </script>
 </body>
