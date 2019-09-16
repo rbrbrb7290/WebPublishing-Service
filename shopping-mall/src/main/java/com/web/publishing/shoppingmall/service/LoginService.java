@@ -29,10 +29,10 @@ public class LoginService {
             //null이면 다시 로그인
             return null;
         } else {
-            admin = adminRepository.findByAdminId_AndAdminPassword(id, hashService.sha256(password));
+            admin = adminRepository.findByAdminId_AndAdminPassword(id, password);
             //Query문으로 DB에있는 정보를 찾아줌
-            System.out.println("###Login Info: "+ id +"    "+ hashService.sha256(password));
-            System.out.println("###ServerCheck: "+adminRepository.findByAdminId_AndAdminPassword(id, hashService.sha256(password)));
+            System.out.println("###Login Info: "+ id +"    "+ password);
+            System.out.println("###ServerCheck: "+adminRepository.findByAdminId_AndAdminPassword(id, password));
             //TODO userRepository.findBy ~~~(id , password)
             //List null체크는 isEmpty , size()이다  null아님
             /** admin.isPresent()를 통한 null 체크는 Anti Pattern임! **/

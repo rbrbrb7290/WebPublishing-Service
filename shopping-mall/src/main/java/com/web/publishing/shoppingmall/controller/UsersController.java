@@ -23,10 +23,12 @@ import java.util.Map;
 public class UsersController {
     private final LoginService loginService;
     private final HttpSession session;
+    private final HashService hashService;
 
     @PostMapping("/loginAdmin")
     public String loginAdmin(@RequestParam String adminId , @RequestParam String adminPassword){
-        List<Admin> admin = loginService.loginAdmin(adminId , adminPassword);
+        List<Admin> admin = loginService.loginAdmin(adminId , hashService.sha256(adminPassword));
+        System.out.println(admin);
 //        List<User> user = loginService.loginUser(adminId , adminPassword);
         System.out.println("## Paging check !! ##" + admin);
         //입력한 로그인 정보가 서버에 없으면,
