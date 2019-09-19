@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link th:href="@{/css/app.css}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
@@ -30,8 +31,8 @@
 
 <div class="jumbotron">
     <div class="container text-center">
-        <h1>포탈 쏴비쓰~!</h1>
-        <p>Mission, Vission & Values</p>
+<!--        <h1></h1>-->
+<!--        <p>Mission, Vission & Values</p>-->
     </div>
 </div>
 
@@ -82,6 +83,23 @@
 <script>
     let page = 0;
     document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
+
+      async function getCustom() {
+       let customInfo = document.querySelector("body > div.jumbotron > div")
+        try {
+            let res = await fetch(`/api/admin/custom/get` , {
+                method:'GET',
+            });
+         let data = await res.json();
+            data.map(custom=> {
+                let block = `
+                        <h1>${custom.title}</h1>
+                `
+                customInfo.innerHTML += block;
+            });
+        } catch (e) {
+        }
+ }
     async function getData(page) {
         let x = document.querySelector("body > div.container > div");
         try {
@@ -91,13 +109,12 @@
             let data = await res.json();
             data.map(item => {
                 let block = `
-                <a href ="/api/product/info/${item.id}">
+                <a href ="/api/product/info/${item.id}" class = "product">
                 <div class="col-sm-4">
-                    <div class="panel-heading">${item.pdName}</div>
                     <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
-                    <div class="panel-footer">${item.pdContent}</div>
-                        <p>&nbsp; &nbsp;${item.pdPrice}</p>
-                        <p>&nbsp; &nbsp;${item.pdDate}</p>
+                      <div class="panel-heading">${item.pdName} <br> ${item.pdPrice}</div>
+<!--                      <div class="panel-footer">${item.pdContent}</div>-->
+<!--                        <p>&nbsp; &nbsp;${item.pdDate}</p>-->
                 </div>
                 </a>
                 `
@@ -106,6 +123,7 @@
         } catch (e) {
         }
     }
+    getCustom();
     getData(page);
 
     //TODO 페이징처리하기

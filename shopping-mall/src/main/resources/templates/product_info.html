@@ -66,7 +66,7 @@
     <div class="row">
         <!--  상품정보 GET하는 공간-->
     </div>
-    <button id="nextBtn"> ▼</button>
+    <button id="nextBtn">▼</button>
 </div><br>
 
 
@@ -98,12 +98,11 @@
                 <div class="col-sm-4">
                   <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
                 </div>
-
-                <div class="col-sm-4>
+                <div>
                   <div class="panel-heading">${item.pdName}</div>
-                    <div class="panel-footer">${item.pdContent}</div>
-                        <p>&nbsp; &nbsp;${item.pdPrice}</p>
-                        <p>&nbsp; &nbsp;${item.pdDate}</p>
+                  <div class="panel-footer">${item.pdContent}</div>
+                    <p>&nbsp; &nbsp;${item.pdPrice}</p>
+                    <p>&nbsp; &nbsp;${item.pdDate}</p>
                 </div>
                 `
                 x.innerHTML += block;

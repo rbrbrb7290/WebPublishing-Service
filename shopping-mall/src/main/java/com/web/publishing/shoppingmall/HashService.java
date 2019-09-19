@@ -1,10 +1,9 @@
-package com.web.publishing.shoppingmall.service;
+package com.web.publishing.shoppingmall;
 
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 @Service
 public class HashService {
 

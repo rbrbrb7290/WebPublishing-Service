@@ -1,16 +1,14 @@
 package com.web.publishing.shoppingmall.service;
 
+import com.web.publishing.shoppingmall.HashService;
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
 import com.web.publishing.shoppingmall.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,15 +36,16 @@ public class LoginService {
             /** admin.isPresent()를 통한 null 체크는 Anti Pattern임! **/
 
 //            String result = String.valueOf(admin.orElse(null));
-            Admin re = admin.orElse(null);
-            if(re != null){
+            Admin loginInfo = admin.orElse(null);
+            if(loginInfo != null){
                 //로그인 정보 일치 시 해당 id에 정보들을 불러와 리스트에 담고 return (프로필 구현을 위함)
 //                System.out.println(session.getAttribute("loginAdmin"));
                 List<Admin> adminInfo = adminRepository.findAdminByAdminId(id);
-                System.out.println("### null 이 아닙니다 : ###" + re);
+                System.out.println("  ### LoginInfo Check Success! " + loginInfo);
+                System.out.println("Admin Info" + adminInfo);
                 return adminInfo;
             }
-            System.out.println("##  null 임 ## " + re);
+            System.out.println("  ##Not Exist LoginInfo: " + loginInfo);
             return null;
             //TODO Optional 한 줄 로직 GOGO
         }
@@ -63,7 +62,6 @@ public class LoginService {
                 return userInfo;
             }else {
                 return null;
-
             }
         }
     }

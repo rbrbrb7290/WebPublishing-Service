@@ -1,0 +1,15 @@
+a:link , a:visited , a:hover {
+    color: black;
+}
+.panel-heading , p{
+    text-align: center;
+    padding-top: 0px;
+    padding-bottom: 3px;
+    font-size: 1.5;
+    line-height: 1
+}
+
+div.panel-body {
+    padding-bottom: 5px;
+}
+
