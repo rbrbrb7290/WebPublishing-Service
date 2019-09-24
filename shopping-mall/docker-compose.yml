@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+  db:
+    image: mariadb
+    networks:
+      - employee-mariadb
+    container_name: mariadb
+    hostname: mariadb
+    restart: always
+
+    environment:
+       MYSQL_ROOT_PASSWORD: 1111
+       MYSQL_DATABASE: shopping_mall
+       MYSQL_USER: TEST
+       MYSQL_PASSWORD: 1234
+    ports:
+     - "27017:27017"
+    volumes:
+     - /var/lib/mysql
+
+  app:
+    image: ohg429/shopping_mall
+    networks:
+       - employee-mariadb
+    container_name: shoppingApplication
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    links:
+      - db
+
+networks:
+  employee-mariadb:
+
+#    links:
+#      - mariadb
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
+#    database-platform: org.hibernate.dialect.MySQLDialect
+#  datasource:
+#    url: jdbc:mysql://jdbc:mysql://mariadb:27017/shopping_mall?serverTimezone=UTC
+#    username: root
+#    password: 1111
+#    driver-class-name: com.mysql..cj.jdbc.Driver
+#    validation-query: select 1
