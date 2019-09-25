@@ -5,6 +5,7 @@ import com.web.publishing.shoppingmall.repository.ProductRepository;
 import com.web.publishing.shoppingmall.service.product.ProductAddService;
 import com.web.publishing.shoppingmall.service.product.ProductListService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,8 +60,8 @@ public class ProductController {
             @RequestParam String pdContent,
             @RequestParam String pdDate,
             @RequestParam MultipartFile pdImage, HttpServletRequest request) throws IOException {
-        File path =
-                new File("images/" + pdImage.getOriginalFilename());
+//        File path = new ClassPathResource("/static/images/" + pdImage.getOriginalFilename()).getFile();
+                File path = new File("images/" + pdImage.getOriginalFilename());
 //        System.out.println("PATH: " + path.getCanonicalPath());
         FileOutputStream fileOutputStream = new FileOutputStream(path);
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
@@ -75,7 +76,6 @@ public class ProductController {
                 .pdName(pdName)
                 .pdPrice(pdPrice)
                 .build());
-
        return "redirect:/product";
     }
 
