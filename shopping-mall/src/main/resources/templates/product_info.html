@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link th:href="@{/css/app.css}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <style>
@@ -30,8 +31,8 @@
 
 <div class="jumbotron">
     <div class="container text-center">
-        <h1>포탈 쏴비쓰~!</h1>
-        <p>Mission, Vission & Values</p>
+<!--        <h1>포탈 쏴비쓰~!</h1>-->
+<!--        <p>Mission, Vission & Values</p>-->
     </div>
 </div>
 
@@ -79,6 +80,7 @@
         <button type="button" class="btn btn-danger">Sign Up</button>
     </form>
 </footer>
+<script type="text/javascript" src="/js/getCustom.js"></script>
 <script>
     let page = 0;
     var url = document.location.href;
@@ -110,6 +112,7 @@
         } catch (e) {
         }
     }
+    getCustom();
     getData(param);
     //TODO 페이징처리하기
 </script>

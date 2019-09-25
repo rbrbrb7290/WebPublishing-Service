@@ -56,6 +56,7 @@ public class ProductController {
     public String productAddRequest(
             @RequestParam String pdName,
             @RequestParam String pdPrice,
+            @RequestParam String pdCategory,
             @RequestParam String pdAmount,
             @RequestParam String pdContent,
             @RequestParam String pdDate,
@@ -69,12 +70,13 @@ public class ProductController {
         bufferedOutputStream.close();
 
         productAddService.add(Product.builder()
+                .pdName(pdName)
+                .pdPrice(pdPrice)
+                .pdCategory(pdCategory)
                 .pdAmount(pdAmount)
                 .pdContent(pdContent)
                 .pdDate(pdDate)
                 .pdImageUrl("/images/" + pdImage.getOriginalFilename())
-                .pdName(pdName)
-                .pdPrice(pdPrice)
                 .build());
        return "redirect:/product";
     }

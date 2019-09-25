@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Bootstrap Example</title>
     <meta charset="utf-8">
@@ -80,26 +80,11 @@
         <button type="button" class="btn btn-danger">Sign Up</button>
     </form>
 </footer>
+<script src="/js/getCustom.js"></script>
 <script>
     let page = 0;
     document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
 
-      async function getCustom() {
-       let customInfo = document.querySelector("body > div.jumbotron > div")
-        try {
-            let res = await fetch(`/api/admin/custom/get` , {
-                method:'GET',
-            });
-         let data = await res.json();
-            data.map(custom=> {
-                let block = `
-                        <h1>${custom.title}</h1>
-                `
-                customInfo.innerHTML += block;
-            });
-        } catch (e) {
-        }
- }
     async function getData(page) {
         let x = document.querySelector("body > div.container > div");
         try {

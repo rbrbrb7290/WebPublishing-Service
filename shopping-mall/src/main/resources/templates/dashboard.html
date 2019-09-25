@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +9,7 @@
 
     <title>관리자 페이지</title>
     <link th:href="@{/css/sb-admin.css}" rel="stylesheet" type="text/css">
-
 </head>
-
 <body id="page-top">
 <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
     <a class="navbar-brand mr-1" href="/index">내 쇼핑몰 가기</a>
@@ -304,6 +301,7 @@
                     <td><img src="${item.pdImageUrl}" class="img-responsive" style="width:100px" alt="Image"></td>
                     <td>${item.pdName}</td>
                     <td>${item.pdPrice}</td>
+                    <td>${item.pdCategory}</td>
                     <td>${item.pdContent}</td>
                     <td>${item.pdDate}</td>
                        <td class="pull-right">

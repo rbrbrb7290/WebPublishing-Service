@@ -24,17 +24,24 @@ public class ProductAPIController {
     }
 
     @GetMapping("/")
-    public List<Product> getpdList(){
+    public List<Product> getpdList() {
         List<Product> pdList = productRepository.findAll();
         System.out.println("api:" + pdList);
         return pdList;
     }
 
     @GetMapping("/{id}")
-    public List<Product> getpdInfo(@PathVariable int id){
+    public List<Product> getpdInfo(@PathVariable int id) {
         List<Product> pdInfo = productRepository.findById(id);
         return pdInfo;
     }
+
+//    @GetMapping("/{category}")
+//    public List<Product> pdCategory(@PathVariable String category) {
+//        List<Product> sortCategory = productRepository.findByCategory(category);
+//        return sortCategory;
+//    }
+}
 //
 //    @GetMapping("/id")
 //    public List<Product> pdInfo(@RequestParam int id){
@@ -57,4 +64,4 @@ public class ProductAPIController {
 //        return "product"+productRepository.save(product);
 //    }
 
-}
+

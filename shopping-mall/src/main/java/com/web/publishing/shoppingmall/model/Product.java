@@ -19,6 +19,7 @@ public class Product {
     private String pdPrice;
     private String pdAmount;
     private String pdImageUrl;
+    private String pdCategory;
     private String pdDate;
     private String pdContent;
 }
