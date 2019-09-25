@@ -107,9 +107,6 @@
         let title = document.getElementById('title').value;
         let logoImageUrl=  document.getElementById('logoImageUrl').value;
 
-        console.log("ffffffffffffffffffff");
-        console.log(title);
-
         try {
             let res = await fetch(`/api/admin/custom` , {
                 method:'POST',
@@ -123,7 +120,6 @@
                 })
             });
               if(res.ok) document.location.href="/dashboard";
-        console.log(title);
 
         } catch (e) {
         }

@@ -49,8 +49,7 @@ public class HomeController {
     /**
      * 관리 페이지
      */
-
-    @RequestMapping("/customizing")
+    @GetMapping("/customizing")
     public String custom() {
         return "customizing";
     }
@@ -59,6 +58,4 @@ public class HomeController {
     public String productAdd(){
         return "productAdd";
     }
-
-
 }
