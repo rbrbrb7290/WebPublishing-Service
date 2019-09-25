@@ -1,5 +1,5 @@
 # Start with a base image containing Java runtime
-FROM openjdk:8-jdk
+FROM JAVA:11
 # Add a volume to /tmp
 VOLUME /tmp
 

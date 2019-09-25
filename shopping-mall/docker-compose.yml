@@ -3,11 +3,11 @@ version: "3.7"
 services:
   db:
     image: mariadb
-    networks:
-      - employee-mariadb
+    restart: always
+#    networks:
+#      - shopping-mall_employee-mariadb
     container_name: mariadb
     hostname: mariadb
-    restart: always
 
     environment:
        MYSQL_ROOT_PASSWORD: 1111
@@ -19,24 +19,24 @@ services:
     volumes:
      - /var/lib/mysql
 
-  app:
-    image: ohg429/shopping_mall
-    networks:
-       - employee-mariadb
-    container_name: shoppingApplication
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
-    depends_on:
-      - db
-    ports:
-      - "8080:8080"
-    links:
-      - db
-
-networks:
-  employee-mariadb:
+#  app:
+#    image: ohg429/shopping_mall
+#    networks:
+#       - shopping-mall_employee-mariadb
+#    container_name: shoppingApplication
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
+#    depends_on:
+#      - db
+#    ports:
+#      - "8080:8080"
+#    links:
+#      - db
+#
+#networks:
+#  shopping-mall_employee-mariadb:
 
 #    links:
 #      - mariadb

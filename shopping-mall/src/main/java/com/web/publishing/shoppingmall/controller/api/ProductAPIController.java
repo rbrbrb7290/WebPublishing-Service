@@ -30,17 +30,21 @@ public class ProductAPIController {
         return pdList;
     }
 
+
+
+    //상품클릭시 해당 상품정보 출력
     @GetMapping("/{id}")
     public List<Product> getpdInfo(@PathVariable int id) {
         List<Product> pdInfo = productRepository.findById(id);
         return pdInfo;
     }
 
-//    @GetMapping("/{category}")
-//    public List<Product> pdCategory(@PathVariable String category) {
-//        List<Product> sortCategory = productRepository.findByCategory(category);
-//        return sortCategory;
-//    }
+    // 상품을 카테고리 별로 정렬
+    @GetMapping("sort/{category}")
+    public List<Product> pdCategory(@PathVariable String category) {
+        List<Product> sortCategory = productRepository.findByPdCategoryLike(category);
+        return sortCategory;
+    }
 }
 //
 //    @GetMapping("/id")

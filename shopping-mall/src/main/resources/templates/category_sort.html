@@ -31,8 +31,8 @@
 
 <div class="jumbotron">
     <div class="container text-center">
-<!--        <h1></h1>-->
-<!--        <p>Mission, Vission & Values</p>-->
+        <!--        <h1></h1>-->
+        <!--        <p>Mission, Vission & Values</p>-->
     </div>
 </div>
 
@@ -48,12 +48,11 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/api/product/outer">OUTER</a></li>
-                <li><a href="/api/product/top">TOP</a></li>
-                <li><a href="/api/product/shirt">SHIRT</a></li>
-                <li><a href="/api/product/knit">KNIT</a></li>
-                <li><a href="/api/product/bottom">BOTTOM</a></li>
-                <li><a href="/api/product/acc">ACC</a></li>
+                <li class="active"><a href="#">아우터</a></li>
+                <li><a href="#">티셔츠</a></li>
+                <li><a href="#">셔츠</a></li>
+                <li><a href="#">니트/가디건</a></li>
+                <li><a href="#">바지</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/joinPage"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
@@ -82,27 +81,33 @@
     </form>
 </footer>
 <script src="/js/getCustom.js"></script>
+<script type="text/javascript" src="/js/getCustom.js"></script>
 <script>
     let page = 0;
-    document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
-
-    async function getData(page) {
+    let url = document.location.href;
+    let param = url.split("/")[5];
+    console.log(param)
+    console.log("URL: "+ url.split("/"));
+    console.log("URL: "+ param);
+    async function getData() {
         let x = document.querySelector("body > div.container > div");
+        console.log(param);
         try {
-            let res = await fetch(`/api/product?page=${page}`, {
+            let res = await fetch(`/api/product/sort/${param}`, {
                 method: 'GET'
             });
             let data = await res.json();
             data.map(item => {
                 let block = `
-                <a href ="/api/product/info/${item.id}" class = "product">
                 <div class="col-sm-4">
-                    <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
-                      <div class="panel-heading">${item.pdName} <br> ${item.pdPrice}</div>
-<!--                      <div class="panel-footer">${item.pdContent}</div>-->
-<!--                        <p>&nbsp; &nbsp;${item.pdDate}</p>-->
+                  <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
                 </div>
-                </a>
+                <div>
+                  <div class="panel-heading">${item.pdName}</div>
+                  <div class="panel-footer">${item.pdContent}</div>
+                    <p>&nbsp; &nbsp;${item.pdPrice}</p>
+                    <p>&nbsp; &nbsp;${item.pdDate}</p>
+                </div>
                 `
                 x.innerHTML += block;
             });

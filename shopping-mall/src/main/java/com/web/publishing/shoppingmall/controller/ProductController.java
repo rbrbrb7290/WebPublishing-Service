@@ -40,10 +40,16 @@ public class ProductController {
 //        return page;
         return "product";
     }
+    //변수를 통해 page수 줄이기
     @RequestMapping("/api/product/info/{id}")
     public String product_info(@PathVariable int id) {
-//        List<Product> pdInfo = productRepository.findById(id);
         return "product_info";
+    }
+
+    @RequestMapping("/api/product/outer")
+    public String pdSort_Category(){
+
+        return "category_sort";
     }
 
     @RequestMapping("/api/product/{id}/delete")
