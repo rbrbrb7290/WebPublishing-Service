@@ -1,3 +1,6 @@
+#FROM mariadb
+#
+#COPY ./sql/ /docker-entrypoint-initdb.d/
 # Start with a base image containing Java runtime
 FROM openjdk:8-jdk
 # Add a volume to /tmp
