@@ -3,6 +3,9 @@ version: "3.7"
 services:
   db:
     image: mariadb
+    volumes:
+      - /var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d/
     restart: always
 #    networks:
 #      - shopping-mall_employee-mariadb
@@ -11,13 +14,11 @@ services:
 
     environment:
        MYSQL_ROOT_PASSWORD: 1111
-       MYSQL_DATABASE: shopping_mall
        MYSQL_USER: TEST
        MYSQL_PASSWORD: 1234
     ports:
      - "27017:27017"
-    volumes:
-     - /var/lib/mysql
+
 
 #  app:
 #    image: ohg429/shopping_mall

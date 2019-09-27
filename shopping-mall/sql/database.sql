@@ -1,3 +1,7 @@
+CREATE DATABASE shopping_mall;
+
+use shopping_mall;
+
 CREATE TABLE `admin_db` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `admin_id` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
