@@ -6,21 +6,22 @@ services:
     networks:
       - shopping-mall
     container_name: shoppingApplication
+#   다른 사용자는 build될 .jar파일이 없기때문에 compose에서 다시 파일생성을 해줌
     build:
       context: ./
       dockerfile: Dockerfile
     command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
+#   가상환경에서 연결될 jdbc url , DB user정보
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mariadb:3306/shopping_mall
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=1111
+#  image의 8080포트를 80에서 들어올수있게 포트설정
     ports:
         - "80:8080"
     depends_on:
       - db
-  #    links:
-  #      - db
-  #
+
   db:
     image: mariadb
     restart: always
@@ -29,7 +30,9 @@ services:
     volumes:
 #     데이터 백업공간
       - /var/lib/mysql
+#     mysql server 초기 캐릭터셋 설정 UTF-8mb4
       - ./mycustom.cnf:/etc/mysql/conf.d/custom.cnf
+#     초기 DB 스키마 생성
       - ./sql:/docker-entrypoint-initdb.d/
     networks:
       - shopping-mall
@@ -39,9 +42,6 @@ services:
        MYSQL_PASSWORD: 1234
     container_name: mariadb
     hostname: mariadb
-
-
-
 networks:
   shopping-mall:
     driver: bridge
