@@ -46,8 +46,8 @@ public class ProductController {
         return "product_info";
     }
 
-    @RequestMapping("/api/product/outer")
-    public String pdSort_Category(){
+    @GetMapping("/api/product/{category}")
+    public String pdSort_Category(@PathVariable String category){
 
         return "category_sort";
     }

@@ -1,27 +1,6 @@
 version: "3.7"
 
 services:
-  app:
-    image: ohg429/shopping_mall
-    networks:
-      - shopping-mall
-    container_name: shoppingApplication
-#   다른 사용자는 build될 .jar파일이 없기때문에 compose에서 다시 파일생성을 해줌
-    build:
-      context: ./
-      dockerfile: Dockerfile
-    command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
-#   가상환경에서 연결될 jdbc url , DB user정보
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mariadb:3306/shopping_mall
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=1111
-#  image의 8080포트를 80에서 들어올수있게 포트설정
-    ports:
-        - "80:8080"
-    depends_on:
-      - db
-
   db:
     image: mariadb
     restart: always
@@ -42,6 +21,29 @@ services:
        MYSQL_PASSWORD: 1234
     container_name: mariadb
     hostname: mariadb
+# 첫 빌드시 'app'image에서 뻥남 why? 'db'image가 전부 구성이 되기도전에 app이 빌드 되버림(jdbc config fail)
+#TODO 1.restart 2. 이전 단계가 완료될때까지 delay(sleep)
+  app:
+    image: chibee_o/shopping_mall
+    restart: on-failure
+    networks:
+      - shopping-mall
+    container_name: shoppingApplication
+    ###   jar실행(최초 이미지생성하는 Dockerfile build과정 필요함)
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
+    #   가상환경에서 연결될 jdbc url , DB user정보
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mariadb:3306/shopping_mall
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=1111
+    #  image의 8080포트를 80에서 들어올수있게 포트설정
+    ports:
+      - "80:8080"
+    depends_on:
+      - db
 networks:
   shopping-mall:
     driver: bridge
