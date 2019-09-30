@@ -5,16 +5,17 @@ use shopping_mall;
 CREATE TABLE `admin_db` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `admin_id` varchar(40) NOT NULL,
-    `admin_password` varchar(20) NOT NULL,
-    `name` varchar(255) NOT NULL,
+    `admin_password` mediumtext NOT NULL,
+    `name` varchar(20) NOT NULL,
     `tell_number` varchar(30) NOT NULL,
+    `bank` varchar(30) NULL default 0 ,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `user_db` (
    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-   `user_id` varchar(20) NOT NULL,
-   `user_password` longtext NOT NULL,
+   `user_id` varchar(40) NOT NULL,
+   `user_password` mediumtext  NOT NULL,
    `name` varchar(20) NOT NULL,
    `tell_number` varchar(20) NOT NULL,
    `address` varchar(45) NOT NULL,
