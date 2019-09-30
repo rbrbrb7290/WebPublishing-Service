@@ -4,39 +4,49 @@ services:
   db:
     image: mariadb
     restart: always
-#    networks:
-#      - shopping-mall_employee-mariadb
-    container_name: mariadb
-    hostname: mariadb
-
+    ports:
+      - "27017:3306"
+    volumes:
+#     데이터 백업공간
+      - /var/lib/mysql
+#     mysql server 초기 캐릭터셋 설정 UTF-8mb4
+      - ./mycustom.cnf:/etc/mysql/conf.d/custom.cnf
+#     초기 DB 스키마 생성
+      - ./sql:/docker-entrypoint-initdb.d/
+    networks:
+      - shopping-mall
     environment:
        MYSQL_ROOT_PASSWORD: 1111
-       MYSQL_DATABASE: shopping_mall
        MYSQL_USER: TEST
        MYSQL_PASSWORD: 1234
+    container_name: mariadb
+    hostname: mariadb
+# 첫 빌드시 'app'image에서 뻥남 why? 'db'image가 전부 구성이 되기도전에 app이 빌드 되버림(jdbc config fail)
+#TODO 1.restart 2. 이전 단계가 완료될때까지 delay(sleep)
+  app:
+    image: chibee_o/shopping_mall
+    restart: on-failure
+    networks:
+      - shopping-mall
+    container_name: shoppingApplication
+    ###   jar실행(최초 이미지생성하는 Dockerfile build과정 필요함)
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
+    #   가상환경에서 연결될 jdbc url , DB user정보
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mariadb:3306/shopping_mall
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=1111
+    #  image의 8080포트를 80에서 들어올수있게 포트설정
     ports:
-     - "27017:27017"
-    volumes:
-     - /var/lib/mysql
-
-#  app:
-#    image: ohg429/shopping_mall
-#    networks:
-#       - shopping-mall_employee-mariadb
-#    container_name: shoppingApplication
-#    build:
-#      context: ./
-#      dockerfile: Dockerfile
-#    command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
-#    depends_on:
-#      - db
-#    ports:
-#      - "8080:8080"
-#    links:
-#      - db
-#
-#networks:
-#  shopping-mall_employee-mariadb:
+      - "80:8080"
+    depends_on:
+      - db
+networks:
+  shopping-mall:
+    driver: bridge
 
 #    links:
 #      - mariadb
