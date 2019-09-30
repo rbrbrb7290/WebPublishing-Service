@@ -43,10 +43,11 @@ public class ProductController {
     //변수를 통해 page수 줄이기
     @RequestMapping("/api/product/info/{id}")
     public String product_info(@PathVariable int id) {
+
         return "product_info";
     }
 
-    @GetMapping("/api/product/{category}")
+    @GetMapping("/api/product/select/{category}")
     public String pdSort_Category(@PathVariable String category){
 
         return "category_sort";
