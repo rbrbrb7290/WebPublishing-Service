@@ -29,9 +29,6 @@ public class ProductAPIController {
         System.out.println("api:" + pdList);
         return pdList;
     }
-
-
-
     //상품클릭시 해당 상품정보 출력
     @GetMapping("/{id}")
     public List<Product> getpdInfo(@PathVariable int id) {
