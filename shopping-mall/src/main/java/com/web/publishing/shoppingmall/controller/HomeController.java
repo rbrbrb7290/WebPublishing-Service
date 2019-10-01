@@ -23,6 +23,14 @@ public class HomeController {
         }
         return "login";
     }
+    @RequestMapping(value = "/userLogin")
+    public String userLogin()
+    {
+        if(session.getAttribute("loginUser") != null){
+            return "/index";
+        }
+        return "/userLogin";
+    }
 
     @RequestMapping(value = "/joinPage")
     public String joinPage(){
@@ -38,7 +46,7 @@ public class HomeController {
     public String logout(){
         //session 무효화후 login page로
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/index";
     }
 
     @RequestMapping("/index")

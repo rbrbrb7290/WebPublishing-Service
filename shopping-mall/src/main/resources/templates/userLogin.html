@@ -25,6 +25,8 @@
             background-color: #f2f2f2;
             padding: 25px;
         }
+
+
     </style>
 </head>
 <body>
@@ -56,21 +58,58 @@
                 <li><a href="/product/select/acc">ACC</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.loginAdmin != null}"><a href="/dashboard"><span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
-                <li th:if="${session.loginAdmin == null}"><a href="/joinPage"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
-                <li th:if="${session.loginAdmin == null}"><a href="/userLogin"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
-                <li th:if="${session.loginAdmin != null}"><a href="/logout"><span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
-                <li th:if="${session.loginAdmin != null}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li th:if="${session.loginAdmin != null}"><a href="/dashboard">
+                    <span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
+                <li th:if="${session.loginAdmin == null}"><a href="/joinPage">
+                    <span class="glyphicon glyphicon-inbox"></span> 회원가입</a></li>
+                <li th:if="${session.loginAdmin == null}"><a href="/userLogin">
+                    <span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+                <li th:if="${session.loginAdmin != null}"><a href="/logout">
+                    <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
+                <li th:if="${session.loginAdmin != null}"><a href="#">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
         </div>
     </div>
 </nav>
 
-<div class="container">
+<div class="bg-dark">
     <div class="row">
-        <!--  상품정보 GET하는 공간-->
+        <div class="container" style="width: 33rem">
+            <div class="card card-login mx-auto mt-5">
+                <div class="card-header">로그인</div>
+                <div class="card-body">
+                    <form action="/loginAdmin" method="post">
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="id" name="adminId" id="inputEmail" class="form-control" placeholder="아이디" required="required" autofocus="autofocus">
+                                <label for="inputEmail">아이디</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="password" name="adminPassword" id="inputPassword" class="form-control" placeholder="비밀번호" required="required">
+                                <label for="inputPassword">비밀번호</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="remember-me">
+                                    Remember Password
+                                </label>
+                            </div>
+                        </div>
+                        <input class="btn btn-primary btn-block" type="submit" value="로그인"><br>
+                        <!--                <a class="btn btn-primary btn-block" type="submit" >로그인</a>-->
+                    </form>
+                    <div class="text-center">
+                        <a class="d-block small mt-3" href="#">비밀번호 찾기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button id="nextBtn"> ▼</button>
 </div><br>
 
 
@@ -84,39 +123,9 @@
     </form>
 </footer>
 <script src="/js/getCustom.js"></script>
-<script type="text/javascript" src="/js/getCustom.js"></script>
+<script src="/js/loginPopup.js"></script>
 <script>
-    let page = 0;
-    let url = document.location.href;
-    let param = url.split("/")[5];
-    console.log("URL: "+ url.split("/"));
-    console.log("Param: "+ param);
-    async function getData() {
-        let x = document.querySelector("body > div.container > div");
-        try {
-            let res = await fetch(`/api/product/sort/${param}`, {
-                method: 'GET'
-            });
-            let data = await res.json();
-            data.map(item => {
-                let block = `
-                <div class="col-sm-4">
-                  <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
-                </div>
-                <div>
-                  <div class="panel-heading">${item.pdName}</div>
-                  <div class="panel-footer">${item.pdContent}</div>
-                    <p>&nbsp; &nbsp;${item.pdPrice}</p>
-                    <p>&nbsp; &nbsp;${item.pdDate}</p>
-                </div>
-                `
-                x.innerHTML += block;
-            });
-        } catch (e) {
-        }
-    }
     getCustom();
-    getData(page);
 
     //TODO 페이징처리하기
 </script>
