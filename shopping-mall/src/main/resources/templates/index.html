@@ -48,12 +48,12 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/api/product/select/outer">OUTER</a></li>
-                <li><a href="/api/product/select/top">TOP</a></li>
-                <li><a href="/api/product/select/shirt">SHIRT</a></li>
-                <li><a href="/api/product/select/knit">KNIT</a></li>
-                <li><a href="/api/product/select/bottom">BOTTOM</a></li>
-                <li><a href="/api/product/select/acc">ACC</a></li>
+                <li class="active"><a href="/product/select/outer">OUTER</a></li>
+                <li><a href="/product/select/top">TOP</a></li>
+                <li><a href="/product/select/shirt">SHIRT</a></li>
+                <li><a href="/product/select/knit">KNIT</a></li>
+                <li><a href="/product/select/bottom">BOTTOM</a></li>
+                <li><a href="/product/select/acc">ACC</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/joinPage"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
@@ -95,7 +95,7 @@
             let data = await res.json();
             data.map(item => {
                 let block = `
-                <a href ="/api/product/info/${item.id}" class = "product">
+                <a href ="/product/info/${item.id}" class = "product">
                 <div class="col-sm-4">
                     <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
                       <div class="panel-heading">${item.pdName} <br> ${item.pdPrice}</div>

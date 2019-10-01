@@ -7,7 +7,7 @@ CREATE TABLE `admin_db` (
     `admin_id` varchar(40) NOT NULL,
     `admin_password` mediumtext NOT NULL,
     `name` varchar(20) NOT NULL,
-    `tell_number` varchar(30) NOT NULL,
+    `tell_number` varchar(30) NULL default 0,
     `bank` varchar(30) NULL default 0 ,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;

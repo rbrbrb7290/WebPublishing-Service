@@ -35,6 +35,8 @@ services:
       dockerfile: Dockerfile
     command: "java -Djava.security.egd=file:/dev/./urandom -jar /shopping-mall.jar"
     #   가상환경에서 연결될 jdbc url , DB user정보
+    volumes:
+      - ./images
     environment:
       - SPRING_DATASOURCE_URL=jdbc:mysql://mariadb:3306/shopping_mall
       - SPRING_DATASOURCE_USERNAME=root

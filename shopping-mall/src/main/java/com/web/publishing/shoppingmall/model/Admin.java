@@ -18,7 +18,5 @@ public class Admin {
     private String adminId;
     private String adminPassword;
     private String name;
-    private String tellNumber;
-    private String bank;
 
 }

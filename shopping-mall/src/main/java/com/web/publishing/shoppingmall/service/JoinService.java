@@ -6,6 +6,7 @@ import com.web.publishing.shoppingmall.model.User;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
 import com.web.publishing.shoppingmall.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,8 +22,7 @@ public class JoinService {
                     .adminId(admin.getAdminId())
                     .adminPassword(hashService.sha256(admin.getAdminPassword()))
                     .name(admin.getName())
-                    .tellNumber(admin.getTellNumber())
-                    .bank(admin.getBank()).build();
+                    .build();
 //            System.out.println("amdigafds"+ admin.getAdminId());
 //            System.out.println("amdigafdsfds2313ffarag"+ admin.getAdminPassword());
             return adminRepository.save(admin);

@@ -6,6 +6,7 @@ import com.web.publishing.shoppingmall.service.JoinService;
 import com.web.publishing.shoppingmall.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +23,11 @@ public class AdminAPIController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Admin getAdmin(@RequestBody Admin admin){
+
         return joinService.joinAdmin(admin);
 
     }
+
     @GetMapping("")
     public List<Admin> adminList(){
         List<Admin> adminList = adminRepository.findAll();

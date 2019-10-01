@@ -84,12 +84,11 @@
 <script>
     let page = 0;
     var url = document.location.href;
-    let param = url.split("/")[6]
+    let param = url.split("/")[5]
     console.log("URL: "+ url.split("/"));
-    console.log("URL: "+ param);
+    console.log("Param: "+ param);
     async function getData() {
         let x = document.querySelector("body > div.container > div");
-        console.log(param);
         try {
             let res = await fetch(`/api/product/${param}`, {
                 method: 'GET'
