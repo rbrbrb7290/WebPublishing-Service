@@ -31,9 +31,10 @@ public class JoinService {
     public User joinUser(User user){
         user = User.builder()
                 .userId(user.getUserId())
-                .userPassword(user.getUserPassword())
+                .userPassword(hashService.sha256(user.getUserPassword()))
                 .name(user.getName())
                 .tellNumber(user.getTellNumber())
+                .address(user.getAddress())
                 .build();
 
         return userRepository.save(user);

@@ -21,13 +21,13 @@
                     <div class="form-row">
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" id="adminId" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                                <input type="text" id="adminId" class="form-control" placeholder="아이디" required="required" autofocus="autofocus">
                                 <label for="adminId">아이디</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-label-group">
-                                <input type="text" id="name" class="form-control" placeholder="Last name" required="required">
+                                <input type="text" id="name" class="form-control" placeholder="이름" required="required">
                                 <label for="name">이름</label>
                             </div>
                         </div>
@@ -100,7 +100,7 @@
                 })
             });
             //TODO 서버에서 유효성검사 해주고 데이터 save안되게 만들기!
-            if(adminId === "" || adminPassword === "" || confirmPassword === "" || name === ""){
+            if(!adminId || !adminPassword || !confirmPassword  || !name ){
                 alert("양식을 전부 입력 해주세요!")
             }else {
                 if(adminPassword != confirmPassword){

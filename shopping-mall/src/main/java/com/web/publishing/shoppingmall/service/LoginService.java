@@ -27,27 +27,18 @@ public class LoginService {
             //null이면 다시 로그인
             return null;
         } else {
-            admin = adminRepository.findByAdminId_AndAdminPassword(id, password);
             //Query문으로 DB에있는 정보를 찾아줌
-            System.out.println("###Login Info: "+ id +"    "+ password);
-            System.out.println("###ServerCheck: "+adminRepository.findByAdminId_AndAdminPassword(id, password));
-            //TODO userRepository.findBy ~~~(id , password)
+            admin = adminRepository.findByAdminId_AndAdminPassword(id, password);
             //List null체크는 isEmpty , size()이다  null아님
             /** admin.isPresent()를 통한 null 체크는 Anti Pattern임! **/
-
 //            String result = String.valueOf(admin.orElse(null));
             Admin loginInfo = admin.orElse(null);
             if(loginInfo != null){
                 //로그인 정보 일치 시 해당 id에 정보들을 불러와 리스트에 담고 return (프로필 구현을 위함)
-//                System.out.println(session.getAttribute("loginAdmin"));
                 List<Admin> adminInfo = adminRepository.findAdminByAdminId(id);
-                System.out.println("  ### LoginInfo Check Success! " + loginInfo);
-                System.out.println("Admin Info" + adminInfo);
                 return adminInfo;
             }
-            System.out.println("  ##Not Exist LoginInfo: " + loginInfo);
             return null;
-            //TODO Optional 한 줄 로직 GOGO
         }
     }
 
@@ -56,13 +47,13 @@ public class LoginService {
         if (id.equals("") || password.equals("")) {
             return null;
         } else {
-            user = userRepository.findByUserId_AndUserPassword(id, hashService.sha256(password));
-            if(user != null){
+            user = userRepository.findByUserId_AndUserPassword(id, password);
+            User userLoginInfo = user.orElse(null);
+            if(userLoginInfo != null){
                 List<User> userInfo = userRepository.findUserByUserId(id);
                 return userInfo;
-            }else {
-                return null;
             }
         }
+        return null;
     }
 }

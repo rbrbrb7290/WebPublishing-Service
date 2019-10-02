@@ -56,11 +56,16 @@
                 <li><a href="/product/select/acc">ACC</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li th:if="${session.loginAdmin != null}"><a href="/dashboard"><span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
-                <li th:if="${session.loginAdmin == null}"><a href="/joinPage"><span class="glyphicon glyphicon-wrench"></span> 회원가입</a></li>
-                <li th:if="${session.loginAdmin == null}"><a href="/loginPage"><span class="glyphicon glyphicon-user"></span> 로그인</a></li>
-                <li th:if="${session.loginAdmin != null}"><a href="/logout"><span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
-                <li th:if="${session.loginAdmin != null}"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                <li th:if="${session.loginAdmin != null}"><a href="/dashboard">
+                    <span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
+                <li th:if="${session.loginUser == null}"><a href="/joinUser">
+                    <span class="glyphicon glyphicon-inbox"></span> 회원가입</a></li>
+                <li th:if="${session.loginUser== null}"><a href="/userLogin">
+                    <span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+                <li th:if="${session.loginUser != null}"><a href="/logoutUser">
+                    <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
+                <li th:if="${session.loginUser != null}"><a href="#">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
         </div>
     </div>

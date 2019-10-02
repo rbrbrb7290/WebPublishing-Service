@@ -60,13 +60,13 @@
             <ul class="nav navbar-nav navbar-right">
                 <li th:if="${session.loginAdmin != null}"><a href="/dashboard">
                     <span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
-                <li th:if="${session.loginAdmin == null}"><a href="/joinPage">
+                <li th:if="${session.loginUser == null}"><a href="/joinUser">
                     <span class="glyphicon glyphicon-inbox"></span> 회원가입</a></li>
-                <li th:if="${session.loginAdmin == null}"><a href="/userLogin">
+                <li th:if="${session.loginUser== null}"><a href="/userLogin">
                     <span class="glyphicon glyphicon-user"></span> 로그인</a></li>
-                <li th:if="${session.loginAdmin != null}"><a href="/logout">
+                <li th:if="${session.loginUser != null}"><a href="/logoutUser">
                     <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
-                <li th:if="${session.loginAdmin != null}"><a href="#">
+                <li th:if="${session.loginUser != null}"><a href="#">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
         </div>
@@ -79,16 +79,16 @@
             <div class="card card-login mx-auto mt-5">
                 <div class="card-header">로그인</div>
                 <div class="card-body">
-                    <form action="/loginAdmin" method="post">
+                    <form action="/loginUser" method="post">
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="id" name="adminId" id="inputEmail" class="form-control" placeholder="아이디" required="required" autofocus="autofocus">
-                                <label for="inputEmail">아이디</label>
+                                <input type="id" name="userId" id="inputEmail" class="form-control" placeholder="아이디" required="required" autofocus="autofocus">
+                                <label for="inputEmail">이메일</label>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" name="adminPassword" id="inputPassword" class="form-control" placeholder="비밀번호" required="required">
+                                <input type="password" name="userPassword" id="inputPassword" class="form-control" placeholder="비밀번호" required="required">
                                 <label for="inputPassword">비밀번호</label>
                             </div>
                         </div>

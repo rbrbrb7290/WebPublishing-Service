@@ -27,9 +27,9 @@ public class HomeController {
     public String userLogin()
     {
         if(session.getAttribute("loginUser") != null){
-            return "/index";
+            return "index";
         }
-        return "/userLogin";
+        return "userLogin";
     }
 
     @RequestMapping(value = "/joinPage")
@@ -37,17 +37,27 @@ public class HomeController {
         return "join";
     }
 
-    @RequestMapping(value = "/loginPage")
-    public String loginPage(){
-        return "redirect:/";
-    }
+    @RequestMapping(value = "/joinUser")
+    public String joinUser(){ return "joinUser";}
+
+//    @RequestMapping(value = "/loginPage")
+//    public String loginPage(){
+//        return "redirect:/";
+//    }
 
     @GetMapping("/logout")
     public String logout(){
         //session 무효화후 login page로
-        session.invalidate();
-        return "redirect:/index";
+        session.removeAttribute("loginAdmin");
+        return "redirect:";
     }
+    @GetMapping("/logoutUser")
+    public String logoutUser(){
+        //session 무효화후 login page로
+        session.removeAttribute("loginUser");
+        return "redirect:index";
+    }
+
 
     @RequestMapping("/index")
     public String home(){
