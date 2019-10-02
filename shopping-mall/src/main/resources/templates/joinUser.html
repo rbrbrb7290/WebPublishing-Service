@@ -74,52 +74,41 @@
     </div>
 </nav>
 
-<div class="bg-dark">
 <div class="row">
 <div class="container" style="width: 35rem">
     <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register an Account</div>
+        <label class="card-header">회원가입</label>
         <div class="card-body">
             <!--            <form>-->
             <div class="form-group">
-                <div class="form-row">
-                    <div class="col-md-6">
-                        <div class="form-label-group">
-                            <label for="userId">이메일</label>
-                            <input type="text" id="userId" class="form-control" placeholder="이메일" required="required" autofocus="autofocus">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-label-group">
-                            <label for="name">이름</label>
-                            <input type="text" id="name" class="form-control" placeholder="이름" required="required">
-                        </div>
-                    </div>
+                <div class="form-label-group">
+                    <label for="userId">이메일</label>
+                    <input type="text" id="userId" class="form-control" placeholder="이메일" required="required" autofocus="autofocus">
                 </div>
-            </div>
+                <div class="form-label-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" class="form-control" placeholder="이름" required="required">
+                </div>
+          </div>
+        </div>
+
             <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-6">
                         <div class="form-label-group">
                             <label for="userPassword">비밀번호</label>
                             <input type="password" id="userPassword" class="form-control" placeholder="Password" required="required">
-                        </div>
                     </div>
-                    <div class="col-md-6">
                         <div class="form-label-group">
                             <label for="confirmPassword">비밀번호 확인</label>
                             <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
                         </div>
-                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-row">
-                    <div class="col-md-6">
                     <div class="form-label-group">
                         <label for="name">연락처</label>
                         <input type="text" id="tellNumber" class="form-control" placeholder="연락처" required="required">
-                    </div>
                     </div>
                 </div>
             </div>
@@ -141,9 +130,25 @@
             </div>
         </div>
     </div>
-    </div>
 </div>
+</div>
+</div><br><br>
+
+<footer class="container-fluid text-center">
+    <p>Online Store Copyright</p>
+    <form class="form-inline">Get deals:
+        <input type="email" class="form-control" size="50" placeholder="Email Address">
+        <button type="button" class="btn btn-danger">Sign Up</button>
+    </form>
+</footer>
+<script src="/js/getCustom.js"></script>
+<script src="/js/loginPopup.js"></script>
+<script src="/js/getAddress.js"></script>
+<script src="/js/scrollMove.js"></script>
 <script>
+// where scrollMove?
+    let id = '#name'
+
     //TODO 한 폼에서 따로 가입 로직 구현되게 해보기
     document.getElementById('joinUser').addEventListener('click', e => signup());
     async function signup() {
@@ -176,7 +181,7 @@
             console.log(address)
             if(!userId || !userPassword || !confirmPassword || !name || !tellNumber || !addr2){
                 alert("양식을 전부 입력 해주세요!")
-                if(res.ok) document.location.href="/index";
+                return false;
             }else {
                 if(userPassword != confirmPassword){
                     alert("비밀번호를 확인 해주세요.")
@@ -188,24 +193,8 @@
         } catch (e) {
         }
     }
-</script>
-</div>
-</div><br><br>
-
-<footer class="container-fluid text-center">
-    <p>Online Store Copyright</p>
-    <form class="form-inline">Get deals:
-        <input type="email" class="form-control" size="50" placeholder="Email Address">
-        <button type="button" class="btn btn-danger">Sign Up</button>
-    </form>
-</footer>
-<script src="/js/getCustom.js"></script>
-<script src="/js/loginPopup.js"></script>
-<script src="/js/getAddress.js"></script>
-<script>
     getCustom();
-
-    //TODO 페이징처리하기
+    scroll(id)
 </script>
 </body>
 </html>
