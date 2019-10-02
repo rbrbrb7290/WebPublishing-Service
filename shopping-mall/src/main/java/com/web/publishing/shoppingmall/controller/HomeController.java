@@ -23,23 +23,41 @@ public class HomeController {
         }
         return "login";
     }
+    @RequestMapping(value = "/userLogin")
+    public String userLogin()
+    {
+        if(session.getAttribute("loginUser") != null){
+            return "index";
+        }
+        return "userLogin";
+    }
 
     @RequestMapping(value = "/joinPage")
     public String joinPage(){
         return "join";
     }
 
-    @RequestMapping(value = "/loginPage")
-    public String loginPage(){
-        return "redirect:/";
-    }
+    @RequestMapping(value = "/joinUser")
+    public String joinUser(){ return "joinUser";}
+
+//    @RequestMapping(value = "/loginPage")
+//    public String loginPage(){
+//        return "redirect:/";
+//    }
 
     @GetMapping("/logout")
     public String logout(){
         //session 무효화후 login page로
-        session.invalidate();
-        return "redirect:/";
+        session.removeAttribute("loginAdmin");
+        return "redirect:";
     }
+    @GetMapping("/logoutUser")
+    public String logoutUser(){
+        //session 무효화후 login page로
+        session.removeAttribute("loginUser");
+        return "redirect:index";
+    }
+
 
     @RequestMapping("/index")
     public String home(){

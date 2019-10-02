@@ -19,7 +19,7 @@ public class UsersController {
     private final HttpSession session;
     private final HashService hashService;
 
-
+//회원정보 확인 후 View를 반환하기때문에 Controller
     @PostMapping("/loginAdmin")
     public String loginAdmin(@RequestParam String adminId , @RequestParam String adminPassword){
         List<Admin> admin = loginService.loginAdmin(adminId , hashService.sha256(adminPassword));
@@ -36,13 +36,16 @@ public class UsersController {
     }
 
     @PostMapping("/loginUser")
-    public String loginUser(@RequestParam String adminId , @RequestParam String adminPassword){
-        List<User> user = loginService.loginUser(adminId , adminPassword);
-        if (user.isEmpty()){
-            return "login";
+    public String loginUser(@RequestParam String userId , @RequestParam String userPassword){
+        System.out.println(userId + userPassword);
+        List<User> user = loginService.loginUser(userId , hashService.sha256(userPassword));
+        System.out.println("logincheck##"+user);
+        if (user == null){//TODO 정보없음 알림 띄우기
+            return "redirect:userLogin";
         }
-            session.setAttribute("loginUser", user);
-            return "index";
+        session.setAttribute("loginUser", user);
+        System.out.println("Session " + session.getAttribute("loginUser"));
+        return "redirect:index";
     }
 
     @RequestMapping("/dashboard")
