@@ -22,5 +22,6 @@ Password : qzu74a
 
 ### 2.관리자 화면
 <img src="./img/dashboard.PNG" width="600" height="400" />
+
 ### 3.쇼핑몰 사용자 View 
 <img src="./img/home.PNG" width="600" height="400" />
