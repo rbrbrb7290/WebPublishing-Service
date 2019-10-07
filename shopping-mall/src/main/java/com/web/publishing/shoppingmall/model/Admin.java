@@ -17,6 +17,7 @@ public class Admin {
     private Integer id;
     private String adminId;
     private String adminPassword;
+    private String confirmPassword;
     private String name;
 
 }

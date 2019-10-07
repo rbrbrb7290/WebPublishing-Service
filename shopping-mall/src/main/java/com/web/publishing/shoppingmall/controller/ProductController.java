@@ -68,9 +68,7 @@ public class ProductController {
             @RequestParam String pdContent,
             @RequestParam String pdDate,
             @RequestParam MultipartFile pdImage, HttpServletRequest request) throws IOException {
-//        File path = new ClassPathResource("/static/images/" + pdImage.getOriginalFilename()).getFile();
                 File path = new File("images/" + pdImage.getOriginalFilename());
-//        System.out.println("PATH: " + path.getCanonicalPath());
         FileOutputStream fileOutputStream = new FileOutputStream(path);
         BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
         bufferedOutputStream.write(pdImage.getBytes());

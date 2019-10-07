@@ -1,7 +1,7 @@
 function scroll(id){
-    console.log("움직여!")
     let position = $(`${id}`).offset().top;
+    console.log(id)
     $('html').animate({
-        scrollTop: position - 10
+        scrollTop: position
     }, 500)
 }
