@@ -78,7 +78,6 @@
     document.getElementById('joinAdmin').addEventListener('click', e => signup());
     async function signup() {
         // let x = document.querySelector('body > div > div > div.col-sm-8.text-left');
-        console.log("가입하기 gogo");
         let adminId = document.getElementById('adminId').value;
         let adminPassword =  document.getElementById('adminPassword').value;
         let confirmPassword =  document.getElementById('confirmPassword').value;
@@ -88,7 +87,7 @@
                 method:'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Charset': 'UTF-8'
+                    'Charset': 'UTF-8',
                 },
                 body: JSON.stringify({
                     adminId,
@@ -100,15 +99,12 @@
                 })
             });
             //TODO 서버에서 유효성검사 해주고 데이터 save안되게 만들기!
-            if(!adminId || !adminPassword || !confirmPassword  || !name ){
-                alert("양식을 전부 입력 해주세요!")
-            }else {
-                if(adminPassword != confirmPassword){
-                    alert("비밀번호를 확인 해주세요.")
-                }else{
-                    if(res.ok) document.location.href="/customizing";
-                    alert("가입이 완료되었습니다!");
-                }
+            if(res.status===401){ alert("이미 가입된 아이디입니다") }
+            else if(res.status === 400) { alert("양식을 모두 입력해주세요.") }
+            else if (res.status === 402) { alert("비밀번호를 확인 해주세요.") }
+            else {
+                alert("가입이 완료되었습니다!");
+                if(res.ok) document.location.href="/customizing";
             }
         } catch (e) {
 

@@ -2,6 +2,7 @@ package com.web.publishing.shoppingmall.controller.api;
 
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;
+import com.web.publishing.shoppingmall.nullChecker;
 import com.web.publishing.shoppingmall.repository.AdminRepository;
 import com.web.publishing.shoppingmall.repository.UserRepository;
 import com.web.publishing.shoppingmall.service.JoinService;
@@ -24,7 +25,13 @@ public class UserAPIController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
      public User getUser(@RequestBody User user){
-
+//        TODO Model 객체 Null체크 어케해..
+        //이건 Object라서 체킹을 못하는듯..
+        if(nullChecker.isEmpty(user)){
+            System.out.println("yes null");
+        }else {
+            System.out.println("not null");
+        }
      return joinService.joinUser(user);
     }
     @GetMapping("")

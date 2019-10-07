@@ -22,7 +22,8 @@ public class UserRepositoryTest {
 
     @Test
     public void save() throws Exception {
-        User user = userRepository.findById(4).orElse(User.builder().build());
+        User user = userRepository.findById(3).orElse(User.builder().build());
+        System.out.println(user);
         System.out.println(user.getAddress());
         Address address = Address.builder()
                 .user(user)
