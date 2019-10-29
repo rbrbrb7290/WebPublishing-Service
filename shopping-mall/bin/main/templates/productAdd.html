@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>관리자 페이지</title>
+    <link th:href="@{/css/sb-admin.css}" rel="stylesheet" type="text/css">
+</head>
+
+<body id="page-top">
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <a class="navbar-brand mr-1" href="/index">내 쇼핑몰 가기</a>
+    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <i class="fas fa-bars"></i>
+    </button>
+    <!-- Navbar -->
+    <ul class="navbar-nav ml-auto ml-md-0">
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <span class="badge badge-danger">9+</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">  Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+                <span class="badge badge-danger">7</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-user-circle fa-fw"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" href="#">Activity Log</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+            </div>
+        </li>
+    </ul>
+
+</nav>
+
+<div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="/dashboard">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/customizing">
+                <i class="fas fa-fw fa-table"></i>
+                <span>테마설정</span>
+            </a>
+        </li>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>게시판</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                <h6 class="dropdown-header">Login Screens:</h6>
+                <a class="dropdown-item" href="login.html">Login</a>
+                <a class="dropdown-item" href="register.html">Register</a>
+                <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Other Pages:</h6>
+                <a class="dropdown-item" href="404.html">404 Page</a>
+                <a class="dropdown-item" href="blank.html">Blank Page</a>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/product">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>상품관리</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fas fa-fw fa-table"></i>
+                <span>주문관리</span></a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/logout">
+                <i class="fas fa-fw fa-table"></i>
+                <span>로그아웃</span></a>
+        </li>
+    </ul>
+
+    <div id="content-wrapper">
+        <div class="container-fluid text-center">
+            <div class="row content">
+                <div class="col-sm-8 text-left">
+                    <h4>상품등록</h4>
+                    <br>
+                    <form action="/productAddRequest" enctype="multipart/form-data" method="post">
+                        <input type="text"  placeholder="상품이름" name="pdName" id="pdName">
+                        <br>
+                        <input type="text"  placeholder="가격" name="pdPrice" id="pdPrice">
+                        <br><br>
+                        <input type="text" list="pdCategory" name="pdCategory">
+                        <datalist id="pdCategory">
+                            <option value="outer">아우터</option>
+                            <option value="top">상의</option>
+                            <option value="shirt">셔츠</option>
+                            <option value="knit">니트</option>
+                            <option value="bottom">하의</option>
+                            <option value="acc"></option>
+                        </datalist>
+                        <!--                <input type="file" placeholder="카테고리" name="pdCategory" id="pdCategory" >-->
+                        <br><br>
+                        <input type="text"  placeholder="재고" name="pdAmount" id="pdAmount">
+                        <br><br>
+                        <textarea placeholder="내용" name="pdContent" id="" cols="80" rows="20"></textarea>
+                        <br>
+                        <input placeholder="날짜" type="date"  name="pdDate" id="pdDate">
+                        <br>
+                        <input type="file" placeholder="이미지" name="pdImage" id="pdImage" >
+                        <br><br>
+                        <input type="submit" id = "addBtn" value="상품등록">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright © Your Website 2019</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.getElementById('pdDate').valueAsDate = new Date();
+    document.getElementById('addBtn').addEventListener('click', e => addProduct());
+
+    async function addProduct() {
+        let pdName = document.getElementById('pdName').value;
+        let pdPrice =  document.getElementById('pdPrice').value;
+        let pdCategory = document.getElementById('pdCategory').value;
+        let pdAmount =  document.getElementById('pdAmount').value;
+        let pdContent =  document.getElementById('pdContent').value;
+        let pdDate = document.getElementById('pdDate').value;
+        let pdImage = document.getElementById('pdImage').value;
+
+        try {
+            let res = await fetch(`/api/product` , {
+                method:'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Charset': 'UTF-8'
+                },
+                body: JSON.stringify({
+                    pdName,
+                    pdPrice,
+                    pdCategory,
+                    pdAmount,
+                    pdContent,
+                    pdDate,
+                    pdImage,
+                })
+            });
+            if(res.ok) document.location.href="/product";
+
+        } catch (e) {
+        }
+    }
+</script>
+</body>
+
+</html>
+</body>
+</html>
