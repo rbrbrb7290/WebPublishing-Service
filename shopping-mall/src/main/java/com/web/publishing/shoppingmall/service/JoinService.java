@@ -23,8 +23,6 @@ public class JoinService {
                     .adminPassword(hashService.sha256(admin.getAdminPassword()))
                     .name(admin.getName())
                     .build();
-//            System.out.println("amdigafds"+ admin.getAdminId());
-//            System.out.println("amdigafdsfds2313ffarag"+ admin.getAdminPassword());
             return adminRepository.save(admin);
     }
 
@@ -36,7 +34,6 @@ public class JoinService {
                 .tellNumber(user.getTellNumber())
                 .address(user.getAddress())
                 .build();
-
         return userRepository.save(user);
     }
 }

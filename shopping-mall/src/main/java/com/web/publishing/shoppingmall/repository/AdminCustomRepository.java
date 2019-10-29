@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface AdminCustomRepository extends JpaRepository<Custom, Integer> {
-    public List<Custom> findAll();
-    public List<Custom> findById(int id);
+    List<Custom> findAll();
+    List<Custom> findById(int id);
     List<Custom> findTopByOrderByIdDesc();
 }

@@ -105,7 +105,6 @@
             let data = await res.json();
             data.map(item => {
                 let block = `
-                <a href ="/product/info/${item.id}" class = "product">
                     <div class="col-sm-4">
                       <div class="panel-body img-responsive"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
                     </div>
@@ -127,7 +126,9 @@
                             </div>
                         </div>
                     </div>
-                 </a>
+                    <div>
+                        ${item.pdDetail}
+                    </div>
                 `
                 x.innerHTML += block;
             });

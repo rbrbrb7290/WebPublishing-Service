@@ -9,6 +9,7 @@ CREATE TABLE `admin_db` (
     `name` varchar(20) NOT NULL,
     `tell_number` varchar(30) NULL default 0,
     `bank` varchar(30) NULL default 0 ,
+    `confirm_password` mediumtext NULL default 0,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
@@ -36,7 +37,7 @@ CREATE TABLE `custom_db` (
      `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
      `title` varchar(20) NOT NULL,
      `logo_image_url` varchar(30) DEFAULT NULL,
-     `tell_number` varchar(20) NOT NULL,
+     `tell_number` varchar(20) DEFAULT NULL,
      `bank` varchar(30) DEFAULT NULL,
      PRIMARY KEY (`id`)
 )ENGINE=InnoDB;
