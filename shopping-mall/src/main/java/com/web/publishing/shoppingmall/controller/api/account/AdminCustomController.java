@@ -1,7 +1,7 @@
-package com.web.publishing.shoppingmall.controller.api;
+package com.web.publishing.shoppingmall.controller.api.account;
 
 import com.web.publishing.shoppingmall.model.Custom;
-import com.web.publishing.shoppingmall.repository.AdminCustomRepository;
+import com.web.publishing.shoppingmall.repository.account.AdminCustomRepository;
 import com.web.publishing.shoppingmall.service.CustomService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -20,7 +20,7 @@ public class AdminCustomController {
     private final AdminCustomRepository adminCustomRepository;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Custom setCustom(@RequestBody Custom custom){
+    public Custom addCustom(@RequestBody Custom custom){
         return customService.setCustom(custom);
     }
     @RequestMapping("/get")

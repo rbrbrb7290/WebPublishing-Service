@@ -1,4 +1,4 @@
-package com.web.publishing.shoppingmall.repository;
+package com.web.publishing.shoppingmall.repository.account;
 
 import com.web.publishing.shoppingmall.model.Admin;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,14 +1,13 @@
-package com.web.publishing.shoppingmall.controller.api;
+package com.web.publishing.shoppingmall.controller.api.account;
 
 import com.web.publishing.shoppingmall.model.Admin;
-import com.web.publishing.shoppingmall.repository.AdminRepository;
-import com.web.publishing.shoppingmall.service.JoinService;
-import com.web.publishing.shoppingmall.service.LoginService;
+import com.web.publishing.shoppingmall.repository.account.AdminRepository;
+import com.web.publishing.shoppingmall.service.account.JoinService;
+import com.web.publishing.shoppingmall.service.account.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class AdminAPIController {
     private final AdminRepository adminRepository;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<String> getAdmin(@RequestBody Admin admin) {
+    public ResponseEntity<String> addAdmin(@RequestBody Admin admin) {
         Optional<Admin> idCheck = Optional.ofNullable(null);
         idCheck = adminRepository.findByAdminId(admin.getAdminId());
         //중복되는 id가 있을때

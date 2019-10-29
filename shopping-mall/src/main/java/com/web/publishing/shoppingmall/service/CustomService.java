@@ -1,7 +1,7 @@
 package com.web.publishing.shoppingmall.service;
 
 import com.web.publishing.shoppingmall.model.Custom;
-import com.web.publishing.shoppingmall.repository.AdminCustomRepository;
+import com.web.publishing.shoppingmall.repository.account.AdminCustomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,10 +15,7 @@ public class CustomService {
                 .title(custom.getTitle())
                 .logoImageUrl(custom.getLogoImageUrl())
                 .build();
-
-        System.out.println("fdafafsdafafsda##########" + custom);
         return adminCustomRepository.save(custom);
-
     }
 }
 

@@ -2,19 +2,15 @@ package com.web.publishing.shoppingmall.service.product;
 
 import com.web.publishing.shoppingmall.model.Product;
 import com.web.publishing.shoppingmall.repository.ProductRepository;
-import com.web.publishing.shoppingmall.service.PageMaker;
-import com.web.publishing.shoppingmall.service.PageMakerService;
+import com.web.publishing.shoppingmall.service.page.PageMaker;
+import com.web.publishing.shoppingmall.service.page.PageMakerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
-import javax.tools.Diagnostic;
-import java.awt.print.Pageable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
