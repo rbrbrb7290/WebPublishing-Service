@@ -19,7 +19,7 @@ public class ProductAPIController {
 
     ///api/product?page={page}
     @GetMapping
-    public List<Product> getProduct(@RequestParam int page) {
+    public List<Product> addProduct(@RequestParam int page) {
         return productListService.productList(page);
     }
 

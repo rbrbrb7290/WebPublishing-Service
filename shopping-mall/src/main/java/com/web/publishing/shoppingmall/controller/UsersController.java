@@ -3,7 +3,7 @@ package com.web.publishing.shoppingmall.controller;
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;
 import com.web.publishing.shoppingmall.HashService;
-import com.web.publishing.shoppingmall.service.LoginService;
+import com.web.publishing.shoppingmall.service.account.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

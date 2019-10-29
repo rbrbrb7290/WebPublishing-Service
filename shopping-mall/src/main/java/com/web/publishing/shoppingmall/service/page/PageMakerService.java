@@ -1,4 +1,4 @@
-package com.web.publishing.shoppingmall.service;
+package com.web.publishing.shoppingmall.service.page;
 
 import com.web.publishing.shoppingmall.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

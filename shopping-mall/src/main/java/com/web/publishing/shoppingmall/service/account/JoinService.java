@@ -1,12 +1,12 @@
-package com.web.publishing.shoppingmall.service;
+package com.web.publishing.shoppingmall.service.account;
 
 import com.web.publishing.shoppingmall.HashService;
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;
-import com.web.publishing.shoppingmall.repository.AdminRepository;
-import com.web.publishing.shoppingmall.repository.UserRepository;
+import com.web.publishing.shoppingmall.repository.account.AdminRepository;
+import com.web.publishing.shoppingmall.repository.account.UserRepository;
+import com.web.publishing.shoppingmall.service.page.PageMakerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service

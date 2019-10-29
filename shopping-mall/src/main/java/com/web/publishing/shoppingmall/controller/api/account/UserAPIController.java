@@ -1,19 +1,15 @@
-package com.web.publishing.shoppingmall.controller.api;
+package com.web.publishing.shoppingmall.controller.api.account;
 
-import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;
 import com.web.publishing.shoppingmall.nullChecker;
-import com.web.publishing.shoppingmall.repository.AdminRepository;
-import com.web.publishing.shoppingmall.repository.UserRepository;
-import com.web.publishing.shoppingmall.service.JoinService;
-import com.web.publishing.shoppingmall.service.LoginService;
+import com.web.publishing.shoppingmall.repository.account.UserRepository;
+import com.web.publishing.shoppingmall.service.account.JoinService;
+import com.web.publishing.shoppingmall.service.account.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,7 +20,7 @@ public class UserAPIController {
     private final UserRepository userRepository;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-     public User getUser(@RequestBody User user){
+     public User addUser(@RequestBody User user){
 //        TODO Model 객체 Null체크 어케해..
         //이건 Object라서 체킹을 못하는듯..
         if(nullChecker.isEmpty(user)){

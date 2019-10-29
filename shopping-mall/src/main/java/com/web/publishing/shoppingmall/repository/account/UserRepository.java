@@ -1,4 +1,4 @@
-package com.web.publishing.shoppingmall.repository;
+package com.web.publishing.shoppingmall.repository.account;
 
 import com.web.publishing.shoppingmall.model.Admin;
 import com.web.publishing.shoppingmall.model.User;

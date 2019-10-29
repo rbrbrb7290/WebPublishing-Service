@@ -1,4 +1,4 @@
-package com.web.publishing.shoppingmall.service;
+package com.web.publishing.shoppingmall.service.page;
 
 public class PageMaker {
     private int totalcount;//전체 게시물 개수
