@@ -1,8 +1,10 @@
 package com.web.publishing.shoppingmall.model;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Builder
@@ -22,4 +24,5 @@ public class Product {
     private String pdCategory;
     private String pdDate;
     private String pdContent;
+    private String pdDetail;
 }

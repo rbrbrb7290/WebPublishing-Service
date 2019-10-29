@@ -26,7 +26,6 @@ public class ProductAPIController {
     @GetMapping("/")
     public List<Product> getpdList() {
         List<Product> pdList = productRepository.findAll();
-        System.out.println("api:" + pdList);
         return pdList;
     }
     //상품클릭시 해당 상품정보 출력

@@ -22,11 +22,11 @@ public class UserRepositoryTest {
 
     @Test
     public void save() throws Exception {
-        User user = userRepository.findById(3).orElse(User.builder().build());
+        User user = userRepository.findById(51).orElse(User.builder().build());
         System.out.println(user);
         System.out.println(user.getAddress());
         Address address = Address.builder()
-                .user(user)
+                .userId(user)
                 .tellNumber("01032595995")
                 .address("138129370137190").build();
         addressRepository.save(address);
@@ -38,7 +38,7 @@ public class UserRepositoryTest {
 //                .userPassword("1111")
 //                .name("현규오")
 //                .tellNumber("010-5555-5555")
-//                .address("").build();
+//                .address("dsadadda").build();
 //        userRepository.save(user);
 //    }
 

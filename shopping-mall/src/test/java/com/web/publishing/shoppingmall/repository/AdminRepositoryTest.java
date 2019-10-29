@@ -17,26 +17,27 @@ import static org.junit.Assert.*;
 public class AdminRepositoryTest {
     @Autowired
     AdminRepository adminRepository;
-
     @Autowired
     UserRepository userRepository;
     @Autowired
     AddressRepository addressRepository;
+
     @Test
     public void name() throws Exception {
         assertThat("hello", is("hello"));
     }
 
-//    @Test
-//    public void save() throws Exception {
-//      Admin admin = Admin.builder()
-//               .adminId("rbrbrb7290")
-//               .adminPassword("1234")
-//               .name("외래키테스트")
+    @Test
+    public void save() throws Exception {
+      Admin admin = Admin.builder()
+               .adminId("rbrbrb7290")
+               .adminPassword("1234")
+               .name("ttt")
 //               .tellNumber("01032595995")
-//               .bank("138129370137190").build();
-//       adminRepository.save(admin);
-//    }
+//               .bank("138129370137190")
+              .build();
+       adminRepository.save(admin);
+    }
 
 
 

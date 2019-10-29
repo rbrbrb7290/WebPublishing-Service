@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.naming.Binding;
 import javax.servlet.http.HttpServletRequest;
@@ -40,6 +41,7 @@ public class ProductController {
 //        return page;
         return "product";
     }
+
     //변수를 통해 page수 줄이기
     @RequestMapping("/product/info/{id}")
     public String product_info(@PathVariable int id) {
@@ -59,6 +61,13 @@ public class ProductController {
         return "redirect:/product";
     }
 
+//        @RequestMapping("api/product/{id}/update")
+//    public String update(@PathVariable int id){
+//        List<Product> product = productRepository.findById(id);
+//
+//        return "redirect:/product";
+//    }
+
     @PostMapping(value = "/productAddRequest",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String productAddRequest(
             @RequestParam String pdName,
@@ -67,22 +76,33 @@ public class ProductController {
             @RequestParam String pdAmount,
             @RequestParam String pdContent,
             @RequestParam String pdDate,
-            @RequestParam MultipartFile pdImage, HttpServletRequest request) throws IOException {
-                File path = new File("images/" + pdImage.getOriginalFilename());
-        FileOutputStream fileOutputStream = new FileOutputStream(path);
-        BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
-        bufferedOutputStream.write(pdImage.getBytes());
-        bufferedOutputStream.close();
+            @RequestParam MultipartFile[] pdImage, MultipartHttpServletRequest request) throws IOException {
+        for(MultipartFile file : pdImage) {
+            if(!file.getOriginalFilename().isEmpty()){
+                File path = new File("images/" + file.getOriginalFilename());
+                FileOutputStream fileOutputStream = new FileOutputStream(path);
+                List<MultipartFile> detail= request.getFiles(file.getOriginalFilename());
+                BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+                bufferedOutputStream.write(file.getBytes());
+                bufferedOutputStream.flush();
+                bufferedOutputStream.close();
+                System.out.println("main: " + file.getOriginalFilename().indexOf('.'));
+                System.out.println("Detail: " + file.getOriginalFilename().length());
+                System.out.println(detail.size());
 
-        productAddService.add(Product.builder()
-                .pdName(pdName)
-                .pdPrice(pdPrice)
-                .pdCategory(pdCategory)
-                .pdAmount(pdAmount)
-                .pdContent(pdContent)
-                .pdDate(pdDate)
-                .pdImageUrl("/images/" + pdImage.getOriginalFilename())
-                .build());
+                productAddService.add(Product.builder()
+                        .pdName(pdName)
+                        .pdPrice(pdPrice)
+                        .pdCategory(pdCategory)
+                        .pdAmount(pdAmount)
+                        .pdContent(pdContent)
+                        .pdDate(pdDate)
+                        .pdImageUrl("/images/" + file.getOriginalFilename())
+                        .pdDetail("/images/" + String.valueOf(detail))
+                        .build());
+            }
+
+        }
        return "redirect:/product";
     }
 

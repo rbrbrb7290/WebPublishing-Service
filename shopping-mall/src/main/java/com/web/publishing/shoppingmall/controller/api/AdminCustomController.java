@@ -21,13 +21,11 @@ public class AdminCustomController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Custom setCustom(@RequestBody Custom custom){
-        System.out.println("받아온 값: " + custom);
         return customService.setCustom(custom);
     }
     @RequestMapping("/get")
     public List<Custom> getCustom(){
         List<Custom> customList = adminCustomRepository.findTopByOrderByIdDesc();
-        System.out.println("api:" + customList);
         return customList;
     }
 }

@@ -19,8 +19,7 @@ public class Address {
     private Integer id;
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private User userId;
     private String tellNumber;
     private String address;
-
 }
