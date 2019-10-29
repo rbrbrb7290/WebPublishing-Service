@@ -138,7 +138,9 @@
                         <br>
                         <input placeholder="날짜" type="date"  name="pdDate" id="pdDate">
                         <br>
-                        <input type="file" placeholder="이미지" name="pdImage" id="pdImage" >
+                        <input type="file" placeholder="이미지" name="pdImage" id="pdImage" multiple="multiple">
+                        <br><br>
+                        <input type="file" placeholder="Detail images" name="pdDetail" id="pdDetail" multiple="multiple">
                         <br><br>
                         <input type="submit" id = "addBtn" value="상품등록">
                     </form>
@@ -196,7 +198,7 @@
         let pdContent =  document.getElementById('pdContent').value;
         let pdDate = document.getElementById('pdDate').value;
         let pdImage = document.getElementById('pdImage').value;
-
+        let pdDetail = document.getElementById('pdDetail').value;
         try {
             let res = await fetch(`/api/product` , {
                 method:'POST',
@@ -212,6 +214,7 @@
                     pdContent,
                     pdDate,
                     pdImage,
+                    pdDetail,
                 })
             });
             if(res.ok) document.location.href="/product";

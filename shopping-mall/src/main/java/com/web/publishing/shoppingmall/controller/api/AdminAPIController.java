@@ -26,10 +26,22 @@ public class AdminAPIController {
     public ResponseEntity<String> getAdmin(@RequestBody Admin admin) {
         Optional<Admin> idCheck = Optional.ofNullable(null);
         idCheck = adminRepository.findByAdminId(admin.getAdminId());
-        System.out.println("입력값" + admin.getAdminId());
-        System.out.println("비번" + admin.getAdminPassword() + "#" + admin. getConfirmPassword());
-        System.out.println("서버에서 검색한 값" + idCheck);
         //중복되는 id가 있을때
+        return getSignUpChecker(admin, idCheck);
+    }
+    @GetMapping("")
+    public List<Admin> adminList(){
+        List<Admin> adminList = adminRepository.findAll();
+        return adminList;
+    }
+
+    @GetMapping("/{id}")
+    public List<Admin> getAdminList(@PathVariable String id){
+        List<Admin> adminList = adminRepository.findAdminByAdminId(id);
+        return adminList;
+    }
+
+    private ResponseEntity<String> getSignUpChecker(@RequestBody Admin admin, Optional<Admin> idCheck) {
         if (idCheck.isPresent()) {
             return new ResponseEntity<>("이미 가입된 아이디 입니다", HttpStatus.valueOf(401));
         } else if (admin.getAdminId().equals("") || admin.getAdminPassword().equals("") || admin.getName().equals("")) {
@@ -37,34 +49,9 @@ public class AdminAPIController {
         }else if(!admin.getAdminPassword().equals(admin.getConfirmPassword())){
             return new ResponseEntity<>("비밀번호가 일치하지 않습니다.", HttpStatus.valueOf(402));
         }
-            joinService.joinAdmin(admin);
-            return new ResponseEntity<>("가입 완료", HttpStatus.OK);
+        joinService.joinAdmin(admin);
+        return new ResponseEntity<>("가입 완료", HttpStatus.OK);
     }
-    @GetMapping("")
-    public List<Admin> adminList(){
-        List<Admin> adminList = adminRepository.findAll();
-        System.out.println("api:" + adminList);
-        return adminList;
-    }
-
-    @GetMapping("/{id}")
-    public List<Admin> getAdminList(@PathVariable String id){
-        List<Admin> adminList = adminRepository.findAdminByAdminId(id);
-        System.out.println("api2222:" + adminList);
-        return adminList;
-    }
-
-
-
-//    @PostMapping("/login")
-//    public List<Admin> adminLogin(@RequestParam String adminId, @RequestParam String adminPassword){
-////        System.out.println("id" + adminId);
-////        System.out.println("password"+adminPassword);
-//
-//
-//        return loginService.loginAdmin(adminId, adminPassword);
-//    }
-
 
 }
 

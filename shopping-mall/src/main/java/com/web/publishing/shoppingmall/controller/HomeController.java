@@ -58,7 +58,6 @@ public class HomeController {
         return "redirect:index";
     }
 
-
     @RequestMapping("/index")
     public String home(){
         return "index";
@@ -68,9 +67,7 @@ public class HomeController {
      * 관리 페이지
      */
     @GetMapping("/customizing")
-    public String custom() {
-        return "customizing";
-    }
+    public String custom() { return "customizing"; }
 
     @GetMapping("/productAdd")
     public String productAdd(){

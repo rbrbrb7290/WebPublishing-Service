@@ -22,7 +22,7 @@ services:
     container_name: mariadb
     hostname: mariadb
 # 첫 빌드시 'app'image에서 뻥남 why? 'db'image가 전부 구성이 되기도전에 app이 빌드 되버림(jdbc config fail)
-#TODO 1.restart 2. 이전 단계가 완료될때까지 delay(sleep)
+#TODO 1.restart  2.이전 단계가 완료될때까지 delay(sleep)
   app:
     image: chibee_o/shopping_mall
     restart: on-failure
