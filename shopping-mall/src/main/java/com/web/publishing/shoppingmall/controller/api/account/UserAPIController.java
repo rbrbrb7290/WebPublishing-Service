@@ -49,7 +49,5 @@ public class UserAPIController {
 //
 //        return loginService.loginUser(userId, userPassword);
 //    }
-
-
 }
 

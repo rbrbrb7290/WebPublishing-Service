@@ -37,7 +37,7 @@ public class UsersController {
         if (user == null){//TODO 정보없음 알림 띄우기
             return "redirect:userLogin";
         }
-        session.setAttribute("loginUser", user);
+        session.setAttribute("loginUser", userId);
         return "redirect:index";
     }
 
