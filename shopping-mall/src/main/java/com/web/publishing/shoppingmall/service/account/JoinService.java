@@ -17,23 +17,21 @@ public class JoinService {
     private final HashService hashService;
     private final PageMakerService pageMakerService;
 
-    public Admin joinAdmin(Admin admin ) {
-            admin = Admin.builder()
-                    .adminId(admin.getAdminId())
-                    .adminPassword(hashService.sha256(admin.getAdminPassword()))
-                    .name(admin.getName())
-                    .build();
-            return adminRepository.save(admin);
+    public Admin joinAdmin(Admin admin) {
+        admin.setAdminId(admin.getAdminId());
+        admin.setAdminPassword(hashService.sha256(admin.getAdminPassword()));
+        admin.setName(admin.getName());
+
+        return adminRepository.save(admin);
     }
 
     public User joinUser(User user){
-        user = User.builder()
-                .userId(user.getUserId())
-                .userPassword(hashService.sha256(user.getUserPassword()))
-                .name(user.getName())
-                .tellNumber(user.getTellNumber())
-                .address(user.getAddress())
-                .build();
+        user.setUserId(user.getUserId());
+        user.setUserPassword(hashService.sha256(user.getUserPassword()));
+        user.setName(user.getName());
+        user.setTellNumber(user.getTellNumber());
+        user.setAddress(user.getAddress());
+
         return userRepository.save(user);
     }
 }

@@ -42,7 +42,7 @@ public class ProductAPIController {
         return sortCategory;
     }
 }
-//
+
 //    @GetMapping("/id")
 //    public List<Product> pdInfo(@RequestParam int id){
 //        List<Product> pdInfo = productRepository.findById(id);
