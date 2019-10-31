@@ -14,6 +14,9 @@ public class CustomService {
         custom = Custom.builder()
                 .title(custom.getTitle())
                 .logoImageUrl(custom.getLogoImageUrl())
+                .bank(custom.getBank())
+                .bankAdmin(custom.getBankAdmin())
+                .tellNumber(custom.getTellNumber())
                 .build();
         return adminCustomRepository.save(custom);
     }

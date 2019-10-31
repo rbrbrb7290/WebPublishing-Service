@@ -6,10 +6,9 @@ async function addCart() {
     console.log("addCart")
     console.log(param)
     /*<![CDATA[*/
-    let orderUserId = /*[[${session.loginUser}]]*/ orderUserId;
+    let userId = /*[[${session.loginUser}]]*/ UserId;
     /*]]>*/
     let productId = param;
-    console.log(orderUserId)
     try{
         let res = await fetch(`/api/order/cart`, {
             method: 'POST',
@@ -18,8 +17,8 @@ async function addCart() {
                 'Charset': 'UTF-8'
             },
             body: JSON.stringify({
-                orderUserId,
-                productId
+                userId,
+                productId,
             })
         });
         if(res.ok) document.location.href="/api/order/cart/list";
@@ -27,4 +26,3 @@ async function addCart() {
 
     }
 }
-

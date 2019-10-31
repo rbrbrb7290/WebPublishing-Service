@@ -41,6 +41,7 @@ public class AdminAPIController {
     }
 
     private ResponseEntity<String> getSignUpChecker(@RequestBody Admin admin, Optional<Admin> idCheck) {
+        //isPresent 값이 존재하면 true반환
         if (idCheck.isPresent()) {
             return new ResponseEntity<>("이미 가입된 아이디 입니다", HttpStatus.valueOf(401));
         } else if (admin.getAdminId().equals("") || admin.getAdminPassword().equals("") || admin.getName().equals("")) {

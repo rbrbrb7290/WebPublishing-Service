@@ -67,7 +67,7 @@
                     <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
                 <li th:if="${session.loginUser != null}"><a href="#">
                     <span class="glyphicon glyphicon-user" th:text="${session.loginUser}"></span></a></li>
-                <li th:if="${session.loginUser != null}"><a href="/api/order/cart/list">
+                <li th:if="${session.loginUser != null}"><a href="/my/cart">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
         </div>
@@ -77,13 +77,14 @@
 <div class="container">
     <div class="row">
         <!--  상품정보 GET하는 공간-->
+</div>
     </div>
-    <div>
-        <button type="button" id="addCart">ADD TO CART</button>
-    </div>
-    <div>
-        <button type="button" id="addOrder">BUY IT NOW</button>
-    </div>
+<div class="row" style="text-align: center">
+    <p>
+    <button type="button" id="addOrder" class="btn btn-primary" style="width: 30rem">BUY IT NOW</button>
+    </p>
+    <button type="button" id="addCart" class="btn btn-default" style="width: 30rem">ADD TO CART</button>
+</div>
 </div><br>
 
 
@@ -98,19 +99,19 @@
 </footer>
 <script type="text/javascript" src="/js/getCustom.js"></script>
 <script th:inline="javascript">
-    document.getElementById('addCart').addEventListener('click', e => addCart());
-
-    async function addCart() {
+    document.getElementById('addCart').addEventListener('click', e => addCartAndOrder("/api/cart"));
+    document.getElementById('addOrder').addEventListener('click', e => addCartAndOrder("/api/order"));
+    async function addCartAndOrder(urlParam) {
         var url = document.location.href;
         let param = url.split("/")[5]
         console.log("addCart")
         console.log(param)
         /*<![CDATA[*/
-        let userId = /*[[${session.loginUser}]]*/ orderUserId;
+        let userId = /*[[${session.loginUser}]]*/ UserId;
         /*]]>*/
         let productId = param;
         try{
-            let res = await fetch(`/api/order/cart`, {
+            let res = await fetch(`${urlParam}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,9 +120,14 @@
                 body: JSON.stringify({
                     userId,
                     productId,
+
                 })
             });
-            if(res.ok) document.location.href="/api/order/cart/list";
+            if(res.status===400) {alert("이미 추가된 상품입니다.")}
+            if(res.status === 500) { alert("로그인이 필요합니다.") }
+            if(res.ok) {
+                alert("상품이 장바구니에 등록되었습니다!")
+            }
         }catch (e) {
 
         }
@@ -144,25 +150,43 @@
             data.map(item => {
                 let block = `
                     <div class="col-sm-4">
-                      <div class="panel-body img-responsive"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
+                      <div class="panel-body img-responsive"><img src="${item.pdImageUrl}" style="width:100%" alt="Image"></div>
                     </div>
-                    <div class="col-sm-2"></div>
-                    <div class="col-sm-6">
-                        <div>
-                            <div >${item.pdName}</div>
-                            <div>
-                                <div>판매가</div>
-                                <div>${item.pdPrice}</div>
-                            </div>
-                            <div>
+                    <div class="col-sm-6" style="height: auto">
+                    <hr>
+                    <table class="pdInfoBox">
+                             <tr>
+                                <th>상품명</th><td>${item.pdName}</td>
+                             </tr>
+                             <tr>
+                                <th>판매가</th><td style="font-weight: normal">KRW ${item.pdPrice}</td>
+                             </tr>
+                             <tr>
+                                <th>등록일자</th><td style="font-weight: normal">${item.pdDate}</td>
+                             </tr>
 
-
-                            </div>
-                        </div>
+                             <tr>
+                             <th>색상</th>
+                             <td>
+                             <input type="text" list="orderColor" name="orderColor" placeholder="색상 선택" >
+                                 <datalist id="orderColor">
+                                    <option value="red">빨강</option>
+                                    <option value="green">초록</option>
+                                    <option value="yellow">노랑</option>
+                                    <option value="no">안사요</option>
+                                </datalist>
+                            </td>
+                        </tr>
+                        <tr>
+                         <th>수량</th><td><input type="number" id="orderAmount" placeholder="수량"></td>
+                        </tr>
+                         </table>
+                         <hr>
                     </div>
-                    <div>
-                        ${item.pdDetail}
-                    </div>
+                    <!-- <div>
+                         ${item.pdDetail}
+                     </div>
+                     -->
                 `
                 x.innerHTML += block;
             });

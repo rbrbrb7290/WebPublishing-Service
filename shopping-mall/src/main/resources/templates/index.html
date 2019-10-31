@@ -14,7 +14,6 @@
             margin-bottom: 50px;
             border-radius: 0;
         }
-
         /* Remove the jumbotron's default bottom margin */
         .jumbotron {
             margin-bottom: 0;
@@ -65,7 +64,9 @@
                 <li th:if="${session.loginUser != null}"><a href="/logoutUser">
                     <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
                 <li th:if="${session.loginUser != null}"><a href="#">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+                    <span class="glyphicon glyphicon-user" th:text="${session.loginUser}"></span></a></li>
+                <li th:if="${session.loginUser != null}"><a href="/my/cart">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
         </div>
     </div>
@@ -105,7 +106,7 @@
                 let block = `
                 <a href ="/product/info/${item.id}" class = "product">
                 <div class="col-sm-4">
-                    <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:100%" alt="Image"></div>
+                    <div class="panel-body"><img src="${item.pdImageUrl}" class="img-responsive" style="width:80% height:80%" alt="Image"></div>
                       <div class="panel-heading">${item.pdName} <br> ${item.pdPrice}</div>
 <!--                      <div class="panel-footer">${item.pdContent}</div>-->
 <!--                        <p>&nbsp; &nbsp;${item.pdDate}</p>-->

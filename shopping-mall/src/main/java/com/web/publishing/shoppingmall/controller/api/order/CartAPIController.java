@@ -1,30 +1,46 @@
 package com.web.publishing.shoppingmall.controller.api.order;
 
 import com.web.publishing.shoppingmall.model.Cart;
+import com.web.publishing.shoppingmall.model.Product;
 import com.web.publishing.shoppingmall.repository.order.CartRepository;
-import com.web.publishing.shoppingmall.repository.order.OrderRepository;
-import com.web.publishing.shoppingmall.service.CartService;
+import com.web.publishing.shoppingmall.service.order.CartService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value ="/api/order/cart")
+@RequestMapping(value ="/api/cart")
 public class CartAPIController {
     private final CartRepository cartRepository;
     private final CartService cartService;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Cart addCart(@RequestBody Cart cart) {
-        return cartService.addCart(cart);
+    public ResponseEntity<String> addCart(@RequestBody Cart cart) {
+        Optional<Cart> cartCheck = Optional.ofNullable(null);
+        cartCheck = cartRepository.findByProduct(Product.builder().id(cart.getProductId()).build());
+        if (cartCheck.isPresent()){
+            return new ResponseEntity<>("이미 등록된 상품입니다.", HttpStatus.BAD_REQUEST);
+        }
+        cartService.addCart(cart);
+        return new ResponseEntity<>("장바구니에 등록 되었습니다.", HttpStatus.OK);
     }
 
-    @GetMapping("/list")
-    public List<Cart> getMyCart(){
-        List<Cart> myCart = cartRepository.findAll();
+    @GetMapping("/{userId}")
+    public List<Cart> getMyCart(@PathVariable String userId){
+        List<Cart> myCart = cartRepository.findByUserId(userId);
         return myCart;
+    }
+    @GetMapping("id/{productId}")
+    public Optional<Cart> getMyCart(@PathVariable Integer productId){
+        Product product = Product.builder().id(productId).build();
+
+        return cartRepository.findByProduct(product);
     }
 }

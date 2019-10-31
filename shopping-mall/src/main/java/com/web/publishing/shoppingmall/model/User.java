@@ -20,6 +20,8 @@ public class User implements Serializable {
     private Integer id;
     private String userId;
     private String userPassword;
+    @Transient
+    private String confirmPassword;
     private String name;
     private String tellNumber;
     private String address;

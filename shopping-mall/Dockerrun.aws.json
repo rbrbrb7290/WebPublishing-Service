@@ -1,0 +1,12 @@
+{
+    "AWSEBDockerrunVersion": "1",
+    "Image": {
+        "Name": "chibee_o/shopping_mall",
+        "Update": "true"
+  },
+    "Ports": [
+      {
+          "ContainerPort": "8080"
+      }
+  ]
+}

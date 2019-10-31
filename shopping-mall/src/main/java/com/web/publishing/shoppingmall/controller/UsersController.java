@@ -27,7 +27,7 @@ public class UsersController {
         if (admin == null){//TODO 정보없음 알림 띄우기
                 return "redirect:/";
         }
-            session.setAttribute("loginAdmin", admin);
+            session.setAttribute("loginAdmin", adminId);
             return "redirect:dashboard";
     }
 
