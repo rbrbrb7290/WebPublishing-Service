@@ -16,6 +16,72 @@ div.panel-body {
 html , body{
     scroll-behavior: smooth;
 }
+table.cartBox {
+    width: 100%;
+    height: 30px;
+}
+table.pdInfoBox {
+    font-size: 1.6rem;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 10px;
+}
+
+table.pdInfoBox th {
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+    border-top-style: none;
+
+}
+table.pdInfoBox td {
+    border-bottom-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-top-style: none;
+}
+table.cartBox, th {
+    border: #adb5bd 0.8px solid;
+    height: 45px;
+    border-left-style: none;
+    border-right-style: none;
+    text-align: center;
+}
+
+table.cartBox, td{
+    border: #adb5bd 0.1px solid;
+
+}
+div.customAboutBox {
+    background: #f7f7f7;
+    border: #e2e3e5 1px solid;
+    border-left-style: none;
+    border-right-style: none;
+
+}
+div.customAboutBox > ul {
+    width: 100%;
+    list-style-type: none;
+    display: inline-flex;
+    justify-content: space-around;
+}
+div.customAboutBox > ul  > li > .innerBox {
+    padding: 20px 40px;
+}
+div.customAboutBox > ul  > li > .innerBox > h5 {
+   font-weight: bold;
+}
+div.customAboutBox > ul  > li > .innerBox > p {
+     text-align: left;
+ }
+div.customAboutBox > ul  > li > .innerBox > p > span {
+    font-size: 1.4rem;
+}
+.price {
+    font-weight: bold;
+}
+
+
 
 
 

@@ -67,7 +67,10 @@
                 <li th:if="${session.loginUser != null}"><a href="/logoutUser">
                     <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
                 <li th:if="${session.loginUser != null}"><a href="#">
+                    <span class="glyphicon glyphicon-user" th:text="${session.loginUser}"></span></a></li>
+                <li th:if="${session.loginUser != null}"><a href="/api/order/cart/list">
                     <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+
             </ul>
         </div>
     </div>

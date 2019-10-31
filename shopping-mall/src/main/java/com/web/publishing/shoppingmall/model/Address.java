@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
+import java.io.Serializable;
 
 @Entity
 @Builder
@@ -13,7 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="address_db")
-public class Address {
+public class Address  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

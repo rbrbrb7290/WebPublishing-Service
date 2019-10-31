@@ -29,17 +29,18 @@ public class ProductController {
     private final ProductListService productListService;
     private final ProductAddService productAddService;
     private final ProductRepository productRepository;
-
+    private final HttpSession session;
     private int returnPageNum(String stringToInt){
         return Integer.parseInt(stringToInt);
     }
 
     @RequestMapping("/product")
     public String product(@RequestParam(value = "pageNum", defaultValue = "1")String pageNum) {
-//        String page = productListService.productList(returnPageNum(pageNum));
-//
-//        return page;
-        return "product";
+        if(session.getAttribute("loginAdmin") != null){
+            return "product";
+        }
+        return "login";
+
     }
 
     //변수를 통해 page수 줄이기
@@ -53,6 +54,11 @@ public class ProductController {
     public String pdSort_Category(@PathVariable String category){
 
         return "category_sort";
+    }
+    @RequestMapping("/api/product/update/{id}")
+    public String update(@PathVariable int id){
+        productRepository.findById(id);
+        return "productUpdate";
     }
 
     @RequestMapping("/api/product/{id}/delete")

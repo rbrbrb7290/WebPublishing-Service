@@ -1,4 +1,4 @@
-package com.web.publishing.shoppingmall.service;
+package com.web.publishing.shoppingmall.service.order;
 
 import com.web.publishing.shoppingmall.model.Cart;
 import com.web.publishing.shoppingmall.model.Product;
@@ -20,6 +20,5 @@ public class CartService {
         cart.setProduct(Product.builder().id(cart.getProductId()).build());
         cart.setDate(LocalDateTime.now().toString());
     return cartRepository.save(cart);
-
     }
 }

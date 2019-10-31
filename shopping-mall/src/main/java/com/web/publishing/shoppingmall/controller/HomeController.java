@@ -63,6 +63,9 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/my/cart")
+    public String cart() {return "cart";}
+
     /**
      * 관리 페이지
      */
