@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <title>Bootstrap Example</title>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link th:href="@{/css/app.css}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+    /* Remove the navbar's default rounded borders and increase the bottom margin */
+    .navbar {
+        margin-bottom: 50px;
+        border-radius: 0;
+    }
+
+    /* Remove the jumbotron's default bottom margin */
+    .jumbotron {
+        margin-bottom: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+    footer {
+        background-color: #f2f2f2;
+        padding: 25px;
+    }
+</style>
+</head>
+<body>
+<div class="jumbotron">
+    <div class="container text-center">
+        <!--        <h1></h1>-->
+        <!--        <p>Mission, Vission & Values</p>-->
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index">Home</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/product/select/outer">OUTER</a></li>
+                <li><a href="/product/select/top">TOP</a></li>
+                <li><a href="/product/select/shirt">SHIRT</a></li>
+                <li><a href="/product/select/knit">KNIT</a></li>
+                <li><a href="/product/select/bottom">BOTTOM</a></li>
+                <li><a href="/product/select/acc">ACC</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li th:if="${session.loginAdmin != null}"><a href="/dashboard">
+                    <span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
+                <li th:if="${session.loginUser == null}"><a href="/joinUser">
+                    <span class="glyphicon glyphicon-inbox"></span> 회원가입</a></li>
+                <li th:if="${session.loginUser== null}"><a href="/userLogin">
+                    <span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+                <li th:if="${session.loginUser != null}"><a href="/logoutUser">
+                    <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
+                <li th:if="${session.loginUser != null}"><a href="#">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="container" style="width: 35rem">
+        <div class="card card-register mx-auto mt-5">
+            <label class="card-header">BUY IT NOW </label>
+            <div class="card-body">
+                <!--            <form>-->
+
+            <button class="btn btn-primary btn-block" id="pdOrder">주문하기</button>
+        </div>
+    </div>
+</div>
+</div>
+<br><br>
+
+<footer class="container-fluid text-center">
+    <p>Online Store Copyright</p>
+    <form class="form-inline">Get deals:
+        <input type="email" class="form-control" size="50" placeholder="Email Address">
+        <button type="button" class="btn btn-danger">Sign Up</button>
+    </form>
+</footer>
+<script type="text/javascript" src="/js/getCustom.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let userId = /*[[${session.loginUser}]]*/ UserId;
+    console.log(userId)
+    /*]]>*/
+    async function getData(userId) {
+        let x = document.querySelector("body > div.row > div > div");
+        try {
+            let res = await fetch(`/api/order/${userId}`, {
+                method: 'GET'
+            });
+            let data = await res.json();
+            data.map(item => {
+                let block = `
+                <div class="col-sm-4">
+                      <div class="panel-body img-responsive"><img src="${item.pdImageUrl}" style="width:100%" alt="Image"></div>
+                    </div>
+                    <div class="col-sm-6" style="height: auto">
+                    <hr>
+                    <table class="pdInfoBox">
+                             <tr>
+                                <th>상품명</th><td>${item.pdName}</td>
+                             </tr>
+                             <tr>
+                                <th>판매가</th><td style="font-weight: normal">KRW ${item.pdPrice}</td>
+                             </tr>
+                     </table>
+                     </div>
+                  <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="name">이름</label>
+                        <input type="text" id="name" class="form-control" required="required" autofocus="autofocus" value="${item.user.name}">
+                    </div>
+                    <div class="form-label-group">
+                        <label for="tellNumber">연락처</label>
+                        <input type="text" id="tellNumber" class="form-control" required="required" value="${item.user.tellNumber}">
+                    </div>
+                    <div class="form-label-group">
+                        <label for="address">배송주소</label>
+                        <input type="text" id="address" class="form-control" required="required" value="${item.user.address}">
+                    </div>
+                </div>
+                `
+                x.innerHTML += block;
+            });
+        } catch (e) {
+        }
+    }
+    getData(userId);
+    getCustom();
+</script>
+</body>
+</html>
+
+
+

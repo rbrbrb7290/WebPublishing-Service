@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>로그인</title>
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin.css}" rel="stylesheet" type="text/css"/>
+</head>
+
+<body class="bg-dark">
+
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">로그인</div>
+        <div class="card-body">
+            <form action="/loginAdmin" method="post">
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="id" name="adminId" id="inputEmail" class="form-control" placeholder="아이디" required="required" autofocus="autofocus">
+                        <label for="inputEmail">아이디</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <input type="password" name="adminPassword" id="inputPassword" class="form-control" placeholder="비밀번호" required="required">
+                        <label for="inputPassword">비밀번호</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me">
+                            Remember Password
+                        </label>
+                    </div>
+                </div>
+                <input class="btn btn-primary btn-block" type="submit" value="로그인"><br>
+<!--                <a class="btn btn-primary btn-block" type="submit" >로그인</a>-->
+            </form>
+            <div class="text-center">
+                <a class="d-block small mt-3" href="/joinPage">관리자 등록</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
+
