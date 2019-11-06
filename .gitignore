@@ -1,11 +1,12 @@
 HELP.md
 .gradle
-/build/
+**/build/
+**/.gradle
 !gradle/wrapper/gradle-wrapper.jar
 
+
 ### images ###
-../images/*
-!../images
+images/
 
 
 ### STS ###
