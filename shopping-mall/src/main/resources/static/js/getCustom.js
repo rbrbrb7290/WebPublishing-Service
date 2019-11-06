@@ -11,7 +11,6 @@
                 let block = `
                         <h2>${custom.title}</h2>
                 `
-                customInfo.innerHTML += block;
                 let block2 = `
                     <div class="customAboutBox">
                        <ul>
@@ -45,6 +44,7 @@
                         </ul>
                    </div>
                 `
+                customInfo.innerHTML += block;
                 bankInfo.innerHTML += block2;
             });
         } catch (e) {

@@ -1,48 +1,41 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Web Service</title>
-    <meta http-equiv="content-type" charset="UTF-8">
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link  rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link th:href="@{/css/app.css}" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <style>
-        /* Remove the navbar's default margin-bottom and rounded borders */
+        /* Remove the navbar's default rounded borders and increase the bottom margin */
         .navbar {
-            margin-bottom: 0;
+            margin-bottom: 50px;
             border-radius: 0;
         }
 
-        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-        .row.content {height: 450px}
-
-        /* Set gray background color and 100% height */
-        .sidenav {
-            padding-top: 20px;
-            background-color: #f1f1f1;
-            height: 100%;
+        /* Remove the jumbotron's default bottom margin */
+        .jumbotron {
+            margin-bottom: 0;
         }
 
-        /* Set black background color, white text and some padding */
+        /* Add a gray background color and some padding to the footer */
         footer {
-            background-color: #555;
-            color: white;
-            padding: 15px;
-        }
-
-        /* On small screens, set height to 'auto' for sidenav and grid */
-        @media screen and (max-width: 767px) {
-            .sidenav {
-                height: auto;
-                padding: 15px;
-            }
-            .row.content {height:auto;}
+            background-color: #f2f2f2;
+            padding: 25px;
         }
     </style>
 </head>
 <body>
 
+<div class="jumbotron">
+    <div class="container text-center">
+        <!--        <h1></h1>-->
+        <!--        <p>Mission, Vission & Values</p>-->
+    </div>
+</div>
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -51,60 +44,89 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Logo</a>
+            <a class="navbar-brand" href="/index">Home</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Home</a></li>
-                <li><a href="/product">상품관리</a></li>
-                <!--                <li><a href="#">Projects</a></li>-->
-                <!--                <li><a href="#">Contact</a></li>-->
+                <li><a href="/product/select/outer">OUTER</a></li>
+                <li><a href="/product/select/top">TOP</a></li>
+                <li><a href="/product/select/shirt">SHIRT</a></li>
+                <li><a href="/product/select/knit">KNIT</a></li>
+                <li><a href="/product/select/bottom">BOTTOM</a></li>
+                <li><a href="/product/select/acc">ACC</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/api/admin"><span class="glyphicon glyphicon-wrench"></span> 관리자 메뉴</a></li>
-                <li><a href="/joinPage"><span class="glyphicon glyphicon-log-in"></span>관리자 회원 가입</a></li>
-                <!--                <li><a href="/loginPage"><span class="glyphicon glyphicon-log-in"></span> 관리자 로그인</a></li>-->
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> 로그아웃</a></li>
+                <li th:if="${session.loginAdmin != null}"><a href="/dashboard">
+                    <span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
+                <li th:if="${session.loginUser == null}"><a href="/joinUser">
+                    <span class="glyphicon glyphicon-inbox"></span> 회원가입</a></li>
+                <li th:if="${session.loginUser== null}"><a href="/userLogin">
+                    <span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+                <li th:if="${session.loginUser != null}"><a href="/logoutUser">
+                    <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
+                <li th:if="${session.loginUser != null}"><a href="#">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
             </ul>
         </div>
     </div>
 </nav>
-
-<div class="container-fluid text-center">
-    <div class="row content">
-        <div class="col-sm-2 sidenav">
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-            <p><a href="#">Link</a></p>
-        </div>
-        <div class="col-sm-8 text-left">
-            <h4>상품등록</h4>
-            <br>
-                <input type="text"  placeholder="타이틀" name="title" id="title">
+<div class="row">
+    <div class="container" style="width: 35rem">
+        <div class="card card-register mx-auto mt-5">
+            <label class="card-header">커스터마이징</label>
+            <div class="card-body">
+                <!--            <form>-->
+                <div class="form-group">
+                    <div class="form-label-group">
+                        <label for="title">홈페이지명</label>
+                        <input type="text" id="title" class="form-control" placeholder="홈페이지 이름" required="required" autofocus="autofocus">
+                    </div>
+                </div>
                 <br>
-                <input type="text" placeholder="로고" name="lgooImageUrl" id="logoImageUrl" >
-                <br>
-                <input type="submit" id = "addBtn" value="홈페이지 활성화">
-        </div>
-        <div class="col-sm-2 sidenav">
-            <div class="well">
-                <p>ADS</p>
+                    <div class="form-label-group">
+                        <label for="bankAdmin">계좌정보</label>
+                        <input type="text" id="bankAdmin" class="form-control" placeholder="계좌 명의" required="required">
+                        <input type="text" id="bank" class="form-control" placeholder="ex)국민 701000-00-000000" required="required">
+                    </div>
+                </div>
             </div>
-            <div class="well">
-                <p>ADS</p>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="form-label-group">
+                        <label for="tellNumber">연락처</label>
+                        <input type="text" id="tellNumber" class="form-control" placeholder="연락처" required="required">
+                    </div>
+                </div>
             </div>
+            <div class="form-group">
+                <div class="form-row">
+                    <div class="form-label-group">
+                        <label for="logoImageUrl">페이지 로고</label>
+                        <input type="text" id="logoImageUrl" class="form-control" placeholder="로고" required="required">
+                    </div>
+                </div>
+            </div>
+            <input type="submit" id = "addBtn" class="btn btn-primary" value="홈페이지 활성화">
         </div>
     </div>
 </div>
+<br><br>
 
-<footer class="container-fluid text-center">
-    <p>Footer Text</p>
-</footer>
+<div class="bankInfoBox">
+
+</div>
+
+<script src="/js/getCustom.js"></script>
+<script src="/js/scrollMove.js"></script>
 <script>
+    let id = '#bankAdmin' //scrollMove
     document.getElementById('addBtn').addEventListener('click', e => addCustom());
 
     async function addCustom() {
         let title = document.getElementById('title').value;
+        let bank = document.getElementById('bank').value;
+        let bankAdmin = document.getElementById('bankAdmin').value;
+        let tellNumber = document.getElementById('tellNumber').value;
         let logoImageUrl=  document.getElementById('logoImageUrl').value;
 
         try {
@@ -116,14 +138,19 @@
                 },
                 body: JSON.stringify({
                    title,
-                   logoImageUrl
+                   logoImageUrl,
+                   bank,
+                   bankAdmin,
+                   tellNumber
                 })
             });
-              if(res.ok) document.location.href="/dashboard";
+              if(res.ok) document.location.href="/customizing";
 
         } catch (e) {
         }
     }
+    getCustom();
+    scroll(id)
 </script>
 
 </body>

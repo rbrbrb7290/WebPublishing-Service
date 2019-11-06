@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link th:href="@{/css/app.css}" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        /* Remove the navbar's default rounded borders and increase the bottom margin */
+        .navbar {
+            margin-bottom: 50px;
+            border-radius: 0;
+        }
+        /* Remove the jumbotron's default bottom margin */
+        .jumbotron {
+            margin-bottom: 0;
+        }
+
+        /* Add a gray background color and some padding to the footer */
+        footer {
+            background-color: #f2f2f2;
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="jumbotron">
+    <div class="container text-center">
+        <!--        <h1></h1>-->
+        <!--        <p>Mission, Vission & Values</p>-->
+    </div>
+</div>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index">Home</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="/product/select/outer">OUTER</a></li>
+                <li><a href="/product/select/top">TOP</a></li>
+                <li><a href="/product/select/shirt">SHIRT</a></li>
+                <li><a href="/product/select/knit">KNIT</a></li>
+                <li><a href="/product/select/bottom">BOTTOM</a></li>
+                <li><a href="/product/select/acc">ACC</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li th:if="${session.loginAdmin != null}"><a href="/dashboard">
+                    <span class="glyphicon glyphicon-wrench"></span> 상품관리</a></li>
+                <li th:if="${session.loginUser == null}"><a href="/joinUser">
+                    <span class="glyphicon glyphicon-inbox"></span> 회원가입</a></li>
+                <li th:if="${session.loginUser== null}"><a href="/userLogin">
+                    <span class="glyphicon glyphicon-user"></span> 로그인</a></li>
+                <li th:if="${session.loginUser != null}"><a href="/logoutUser">
+                    <span class="glyphicon glyphicon-user"></span> 로그아웃</a></li>
+                <li th:if="${session.loginUser != null}"><a href="#">
+                    <span class="glyphicon glyphicon-user" th:text="${session.loginUser}"></span></a></li>
+                <li th:if="${session.loginUser != null}"><a href="/my/cart">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="row">
+        <!--  상품정보 GET하는 공간-->
+        <table class="cartBox">
+            <tr>
+                <th><input type="checkbox" id="cartAllCheck"></th>
+                <th>이미지</th>
+                <th>상품정보</th>
+                <th>판매가</th>
+                <th>등록일자</th>
+                <th> </th>
+            </tr>
+            <tbody>
+
+
+            </tbody>
+        </table>
+    </div>
+    <button id="nextBtn"> ▼</button>
+</div><br>
+
+
+
+</div><br><br>
+
+<footer class="container-fluid text-center">
+    <p>Online Store Copyright</p>
+    <form class="form-inline">Get deals:
+        <input type="email" class="form-control" size="50" placeholder="Email Address">
+        <button type="button" class="btn btn-danger">Sign Up</button>
+    </form>
+</footer>
+<script src="/js/getCustom.js"></script>
+<script src="/js/loginPopup.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let userId = /*[[${session.loginUser}]]*/ UserId;
+    /*]]>*/
+    let page = 0;
+    async function getData(page, userId) {
+        document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
+        let x = document.querySelector("body > div.container > div > table > tbody");
+        try {
+            let res = await fetch(`/api/cart/${userId}`, {
+                method: 'GET'
+            });
+            let data = await res.json();
+            data.map(item => {
+                let block = `
+                <tr>
+                    <td style="width: 6%"><input type="checkbox" id="cartAllCheck"></td>
+                    <td style="width: 15%"><img src="${item.product.pdImageUrl}" style="width: 87px" alt="Image"></td>
+                    <td style="width: 35%">${item.product.pdName}</td>
+                    <td style="width: 20%" class="price">KRW ${item.product.pdPrice}</td>
+                    <td style="width: 15%">${item.date}</td>
+                    <td>
+                      <a href="/api/cart/list/${item.productId}/delete" onclick="if(!confirm('장바구니에서 상품을 삭제하시겠습니까?')){return false;}">
+                         <button type="button" class="btn btn-danger">Delete</button>
+                      </a>
+                    </td>
+                </tr>
+                `
+                x.innerHTML += block;
+            });
+        } catch (e) {
+        }
+    }
+    getCustom();
+    getData(page, userId);
+
+    //TODO 페이징처리하기
+</script>
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.web.publishing.shoppingmall.controller;
 
 import com.web.publishing.shoppingmall.model.Product;
+import com.web.publishing.shoppingmall.model.ProductImage;
+import com.web.publishing.shoppingmall.repository.ProductImageRepository;
 import com.web.publishing.shoppingmall.repository.ProductRepository;
 import com.web.publishing.shoppingmall.service.product.ProductAddService;
 import com.web.publishing.shoppingmall.service.product.ProductListService;
@@ -20,21 +22,25 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.awt.*;
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/product")
 public class ProductController {
     private final ProductListService productListService;
     private final ProductAddService productAddService;
     private final ProductRepository productRepository;
+    private final ProductImageRepository productImageRepository;
     private final HttpSession session;
     private int returnPageNum(String stringToInt){
         return Integer.parseInt(stringToInt);
     }
 
-    @RequestMapping("/product")
+    @RequestMapping("")
     public String product(@RequestParam(value = "pageNum", defaultValue = "1")String pageNum) {
         if(session.getAttribute("loginAdmin") != null){
             return "product";
@@ -44,13 +50,13 @@ public class ProductController {
     }
 
     //변수를 통해 page수 줄이기
-    @RequestMapping("/product/info/{id}")
+    @RequestMapping("/info/{id}")
     public String product_info(@PathVariable int id) {
 
         return "product_info";
     }
 
-    @GetMapping("/product/select/{category}")
+    @GetMapping("/select/{category}")
     public String pdSort_Category(@PathVariable String category){
 
         return "category_sort";
@@ -61,11 +67,12 @@ public class ProductController {
         return "productUpdate";
     }
 
-    @RequestMapping("/api/product/{id}/delete")
+    @RequestMapping("/{id}")
     public String delete(@PathVariable int id) {
         productRepository.deleteById(id);
         return "redirect:/product";
     }
+
 
 //        @RequestMapping("api/product/{id}/update")
 //    public String update(@PathVariable int id){
@@ -74,7 +81,7 @@ public class ProductController {
 //        return "redirect:/product";
 //    }
 
-    @PostMapping(value = "/productAddRequest",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String productAddRequest(
             @RequestParam String pdName,
             @RequestParam String pdPrice,
@@ -95,19 +102,24 @@ public class ProductController {
                 System.out.println("main: " + file.getOriginalFilename().indexOf('.'));
                 System.out.println("Detail: " + file.getOriginalFilename().length());
                 System.out.println(detail.size());
-
-                productAddService.add(Product.builder()
-                        .pdName(pdName)
-                        .pdPrice(pdPrice)
-                        .pdCategory(pdCategory)
-                        .pdAmount(pdAmount)
-                        .pdContent(pdContent)
-                        .pdDate(pdDate)
-                        .pdImageUrl("/images/" + file.getOriginalFilename())
-                        .pdDetail("/images/" + String.valueOf(detail))
-                        .build());
             }
 
+//            List<ProductImage> productImages = productImageRepository.saveAll(
+//                    Arrays.stream(pdImage)
+//                            .map(multipartFile -> ProductImage.builder().image("/images/" + multipartFile.getOriginalFilename()).build())
+//                            .collect(Collectors.toList())
+//            );
+
+            productAddService.add(Product.builder()
+                    .pdName(pdName)
+                    .pdPrice(pdPrice)
+                    .pdCategory(pdCategory)
+                    .pdAmount(pdAmount)
+                    .pdContent(pdContent)
+                    .pdDate(pdDate)
+                    .pdImageUrl("/images/" + file.getOriginalFilename())
+//                    .pdDetail(productImages)
+                    .build());
         }
        return "redirect:/product";
     }
