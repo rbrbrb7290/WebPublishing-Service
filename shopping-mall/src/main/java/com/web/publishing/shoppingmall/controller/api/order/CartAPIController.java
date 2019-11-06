@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,16 +21,20 @@ import java.util.Optional;
 public class CartAPIController {
     private final CartRepository cartRepository;
     private final CartService cartService;
+    private final HttpSession session;
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> addCart(@RequestBody Cart cart) {
         Optional<Cart> cartCheck = Optional.ofNullable(null);
         cartCheck = cartRepository.findByProduct(Product.builder().id(cart.getProductId()).build());
-        if (cartCheck.isPresent()){
-            return new ResponseEntity<>("이미 등록된 상품입니다.", HttpStatus.BAD_REQUEST);
+        if (session.getAttribute("loginUser") != null) {
+            if (cartCheck.isPresent()) {
+                return new ResponseEntity<>("이미 등록된 상품입니다.", HttpStatus.BAD_REQUEST);
+            }
+            cartService.addCart(cart);
+            return new ResponseEntity<>("장바구니에 등록 되었습니다.", HttpStatus.OK);
         }
-        cartService.addCart(cart);
-        return new ResponseEntity<>("장바구니에 등록 되었습니다.", HttpStatus.OK);
+        return new ResponseEntity<>("로그인이 필요합니다.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @GetMapping("/{userId}")

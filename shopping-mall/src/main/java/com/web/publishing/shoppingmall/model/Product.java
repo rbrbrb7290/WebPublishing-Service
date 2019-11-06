@@ -1,10 +1,12 @@
 package com.web.publishing.shoppingmall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Builder
@@ -24,5 +26,9 @@ public class Product implements Serializable {
     private String pdCategory;
     private String pdDate;
     private String pdContent;
+//    @OneToMany
+//    @JsonIgnore
+//    @JoinColumn(name = "pd_detail")
+//    private List<ProductImage> pdDetail;
     private String pdDetail;
 }

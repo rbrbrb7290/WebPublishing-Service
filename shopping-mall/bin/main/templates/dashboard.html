@@ -285,7 +285,7 @@
     </div>
 </div>
 <script>
-    let page = 0;
+    let page =0;
     document.getElementById('nextBtn').addEventListener('click', e => getData(++page));
     async function getData(page) {
         let x = document.querySelector('#dataTable > tbody');
@@ -296,20 +296,22 @@
             let data = await res.json();
             data.map(item => {
                 let block = `
-              <tr>
+                <tr>
                     <td>${item.id}</td>
-                    <td><img src="${item.pdImageUrl}" class="img-responsive" style="width:100px" alt="Image"></td>
+                    <td><img src="${item.pdImageUrl}" class="img-responsive" style="width:80px" alt="Image"></td>
                     <td>${item.pdName}</td>
                     <td>${item.pdPrice}</td>
-                    <td>${item.pdCategory}</td>
                     <td>${item.pdContent}</td>
                     <td>${item.pdDate}</td>
-                       <td class="pull-right">
-                          <a href="/api/product/${item.id}/delete" onclick="if(!confirm('상품을 삭제하시겠습니까?')){return false;}">
-                             <button type="button" class="btn btn-danger">Delete</button>
-                          </a>
-                        </td>
-                    </tr>
+               <td class="pull-right">
+                <a href="/api/product/update/${item.id}" onclick="if(!confirm('상품을 수정하시겠습니까?')){return false;}">
+                     <button type="button" class="btn btn-warning">Update</button>
+                  </a>
+                  <a href="/product/${item.id}" onclick="if(!confirm('상품을 삭제하시겠습니까?')){return false;}">
+                     <button type="button" class="btn btn-danger">Delete</button>
+                  </a>
+                </td>
+            </tr>
                 `
                 x.innerHTML += block;
             });

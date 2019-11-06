@@ -38,6 +38,7 @@ CREATE TABLE `custom_db` (
      `logo_image_url` varchar(30) DEFAULT NULL,
      `tell_number` varchar(20) DEFAULT NULL,
      `bank` varchar(30) DEFAULT NULL,
+     `bank_admin` varchar(20) DEFAULT NULL,
      PRIMARY KEY (`id`)
 )ENGINE=InnoDB;
 
@@ -50,17 +51,17 @@ CREATE TABLE `product_db` (
   `pd_date` date NOT NULL,
   `pd_content` longtext NOT NULL,
   `pd_category` varchar(10) NOT NULL,
+  `pd_detail` mediumtext NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `order_db` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-    `user_id` int(11) unsigned NOT NULL,
-    `order_date` datetime NOT NULL,
-    `total_price` int(11) unsigned NOT NULL,
-    PRIMARY KEY (`id`),
-    KEY `user_id` (`user_id`),
-    CONSTRAINT `order_db_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_db` (`id`)
+    `user_id` int(11) NOT NULL,
+    `date` datetime NOT NULL,
+    `price` int(11) unsigned NULL,
+    `product_id` int(20) NOT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
 CREATE TABLE `deliveries_db` (
@@ -69,17 +70,8 @@ CREATE TABLE `deliveries_db` (
      `address_user_id` int(11) unsigned NOT NULL,
      `order_id` int(11) unsigned NOT NULL,
      `order_user_id` int(11) unsigned NOT NULL,
-     PRIMARY KEY (`id`),
-     KEY `address_user_id` (`address_user_id`),
-     KEY `address_id` (`address_id`),
-     KEY `order_id` (`order_id`),
-     KEY `order_user_id` (`order_user_id`),
-     CONSTRAINT `deliveries_db_ibfk_1` FOREIGN KEY (`address_user_id`) REFERENCES `address_db` (`user_id`),
-     CONSTRAINT `deliveries_db_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address_db` (`id`),
-     CONSTRAINT `deliveries_db_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order_db` (`id`),
-     CONSTRAINT `deliveries_db_ibfk_4` FOREIGN KEY (`order_user_id`) REFERENCES `order_db` (`user_id`)
+     PRIMARY KEY (`id`)
 )ENGINE=InnoDB;
-
 
 CREATE TABLE `purchase_db` (
    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -87,24 +79,13 @@ CREATE TABLE `purchase_db` (
    `user_id` int(11) unsigned NOT NULL,
    `order_id` int(11) unsigned NOT NULL,
    `order_user_id` int(11) unsigned NOT NULL,
-   PRIMARY KEY (`id`),
-   KEY `user_id` (`user_id`),
-   KEY `order_id` (`order_id`),
-   KEY `order_user_id` (`order_user_id`),
-   CONSTRAINT `purchase_db_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user_db` (`id`),
-   CONSTRAINT `purchase_db_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order_db` (`id`),
-   CONSTRAINT `purchase_db_ibfk_3` FOREIGN KEY (`order_user_id`) REFERENCES `order_db` (`user_id`)
+   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB;
 
-
 CREATE TABLE `cart_db` (
-    `order_id` int(11) unsigned NOT NULL,
-    `order_user_id` int(11) unsigned NOT NULL,
-    `pd_id` int(11) unsigned NOT NULL,
-    KEY `pd_id` (`pd_id`),
-    KEY `order_user_id` (`order_user_id`),
-    KEY `order_id` (`order_id`),
-    CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`pd_id`) REFERENCES `product_db` (`id`),
-    CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`order_user_id`) REFERENCES `order_db` (`user_id`),
-    CONSTRAINT `cart_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `order_db` (`id`)
+    `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `product_id` int(20) NOT NULL,
+    `user_id` varchar(20) NOT NULL,
+    `date` datetime NOT NULL,
+    PRIMARY KEY (`id`)
 )ENGINE=InnoDB;

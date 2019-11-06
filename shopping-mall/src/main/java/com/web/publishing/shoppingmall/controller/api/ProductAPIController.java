@@ -22,7 +22,7 @@ public class ProductAPIController {
     public List<Product> addProduct(@RequestParam int page) {
         return productListService.productList(page);
     }
-
+//api/product/
     @GetMapping("/")
     public List<Product> getpdList() {
         List<Product> pdList = productRepository.findAll();
