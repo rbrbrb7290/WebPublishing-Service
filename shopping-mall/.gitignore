@@ -4,7 +4,8 @@ HELP.md
 !gradle/wrapper/gradle-wrapper.jar
 
 ### images ###
-../images/*.jpg
+../images/*
+!images
 
 ### STS ###
 .apt_generated
