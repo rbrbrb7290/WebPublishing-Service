@@ -7,6 +7,7 @@ HELP.md
 
 ### images ###
 images/
+!images/images.txt
 
 
 ### STS ###
@@ -34,3 +35,7 @@ images/
 
 ### VS Code ###
 .vscode/
+**/bin
+
+
+**/data
