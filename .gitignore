@@ -1,10 +1,13 @@
 HELP.md
 .gradle
-/build/
+**/build/
+**/.gradle
 !gradle/wrapper/gradle-wrapper.jar
 
+
 ### images ###
-../images/*.jpg
+images/
+
 
 ### STS ###
 .apt_generated
@@ -31,3 +34,7 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+**/bin
+
+
+**/data
