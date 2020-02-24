@@ -6,6 +6,7 @@ import com.web.publishing.shoppingmall.repository.order.OrderRepository;
 import com.web.publishing.shoppingmall.service.order.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.aspectj.weaver.ast.Or;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,18 +22,19 @@ public class OrderAPIController {
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
     private final OrderService orderService;
+    private HttpHeaders headers;
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<String> addOrder(@RequestBody Order order) throws Exception {
-//        Optional<Order> orderCheck = orderRepository.findByUser(userRepository.findByUserId(order.getUserId()).orElseThrow(Exception::new));
-//        if(orderCheck.isPresent()){
-////            return new ResponseEntity<>("이전 주문 완료좀", HttpStatus.valueOf(401));
-////        }
+        Optional<Order> orderCheck = orderRepository.findByUser(userRepository.findByUserId(order.getUserId()).orElseThrow(Exception::new));
+        if(orderCheck.isPresent()){
+            return new ResponseEntity<>("이전 주문 완료좀", HttpStatus.valueOf(401));
+        }
         orderService.addOrder(order);
         return new ResponseEntity<>("주문 고", HttpStatus.OK);
     }
     @GetMapping("/{userId}")
-    public List<Order> getOrder(@PathVariable String userId) throws Exception {
-        List<Order> myOrder = orderRepository.findByUser(userRepository.findByUserId(userId).orElseThrow(Exception::new));
+    public Optional<Order> getOrder(@PathVariable String userId) throws Exception {
+        Optional<Order> myOrder = orderRepository.findByUser(userRepository.findByUserId(userId).orElseThrow(Exception::new));
         return myOrder;
     }
 

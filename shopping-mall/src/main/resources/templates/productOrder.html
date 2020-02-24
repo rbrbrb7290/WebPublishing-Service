@@ -96,7 +96,7 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     let userId = /*[[${session.loginUser}]]*/ UserId;
-    console.log(userId)
+    console.log(userId);
     /*]]>*/
     async function getData(userId) {
         let x = document.querySelector("body > div.row > div > div");
@@ -108,7 +108,7 @@
             data.map(item => {
                 let block = `
                 <div class="col-sm-4">
-                      <div class="panel-body img-responsive"><img src="${item.pdImageUrl}" style="width:100%" alt="Image"></div>
+                      <div class="panel-body img-responsive"><img src="${item.product.pdImageUrl}" style="width:100%" alt="Image"></div>
                     </div>
                     <div class="col-sm-6" style="height: auto">
                     <hr>

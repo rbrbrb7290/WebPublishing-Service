@@ -10,10 +10,12 @@ EXPOSE 8080
 # The application's jar file
 # ADD? File host -> container + [source] 기능
 # COPY? 단순 복사 기능
+
 #배포할때는 ./{name}.jar
 #ARG JAR_FILE=./shopping-mall-0.0.1-SNAPSHOT.jar
 ARG JAR_FILE=build/libs/shopping-mall-0.0.1-SNAPSHOT.jar
 ADD ${JAR_FILE} shopping-mall.jar
+
 # Run the jar file
 # CMD / ENTRYPOINT 차이 알아두기
 #ENTRYPOINT - 컨테이너 실행 시 반드시 지정된 명령수행

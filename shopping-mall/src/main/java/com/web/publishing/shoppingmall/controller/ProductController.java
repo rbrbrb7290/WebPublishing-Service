@@ -31,10 +31,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @RequestMapping("/product")
 public class ProductController {
-    private final ProductListService productListService;
     private final ProductAddService productAddService;
     private final ProductRepository productRepository;
-    private final ProductImageRepository productImageRepository;
     private final HttpSession session;
     private int returnPageNum(String stringToInt){
         return Integer.parseInt(stringToInt);
@@ -46,7 +44,6 @@ public class ProductController {
             return "product";
         }
         return "login";
-
     }
 
     //변수를 통해 page수 줄이기
@@ -67,19 +64,11 @@ public class ProductController {
         return "productUpdate";
     }
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public String delete(@PathVariable int id) {
         productRepository.deleteById(id);
         return "redirect:/product";
     }
-
-
-//        @RequestMapping("api/product/{id}/update")
-//    public String update(@PathVariable int id){
-//        List<Product> product = productRepository.findById(id);
-//
-//        return "redirect:/product";
-//    }
 
     @PostMapping(value = "/add",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String productAddRequest(
@@ -109,7 +98,6 @@ public class ProductController {
 //                            .map(multipartFile -> ProductImage.builder().image("/images/" + multipartFile.getOriginalFilename()).build())
 //                            .collect(Collectors.toList())
 //            );
-
             productAddService.add(Product.builder()
                     .pdName(pdName)
                     .pdPrice(pdPrice)
