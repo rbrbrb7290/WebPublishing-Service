@@ -188,39 +188,40 @@
 </div>
 <script>
     document.getElementById('pdDate').valueAsDate = new Date();
-    document.getElementById('addBtn').addEventListener('click', e => addProduct());
+    // document.getElementById('addBtn').addEventListener('click', e => addProduct());
 
     async function addProduct() {
-        let pdName = document.getElementById('pdName').value;
-        let pdPrice =  document.getElementById('pdPrice').value;
-        let pdCategory = document.getElementById('pdCategory').value;
-        let pdAmount =  document.getElementById('pdAmount').value;
-        let pdContent =  document.getElementById('pdContent').value;
-        let pdDate = document.getElementById('pdDate').value;
-        let pdImage = document.getElementById('pdImage').value;
-        let pdDetail = document.getElementById('pdDetail').value;
-        try {
-            let res = await fetch(`/api/product` , {
-                method:'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Charset': 'UTF-8'
-                },
-                body: JSON.stringify({
-                    pdName,
-                    pdPrice,
-                    pdCategory,
-                    pdAmount,
-                    pdContent,
-                    pdDate,
-                    pdImage,
-                    pdDetail,
-                })
-            });
-            if(res.ok) document.location.href="/product";
+        // console.log('hiihiihi');
+        // let pdName = document.getElementById('pdName').value;
+        // let pdPrice =  document.getElementById('pdPrice').value;
+        // let pdCategory = document.getElementById('pdCategory').value;
+        // let pdAmount =  document.getElementById('pdAmount').value;
+        // let pdContent =  document.getElementById('pdContent').value;
+        // let pdDate = document.getElementById('pdDate').value;
+        // let pdImage = document.getElementById('pdImage').value;
+        // let pdDetail = document.getElementById('pdDetail').value;
+        // try {
+        //     let res = await fetch(`/api/product` , {
+        //         method:'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json',
+        //             'Charset': 'UTF-8'
+        //         },
+        //         body: JSON.stringify({
+        //             pdName,
+        //             pdPrice,
+        //             pdCategory,
+        //             pdAmount,
+        //             pdContent,
+        //             pdDate,
+        //             pdImage,
+        //             pdDetail,
+        //         })
+        //     });
+        //     if(res.ok) document.location.href="/product";
 
-        } catch (e) {
-        }
+        // } catch (e) {
+        // }
     }
 </script>
 </body>

@@ -1,14 +1,19 @@
 package com.web.publishing.shoppingmall.controller.api;
 
+import java.util.List;
+
 import com.web.publishing.shoppingmall.model.Product;
 import com.web.publishing.shoppingmall.repository.ProductRepository;
 import com.web.publishing.shoppingmall.service.product.ProductListService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
@@ -34,7 +39,12 @@ public class ProductAPIController {
         List<Product> pdInfo = productRepository.findById(id);
         return pdInfo;
     }
-
+    @RequestMapping("/update/{id}")
+    public ModelAndView update(@PathVariable int id){
+        ModelAndView view = new ModelAndView();
+        view.setViewName("productUpdate");
+        return view;
+    }
     // 상품을 카테고리 별로 정렬
     @GetMapping("sort/{category}")
     public List<Product> pdCategory(@PathVariable String category) {

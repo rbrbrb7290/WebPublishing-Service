@@ -1,31 +1,30 @@
 package com.web.publishing.shoppingmall.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import com.web.publishing.shoppingmall.model.Product;
-import com.web.publishing.shoppingmall.model.ProductImage;
 import com.web.publishing.shoppingmall.repository.ProductImageRepository;
 import com.web.publishing.shoppingmall.repository.ProductRepository;
 import com.web.publishing.shoppingmall.service.product.ProductAddService;
 import com.web.publishing.shoppingmall.service.product.ProductListService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.ClassPathResource;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import javax.naming.Binding;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import java.awt.*;
-import java.io.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
@@ -36,6 +35,7 @@ public class ProductController {
     private final ProductRepository productRepository;
     private final ProductImageRepository productImageRepository;
     private final HttpSession session;
+    
     private int returnPageNum(String stringToInt){
         return Integer.parseInt(stringToInt);
     }
@@ -61,11 +61,7 @@ public class ProductController {
 
         return "category_sort";
     }
-    @RequestMapping("/api/product/update/{id}")
-    public String update(@PathVariable int id){
-        productRepository.findById(id);
-        return "productUpdate";
-    }
+
 
     @RequestMapping("/{id}")
     public String delete(@PathVariable int id) {
